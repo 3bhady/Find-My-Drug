@@ -14,3 +14,10 @@ bootstrap/cache/
 # Rocketeer PHP task runner and deployment package. https://github.com/rocketeers/rocketeer
 .rocketeer/
 
+#so that i don't kill myself
+workspace.xml
+*.xml
+.idea/*
+.idea/*xml
+.idea/workspace.xml
+
