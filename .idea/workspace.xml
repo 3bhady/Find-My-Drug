@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="90bb9e6e-719c-4e0b-88dc-7453adefddfe" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/findmydrugmobileapp/about.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/findmydrugmobileapp/.idea/workspace.xml" afterPath="$PROJECT_DIR$/findmydrugmobileapp/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/findmydrugmobileapp/index.html" afterPath="$PROJECT_DIR$/findmydrugmobileapp/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/findmydrugmobileapp/js/app.js" afterPath="$PROJECT_DIR$/findmydrugmobileapp/js/app.js" />
     </list>
     <ignored path="findmydrug.iws" />
     <ignored path=".idea/workspace.xml" />
