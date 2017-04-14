@@ -1,0 +1,23 @@
+/* for event text glowing animated text*/
+.event-text{
+  color:rgba(70,70,255,0.8)
+
+
+
+
+
+}
+.event-text:hover{
+    animation: myfirst 3s linear 0.2s infinite alternate;
+    cursor: pointer;
+}
+
+
+/*animation*/
+@keyframes myfirst {
+    0%   {transform:rotate3d(0,0,0,30deg);color:rgba(70,70,255,0.6)}
+    25%  {}
+    50%  {}
+    75%  {}
+    100% {transform:rotate3d(1,0,0,180deg);color:rgba(70,70,255,1)}
+}
