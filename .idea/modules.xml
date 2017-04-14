@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/findmydrug.iml" filepath="$PROJECT_DIR$/.idea/findmydrug.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Find-My-Drug.iml" filepath="$PROJECT_DIR$/.idea/Find-My-Drug.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../restful/.idea/restful.iml" filepath="$PROJECT_DIR$/../restful/.idea/restful.iml" />
     </modules>
   </component>
 </project>
