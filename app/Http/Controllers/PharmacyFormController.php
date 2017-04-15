@@ -46,18 +46,21 @@ class PharmacyFormController extends Controller
 
             "name_en"=>'required|min:3',
             "address_en"=>'required|min:3',
-            "landline"=>'required|min:5',
+            "landline"=>'required|min:5|numeric',
             "mobile"=>'required|min:3|numeric',
             "email"=>'required|min:3|email',
-            "mobile2"=>'required|min:3|numeric',
+            "mobile2"=>'numeric',
             "owner_name"=>'required|min:3',
             "password"=>'required|min:3',
-            "home_delivery"=>'required',
             "open"=>'required',
             "close"=>'required',
             "name_ar"=>'required|min:3',
             "address_ar"=>'required|min:3'
         ]);
+        $home_delivery=0;
+        if($request->input('home_delivery')=="on"){
+            $home_delivery=1;
+        }
         $pharmacyForm= new PharmacyForm([
           "name_en"=>$request->input("name_en"),
           "address_en"=> $request->input("address_en"),
@@ -67,7 +70,7 @@ class PharmacyFormController extends Controller
           "mobile2"=> $request->input("mobile2"),
           "owner_name"=>$request->input("owner_name"),
           "password"=> $request->input("password"),
-          "home_delivery"=> $request->input("home_delivery"),
+          "home_delivery"=> $home_delivery,
           "open"=> $request->input("open"),
           "close"=> $request->input("close"),
           "name_ar"=> $request->input("name_ar"),
@@ -80,9 +83,11 @@ class PharmacyFormController extends Controller
                 "status"=>"success",
                 "pharmacyFormInfo"=>$pharmacyForm
             ];
+            
         }
         catch(Exception $e){
             $response=[
+                "message"=>$e->getMessage(),
                 "status"=>"failed",
                 "pharmacyFormInfo"=>$pharmacyForm
             ];

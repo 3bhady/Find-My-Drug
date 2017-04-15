@@ -1,0 +1,185 @@
+<!-- We don't need full layout in this file because this page will be parsed with Ajax. It is just enough to put here .navbar and .page-->
+<!-- Top Navbar-->
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="left">
+            <a href="#" class="back link">
+                <i class="icon icon-back"></i>
+                <span>Back</span>
+            </a>
+        </div>
+        <div class="center sliding">About</div>
+        <div class="right">
+            <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
+        </div>
+
+    </div>
+</div>
+<div class="pages">
+
+    <div data-page="register" class="page">
+
+        <div class="page-content">
+            <div class="content-block-title">Register Your Pharmacy</div>
+            <div class="list-block">
+                <form action="#" method="post" id="register">
+                    <ul>
+                        <!-- Text inputs  name_en-->
+                        <li>
+                            <div class="item-content">
+
+                                <div class="item-media"><i class="icon f7-icons">person</i></div>
+
+                                <div class="item-inner">
+
+
+                                    <div class="item-input">
+                                        <input type="text" name="name_en"
+                                               id="name_en"placeholder="Pharmacy's name in english">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- Text inputs  name_ar-->
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media"><i class="icon f7-icons">person</i></div>
+                                <div class="item-inner">
+                                    <div class="item-input">
+                                        <input type="text" name="name_ar" id="name_ar"
+                                               placeholder="Pharmacy's name in arabic">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- Text inputs  owner_name-->
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media"><i class="icon f7-icons">person</i></div>
+                                <div class="item-inner">
+                                    <div class="item-input">
+                                        <input type="text" id="owner_name" name="owner_name" placeholder="Your name">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- Text inputs  address_en-->
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media"><i class="icon f7-icons">world_fill</i></div>
+                                <div class="item-inner">
+                                    <div class="item-input">
+                                        <input type="text" placeholder="Pharmacy's address_en" name="address_en"
+                                               id="address_en">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- Text inputs  address_ar-->
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media"><i class="icon f7-icons">world</i></div>
+                                <div class="item-inner">
+                                    <div class="item-input">
+                                        <input type="text" placeholder="Pharmacy's address_ar" name="address_ar"
+                                               id="address_ar">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- Text inputs  landline-->
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media"><i class="icon f7-icons">phone</i></div>
+                                <div class="item-inner">
+                                    <div class="item-input">
+                                        <input type="text" placeholder="Pharmacy's landline"
+                                               name="landline" id="landline">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- Text inputs  mobile-->
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media"><i class="icon f7-icons">phone_round</i></div>
+                                <div class="item-inner">
+                                    <div class="item-input">
+                                        <input type="text" placeholder="Owner's mobile"
+                                               name="mobile" id="mobile">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- password inputs  password-->
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media"><i class="icon f7-icons">lock</i></div>
+                                <div class="item-inner">
+                                    <div class="item-input">
+                                        <input type="password" placeholder="Your  login key which you will login with "
+                                               name="password" id="password">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- Switch (Checkbox)(delivery) -->
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media"><i class="icon f7-icons">check</i></div>
+                                <div class="item-inner">
+                                    <div class="item-title-row label">Deliver drug</div>
+                                    <div class="item-input">
+                                        <label class="label-switch">
+                                            <input type="checkbox" name="delivery" id="home_delivery">
+                                            <div class="checkbox"></div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- email inputs  email-->
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media"><i class="icon f7-icons">email</i></div>
+                                <div class="item-inner">
+                                    <div class="item-input">
+                                        <input type="email" placeholder="Your email" name="email" id="email">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- Time open -->
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media"><i class="icon f7-icons">time</i></div>
+                                <div class="item-inner">
+                                    <div class="item-title-row label">Open at</div>
+                                    <div class="item-input">
+                                        <input type="time" placeholder="Time" name="open" id="open">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- Time close -->
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media"><i class="icon f7-icons">time_filled</i></div>
+                                <div class="item-inner">
+                                    <div class="item-title-row label">Close at</div>
+                                    <div class="item-input">
+                                        <input type="time" placeholder="Time" name="close" id="close">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <a href="#" id="submit" class="button button-big color-black">Register</a>
+
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
