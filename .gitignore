@@ -21,3 +21,5 @@ workspace.xml
 .idea/*xml
 .idea/workspace.xml
 *.lock
+.idea/
+.idea
