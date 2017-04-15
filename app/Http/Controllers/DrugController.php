@@ -496,6 +496,6 @@ $response = ['test'=>'go to show route'];
      */
     public function destroy($id)
     {
-        //
+        return response()->json("destroy",200);
     }
 }
