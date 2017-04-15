@@ -3,14 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="90bb9e6e-719c-4e0b-88dc-7453adefddfe" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/DrugController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/DrugController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/PharmacyFormController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/PharmacyFormController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/findmydrugmobileapp/.idea/workspace.xml" afterPath="$PROJECT_DIR$/findmydrugmobileapp/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/findmydrugmobileapp/about.html" afterPath="$PROJECT_DIR$/findmydrugmobileapp/about.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/findmydrugmobileapp/index.html" afterPath="$PROJECT_DIR$/findmydrugmobileapp/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/findmydrugmobileapp/js/about.js" afterPath="$PROJECT_DIR$/findmydrugmobileapp/js/about.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/findmydrugmobileapp/js/app.js" afterPath="$PROJECT_DIR$/findmydrugmobileapp/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/api.php" afterPath="$PROJECT_DIR$/routes/api.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/findmydrugmobileapp/js/register.js" afterPath="$PROJECT_DIR$/findmydrugmobileapp/js/register.js" />
     </list>
     <ignored path="findmydrug.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -473,12 +468,12 @@
       <workItem from="1492178300868" duration="2249000" />
       <workItem from="1492216121661" duration="5520000" />
       <workItem from="1492246417261" duration="3301000" />
-      <workItem from="1492266673922" duration="1302000" />
+      <workItem from="1492266673922" duration="1854000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102432000" />
+    <option name="totallyTimeSpent" value="102984000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1042" extended-state="7" />
