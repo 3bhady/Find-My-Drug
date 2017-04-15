@@ -28,7 +28,14 @@ Route::group(['prefix'=>'v1'],function(){
 
 
 Route::group(['prefix'=>'v1'],function(){
-    Route::resource('drug','DrugController');//,
+        Route::get('drug/category/{id}',[
+            'uses' => 'DrugController@category',
+            'as' => 'category.drug'
+        ]);
+    Route::resource('drug','DrugController');
+
+
+    //,
       //  ['except'=>['edit','create']
        // ]);
   /*  Route::resource('meeting/registration','RegistrationController',[

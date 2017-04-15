@@ -8,15 +8,37 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Scalar\MagicConst\File;
 use TomLingham\Searchy\Facades\Searchy;
+use Illuminate\Routing\Route;
 
 class DrugController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
+    {
+    //return categories of every drug
+       $categories= Drug::select('category')->groupBy('category')->paginate(20);
+//link to get all drugs in it
+        //
+        foreach($categories as $cat)
+        {
+
+            $cat->href=$request->getUri()."/category/".preg_replace('/ /', "%20", $cat->category);
+        }
+       return response()->json($categories,200);
+
+    }
+    public function category($id)
+    {
+        $drugs = Drug::select('id','generic_name')->where('category',$id)->paginate(20);
+        return $drugs;
+    }
+
+    public function translate()
     {
         $drugs=Drug::all();
         $out="";
@@ -339,7 +361,7 @@ $response = ['test'=>'go to show route'];
     {
 
 
-      //  $users = Searchy::driver('fuzzy')->drugs('generic_name')->query($id)->select('generic_name')->get();
+       // $users = Searchy::driver('fuzzy')->drugs('slug_en')->query($id)->select('generic_name')->get();
        // return $users;
         //
 
@@ -424,17 +446,21 @@ $response = ['test'=>'go to show route'];
         ksort($list);
         //$list=array_splice($list,15);
         $response=array();
-     /*   $counter=0;
+        $counter=0;
         foreach($list as $key)
         {
             foreach($key as $element)
-                if($counter<=15)
+                if($counter<=20)
                 {
                     array_push($response,$element);
                     $counter++;
                 }
+                else
+                {
+                    return response()->json($response,200);
+                }
 
-        }*/
+        }
         return response()->json($list,200);
 
     }
