@@ -11,7 +11,7 @@ myApp.onPageInit('register', function (page) {
 
     });
         if(emptyElement){
-            myApp.alert('mtmla dek om el form kolha ybn el klb',"Dear Pharmacist");
+            myApp.alert('all fields must be filled',"Dear Pharmacist");
         }
         else {
 
