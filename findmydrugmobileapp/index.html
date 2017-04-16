@@ -36,58 +36,53 @@
         <p>Left panel content goes here</p>
     </div>
 </div>
-<div class="navbar ">
-    <div class="navbar-inner">
-        <!-- Left part doesn't related to other pages, let's fade it out -->
-        <div class="left">
-            <a href="#" class="link back color-black ">
-                <i class="icon icon-back color-black "></i>
-                <span>Back</span></a>
-        </div>
-    </div>
-</div>
+
+
+
 
 <!-- Views -->
 <div class="views">
     <!-- Your main view, should have "view-main" class -->
     <div class="view view-main ">
         <!-- Top Navbar -->
+        <div class="navbar ">
+            <div class="navbar-inner">
+                <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
+                <div class="center sliding">Find-My-Drug</div>
+                <div class="right">
+                    <!--
+                      Right link contains only icon - additional "icon-only" class
+                      Additional "open-panel" class tells app to open panel when we click on this link
+                    -->
 
+                </div>
+            </div>
+        </div>
 
         <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
-        <div class="pages  toolbar-through">
+        <div class="pages  navbar-through toolbar-through ">
             <!-- Page, "data-page" contains page name -->
-            <div data-page="index" class="page">
+            <div data-page="index" class="page no-swipeback">
                 <!-- Scrollable page content -->
                 <div class="page-content">
-                    <a href="#" class="button button-fill color-green">Fill Button </a>
-                    <p>Page content goes here</p>
-                    <!-- Link to another page -->
-                    <a href="register.html">register as a pharmacist</a><br>
-                    <a href="login.html" class="open-login-screen">Login as a pharmacist</a>
 
 
 
                 </div>
             </div>
         </div>
-        <!-- Bottom Toolbar-->
-        <div class="toolbar">
-            <div class="toolbar-inner">
-                <!-- Toolbar links -->
-                <a href="#" class="link">Link 1</a>
-                <a href="#" class="link">Link 2</a>
-            </div>
-        </div>
+
     </div>
 </div>
 <!-- Path to Framework7 Library JS-->
 <script type="text/javascript" src="bower_components/framework7/dist/js/framework7.min.js"></script>
 <!-- Path to your app js-->
+<script type="text/javascript" src="js/socket.js"></script>
 <script type="text/javascript" src="js/app.js"></script>
 <script type="text/javascript" src="js/about.js"></script>
 <script type="text/javascript" src="js/register.js"></script>
 <script type="text/javascript" src="js/login.js"></script>
+
 
 
 <script
