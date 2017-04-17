@@ -20,7 +20,13 @@ Route::group(['prefix'=>'v1'],function(){
     Route::resource('pharmacyform','PharmacyFormController',[
    
     ]);
+    //pharmacy signIn
+    Route::post('signIn','PharmacyController@signIn');
 
+    //adding pharmacy when log in
+    Route::post('addpharmacy','SocketController@addPharmacy');
+    Route::get('notifypharmacy','SocketController@notifyPharmacy');
+    
 
 
 });

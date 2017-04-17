@@ -1,9 +1,11 @@
 myApp.onPageInit('register', function (page) {
     $$('#submit').on('click',function(){
         
-        var endpoint='http://localhost/api/v1/pharmacyform';
-   data= myApp.formToData('#register');
-console.log(data);
+
+        var endpoint='http://localhost/findmydrug/public/api/v1/pharmacyform';
+   data= myApp.formToData('#registerForm');
+        console.log(data);
+
         emptyElement=false;
     $$.each(data,function(key,val){
        if(val==""&&key!="delivery"){

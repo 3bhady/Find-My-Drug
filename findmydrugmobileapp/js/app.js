@@ -1,12 +1,11 @@
 // Initialize app
 var myApp = new Framework7({
-
+    swipePanel: 'left',
+    init: false
 });
 console.log("start...");
-var socket = io.connect('http://localhost:8890');
-socket.on('connect',function(){
-    console.log(socket.io.engine.id);
-});
+
+
 /*
 socket.on('message', function (data) {
     $( "#messages" ).append( "<p>"+data+"</p>" );
@@ -19,7 +18,58 @@ var mainView = myApp.addView('.view-main', {
     // Because we want to use dynamic navbar, we need to enable it for this view:
     dynamicNavbar: true
 });
+localStorage.removeItem("user");
+
+myApp.onPageInit('index',function(){
+    //setup socket.io
+    //need to check if valid token..
+    myApp.params.swipePanel = 'left';
+    user=localStorage.getItem("user");
+    isLogin=true;
+    //to be changed
+    if(user==null)
+    {
+        isLogin=false;
+    }
+    if(!isLogin)
+    {
+
+        console.log("not login");
+        addLoginUi();
+    }
+    else {
+        user=JSON.parse(user);
+        console.log(user);
+        setupSocket();
+
+
+        }
+
+});
+myApp.init();
+
+
 $$('.hide').on('click',function(){
 //myApp.alert("ok","sadsadas");
 });
+function addLoginUi()
+{
+ var html='<div class="page" data-page="login"  >'+
+'<p>Page content goes here</p>'+
+'<!-- Link to another page -->'+
+'<a href="register.html">register as a pharmacist</a><br>'+
+'<a href="login.html" class="open-login-screen">Login as a pharmacist</a>'+
+'</div>';
 
+ mainView.router.loadPage("login");
+    
+}
+
+function setData(key,val)
+{
+    return localStorage.setItem(key,val);
+}
+function getData(key)
+{
+    return localStorage.getItem(key);
+}

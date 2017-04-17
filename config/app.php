@@ -180,6 +180,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        //json web tokens
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
 
         /*
          * Tomlingham provider for search
@@ -236,6 +238,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Searchy' => TomLingham\Searchy\Facades\Searchy::class,
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class
+
 
     ],
 
