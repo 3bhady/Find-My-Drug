@@ -1,8 +1,0 @@
-we start from index.html in this folder
-#bower_components contains all of our libraries and  other things.
-#bower is a package manager , like npm ..
-#bower download packages from github 
-
-
-
-#noisyMonkey team
