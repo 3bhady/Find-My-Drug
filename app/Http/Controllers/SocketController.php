@@ -40,7 +40,7 @@ class SocketController extends Controller
         $redis=Redis::connection();
         $redis->publish('notification',json_encode($response));
 
-    }
+    }               
     public function index()
     {
         return view('socket');

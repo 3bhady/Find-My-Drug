@@ -1,5 +1,6 @@
 // Initialize app
 var myApp = new Framework7({
+    swipePanel: 'left',
     init: false
 });
 console.log("start...");
@@ -22,7 +23,7 @@ localStorage.removeItem("user");
 myApp.onPageInit('index',function(){
     //setup socket.io
     //need to check if valid token..
-
+    myApp.params.swipePanel = 'left';
     user=localStorage.getItem("user");
     isLogin=true;
     //to be changed
@@ -40,8 +41,10 @@ myApp.onPageInit('index',function(){
         user=JSON.parse(user);
         console.log(user);
         setupSocket();
-        
+
+
         }
+
 });
 myApp.init();
 
