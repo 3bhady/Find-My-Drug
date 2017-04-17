@@ -3,7 +3,6 @@ myApp.onPageInit('register', function (page) {
         
         var endpoint='http://localhost/api/v1/pharmacyform';
    data= myApp.formToData('#register');
-console.log(data);
         emptyElement=false;
     $$.each(data,function(key,val){
        if(val==""&&key!="delivery"){
@@ -17,7 +16,6 @@ console.log(data);
         else {
 
             $$.post(endpoint, data,function(succData) {
-		
                 succData=JSON.parse(succData);
                 console.log(succData);
                 if(succData["status"]=="success"){
