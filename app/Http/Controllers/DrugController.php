@@ -359,44 +359,28 @@ $response = ['test'=>'go to show route'];
      */
     public function show($id)
     {
+        $response=Drug::select('active_ingredient','generic_name','price','image','category','form')->where('id',$id)->get();
+        return response()->json($response,200);
+    }
 
-
-       // $users = Searchy::driver('fuzzy')->drugs('slug_en')->query($id)->select('generic_name')->get();
-       // return $users;
-        //
-
-      //$list=array(100=>array('1','2'));
-
-    /*  $list=array();
-      $list[100]=array("11");
-      return empty($list[100])?"yes":"no";
-      //for($i =0 )
-    array_push($list[100],'3');
-    */
-        $drugs = Drug::select('generic_name')->get();
+    public function search($id)
+    {
+         $users = Searchy::driver('fuzzy')->drugs('slug_en')->query($id)->select('generic_name','id')->get();
+         $counter=0;
+         $response = "";
+         foreach($users as $user)
+         {
+             $counter++;
+             if($counter>10)
+                 break;
+         $response[$user->generic_name]=$user->id;
+         }
+         return response()->json($response,200);
+        $drugs = Drug::select('slug_en','id')->get();
         $list =array();
-
-        /*array(1000=>array('Non-Element','sasadasda'),1001=>'Non-Element',1002=>'Non-Element',1003=>'Non-Element',
-            1004=>'Non-Element',1005=>'Non-Element',1006=>'Non-Element',1007=>'Non-Element',
-            1007=>'Non-Element',1008=>'Non-Element',1009=>'Non-Element',1010=>'Non-Element',
-            1011=>'Non-Element',1012=>'Non-Element',1013=>'Non-Element',1014=>'Non-Element'); */
-
-       // for($i=0;$i<15;$i++)
-        //array_push($list,[1000+$i=>'Non-Element']);
-        //    $list[$i+1000]=array('Non-Element');
-       // if($arr[0] == $id )
-        {
-
-          //  $list+=[400=>'test'];
-           // $list= array_merge($list,[400=>'Test']);
-           //$list[400]='Test';
-           // array_push($list,[400=>'test']);
-           // ksort($list);
-          // return response()->json($list,200);
-        }
         foreach($drugs as $drug)
         {
-            $arr = explode(" ",$drug->generic_name);
+            $arr = explode(" ",$drug->slug_en);
 
             $l=1000;
             $test = false;
@@ -405,46 +389,22 @@ $response = ['test'=>'go to show route'];
 
                 $current = levenshtein($id,$element);
 
-            // if( $current < array_keys($list)[14] )
-             //{
-                 if($current<$l)
-                $l=$current;
+                if($current<$l)
+                    $l=$current;
 
-             //}
 
             }
-           // if($l!=1000)
-            //{
 
-                //$list[$l]=$drug->generic_name;
-                //$list= array_merge($list,[$l=>$drug->generic_name]);
                 if(empty($list[$l]))
                 {
                     $list[$l] = array();
-                   // $test=true;
+
                 }
 
-                array_push($list[$l],$drug->generic_name);
-               // ksort($list);
-               // if($arr[0] == $id )
-                {
-                    //     $test=1;
-//            krsort($list);
-                   // return $list;
-                }
-   //             if(!$test)
- //               array_pop($list);
+                array_push($list[$l],$drug);
 
-
-
-               // if($test==1)
-                {
-                 //   return response()->json($list,200);
-                }
-            //}
         }
         ksort($list);
-        //$list=array_splice($list,15);
         $response=array();
         $counter=0;
         foreach($list as $key)
@@ -452,7 +412,8 @@ $response = ['test'=>'go to show route'];
             foreach($key as $element)
                 if($counter<=20)
                 {
-                    array_push($response,$element);
+                    $drug=Drug::select('generic_name')->where('id',$element->id)->get();
+                    $response[$drug->generic_name]=$element->id;
                     $counter++;
                 }
                 else

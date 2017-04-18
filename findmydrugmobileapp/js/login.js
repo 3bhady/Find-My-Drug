@@ -1,4 +1,3 @@
-
 myApp.onPageInit('login',function(page) {
     myApp.params.swipePanel = false;
     
@@ -11,7 +10,7 @@ myApp.onPageInit('login',function(page) {
 
             //console.log(succData);
             setUpLoginState(succData);
-            var user=JSON.parse(getData("user"))
+            var user=JSON.parse(getData("user"));
             var name=user.name;
             myApp.alert(name," hello ph: " );
         },function (errorData){
