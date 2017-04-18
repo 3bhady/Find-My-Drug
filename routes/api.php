@@ -40,7 +40,7 @@ Route::group(['prefix'=>'v1'],function(){
         ]);
     Route::resource('drug','DrugController');
 
-
+        Route::resource('request','RequestController');
     //,
       //  ['except'=>['edit','create']
        // ]);
