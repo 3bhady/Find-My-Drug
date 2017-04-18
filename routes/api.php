@@ -41,6 +41,10 @@ Route::group(['prefix'=>'v1'],function(){
     Route::resource('drug','DrugController');
 
         Route::resource('request','RequestController');
+        Route::get('drug/search/{id}',[
+            'uses' => 'DrugController@search',
+            'as' => 'search.drug'
+        ]);
     //,
       //  ['except'=>['edit','create']
        // ]);
