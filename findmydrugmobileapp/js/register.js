@@ -1,8 +1,8 @@
 myApp.onPageInit('register', function (page) {
-    $$('#submit').on('click',function(){
+    $$('#submitRegisterForm').on('click',function(){
         
         var endpoint='http://localhost/findmydrug/public/api/v1/pharmacyform';
-   data= myApp.formToData('#registerForm');
+        data= myApp.formToData('#registerForm');
         console.log(data);
         emptyElement=false;
     $$.each(data,function(key,val){
@@ -16,7 +16,7 @@ myApp.onPageInit('register', function (page) {
         }
         else {
 
-            $$.post(endpoint, data,function(succData) {
+              $$.post(endpoint, data,function(succData) {
                 succData=JSON.parse(succData);
                 console.log(succData);
                 if(succData["status"]=="success"){
