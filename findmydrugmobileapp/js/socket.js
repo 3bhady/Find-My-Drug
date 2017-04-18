@@ -20,12 +20,10 @@ socket.on('connect',function(){
 
 socket.on('notification',function(notification) {
 console.log(notification);
-    addEvents(socket);
+    addEvents(notification);
 });
 }
-function addEvents(socket)
+function addEvents(data)
 {
-    socket.on('notification',function(data){
-        myApp.alert(data,"realtime yahooo!!");
-    });
+myApp.alert("new notification","dr.ali");
 }
