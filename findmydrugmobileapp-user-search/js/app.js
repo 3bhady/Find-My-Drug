@@ -65,7 +65,7 @@ CreateList= function(data){
             '</div>';
     });*/
 middle+='    <li> ' +
-    '<a href="drug.html" class="item-link item-content drug" data-id="'+value+'"> ' +
+    '<a href="drug" class="item-link item-content drug" data-id="'+value+'"> ' +
     '<div class="item-media"><i class="icon icon-f7"></i></div> ' +
     '<div class="item-inner"> ' +
     '<div class="item-title">'+key+'</div> ' +

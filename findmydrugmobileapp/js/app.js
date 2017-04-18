@@ -46,7 +46,7 @@ myApp.onPageInit('index',function(){
         }
 
 });
-myApp.init();
+
 
 
 $$('.hide').on('click',function(){
@@ -60,8 +60,8 @@ function addLoginUi()
 '<a href="register.html">register as a pharmacist</a><br>'+
 '<a href="login.html" class="open-login-screen">Login as a pharmacist</a>'+
 '</div>';
-
- mainView.router.loadPage("login");
+console.log("in add login ui");
+ mainView.router.loadPage("login.html");
     
 }
 
@@ -73,3 +73,4 @@ function getData(key)
 {
     return localStorage.getItem(key);
 }
+myApp.init();
