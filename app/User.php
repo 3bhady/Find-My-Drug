@@ -28,4 +28,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function admin()
+    {
+      return $this->hasOne('App\Admin','admin_id');
+    }
+    public function customer()
+    {
+      return $this->hasOne('App\Customer','customer_id');
+    }
+
+    public function pharmacy()
+    {
+      return $this->hasOne('App\Pharmacy','pharmacy_id');
+    }
+
 }
+
