@@ -18,7 +18,9 @@ class RequestController extends Controller
     public function index()
     {
         //
-        return "index";
+        $pharmacies = Pharmacy::select('id','name_en')->get();
+
+        return response()->json($pharmacies,200);
     }
 
     /**

@@ -7,7 +7,7 @@ init:false
  
 // If we need to use custom DOM library, let's save it to $$ variable:
 var $$ = Dom7;
-var endpoint='http://localhost/public/api/v1/drug/search/';
+var endpoint='http://localhost/findmydrug/public/api/v1/drug/search/';
 // Add view
 var mainView = myApp.addView('.view-main', {
   // Because we want to use dynamic navbar, we need to enable it for this view:
