@@ -1,4 +1,5 @@
 // Initialize app
+key="ff22";
 var myApp = new Framework7({
 swipePanel:'left',
 init:false
@@ -13,6 +14,24 @@ var mainView = myApp.addView('.view-main', {
   dynamicNavbar: true
 });
 
+myApp.onPageInit('index',function(){
+    myApp.params.swipePanel = 'left';
+    user=localStorage.getItem("user");
+    isLogin=true;
+    //to be changed
+    if(user==null)
+    {
+        isLogin=false;
+    }
+    if(!isLogin)
+    {
+
+        //console.log("not login");
+        login();
+    }
+
+
+});
 //myApp.init();
 /////////////////////////////////////////////////////////////////////////////////////////////////
 

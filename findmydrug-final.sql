@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2017 at 01:13 PM
+-- Generation Time: Apr 19, 2017 at 10:16 AM
 -- Server version: 5.7.14
 -- PHP Version: 7.0.10
 
@@ -38,15 +38,23 @@ CREATE TABLE `admins` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `customer`
+-- Table structure for table `customers`
 --
 
-CREATE TABLE `customer` (
+CREATE TABLE `customers` (
   `id` int(11) NOT NULL,
   `name` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, NULL),
+(2, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -13624,8 +13632,8 @@ CREATE TABLE `pharmacies` (
   `name_en` varchar(50) NOT NULL,
   `address_en` varchar(100) NOT NULL,
   `owner_name` varchar(60) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `posx` float DEFAULT NULL,
-  `posy` float DEFAULT NULL,
+  `lat` float DEFAULT NULL,
+  `lon` float DEFAULT NULL,
   `landline` bigint(13) NOT NULL,
   `mobile` bigint(13) NOT NULL,
   `email` varchar(100) NOT NULL,
@@ -13638,7 +13646,7 @@ CREATE TABLE `pharmacies` (
   `updated_at` timestamp NOT NULL,
   `name_ar` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `address_ar` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `online` time DEFAULT NULL,
+  `online` int(11) DEFAULT NULL,
   `admin_id` int(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -13646,8 +13654,11 @@ CREATE TABLE `pharmacies` (
 -- Dumping data for table `pharmacies`
 --
 
-INSERT INTO `pharmacies` (`id`, `name_en`, `address_en`, `owner_name`, `posx`, `posy`, `landline`, `mobile`, `email`, `mobile2`, `password`, `home_delivery`, `open`, `close`, `created_at`, `updated_at`, `name_ar`, `address_ar`, `online`, `admin_id`) VALUES
-(1, 'ali', '1-street of el helmia', 'mohamed ali', 13.2103, 14.2103, 324324213, 43432432423, 'mohamedsyrix@gmail.com', 2103812, 'underworld', 1, '02:03:12', '05:10:16', '2017-04-15 12:43:51', '2017-04-15 12:43:51', 'asdasdas', 'شارع الميمون', '08:20:21', NULL);
+INSERT INTO `pharmacies` (`id`, `name_en`, `address_en`, `owner_name`, `lat`, `lon`, `landline`, `mobile`, `email`, `mobile2`, `password`, `home_delivery`, `open`, `close`, `created_at`, `updated_at`, `name_ar`, `address_ar`, `online`, `admin_id`) VALUES
+(1, 'ali', '1-street of el helmia', 'mohamed ali', 13.2103, 14.2103, 324324213, 43432432423, 'mohamedali@gmail.com', 2103812, 'underworld', 1, '02:03:12', '05:10:16', '2017-04-15 12:43:51', '2017-04-15 12:43:51', 'asdasdas', 'شارع الميمون', 1, NULL),
+(2, 'ali', '1-street of el helmiaghf', 'mohamed ali', 16.2321, 16.623, 324324213, 43432432423, 'mohamedsyrix@gmail.com', 2103812, 'underworld', 1, '02:03:12', '05:10:16', '2017-04-18 14:42:35', '2017-04-18 14:42:35', 'asdasdas', 'شارع الميمونgdfgd', 1, NULL),
+(3, 'ali', '1-street of el helmiaghfcxvcxvc', 'mohamed ali', 15.2, 14.12, 32432421345, 4343243242343, 'mohamedsadfyrix@gmail.com', 2103812, 'underworld', 1, '02:03:12', '05:10:16', '2017-04-18 14:44:23', '2017-04-18 14:44:23', 'asdasdas', 'شارع الميمونgdfgddfd', 0, NULL),
+(5, 'ali', '1-street of el helmiaghfcxvcxvcfdgfdg', 'mohamed ali', 60, 60, 32432421345324, 434324324234334, 'mohamed34sadfyrix@gmail.com', 210381234, 'underworld', 1, '02:03:12', '05:10:16', '2017-04-18 14:44:53', '2017-04-18 14:44:53', 'asdasdas32432', 'شارع الميمونgdfgddfd324', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -13689,7 +13700,10 @@ INSERT INTO `pharmacy_forms` (`id`, `name_en`, `address_en`, `landline`, `mobile
 (22, 'cvcxvcx', 'dsfdsfds332', 1221421412324, 435435433412, 'sadsaddsfsad@gmail.com', NULL, 'fdsfdsfsdfds324', 'underworld', 0, '03:21:00', '14:13:00', '2017-04-15 10:20:41', '2017-04-15 10:20:41', 'vcxvcx32432', 'sssfdsf32'),
 (23, 'dfdsfsdf', 'sadasdas', 23432432, 3232432, 'asd@gmail.com', NULL, 'sdasdas', '32432423423', 0, '12:21:00', '14:43:00', '2017-04-15 23:01:58', '2017-04-15 23:01:58', 'saasdaa', 'dasd'),
 (24, 'dsfdsfd', 'hjhjkh', 345345435435345, 32432423432, 'mohamedali167@gmail.com', NULL, 'hkjhkhadjhj', 'underworld34', 0, '12:31:00', '14:13:00', '2017-04-17 10:09:08', '2017-04-17 10:09:08', 'jhkjhkj', 'sdafafad'),
-(28, 'dsfdsfddsgd', 'hjhjkhdgfdsgfds', 345345435435345, 3243242343245, 'mohamedali1667@gmail.com', NULL, 'hkjhkhadjhjgfdgs', 'underworld34', 0, '12:31:00', '14:13:00', '2017-04-17 10:09:46', '2017-04-17 10:09:46', 'jhkjhkjdgfd', 'sdafafaddfgsdfgsf');
+(28, 'dsfdsfddsgd', 'hjhjkhdgfdsgfds', 345345435435345, 3243242343245, 'mohamedali1667@gmail.com', NULL, 'hkjhkhadjhjgfdgs', 'underworld34', 0, '12:31:00', '14:13:00', '2017-04-17 10:09:46', '2017-04-17 10:09:46', 'jhkjhkjdgfd', 'sdafafaddfgsdfgsf'),
+(29, 'xzxzxzxzxz', 'dsfdsf', 32432432, 3242342343, 'mohamedali167@gmail.comadsadsad', NULL, 'fdsf', 'underworldsadsad', 0, '02:34:00', '15:43:00', '2017-04-17 16:32:49', '2017-04-17 16:32:49', 'dsfdsfds', 'dsfsd'),
+(33, 'cvcxvcxvcxvcxvcxvxc', 'dsfdsfsfdsfds', 32432432324324, 324234234332432432, 'mohamedali167@gmail.comadsadsadsadsa', NULL, 'fdsf', 'underworldsadsad', 0, '02:34:00', '15:43:00', '2017-04-17 16:44:36', '2017-04-17 16:44:36', 'dsfdsfds', 'dsfsddfdsfd'),
+(34, 'sandra', 'dhjgkl', 235684565, 122568624565, 'sandrasoliman1996@gmail.com', NULL, 'sandra', 'sandoooooooor', 0, '02:34:00', '12:31:00', '2017-04-18 09:24:53', '2017-04-18 09:24:53', 'ساندرا', 'يبلاتنمك');
 
 -- --------------------------------------------------------
 
@@ -13702,8 +13716,8 @@ CREATE TABLE `users` (
   `created_at` timestamp NOT NULL,
   `updated_at` timestamp NOT NULL,
   `name` varchar(50) DEFAULT NULL,
-  `password` varchar(200) NOT NULL,
-  `email` varchar(50) NOT NULL,
+  `password` varchar(200) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
   `admin_id` int(11) DEFAULT NULL,
   `pharmacy_id` int(11) DEFAULT NULL,
   `customer_id` int(11) DEFAULT NULL
@@ -13714,9 +13728,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `created_at`, `updated_at`, `name`, `password`, `email`, `admin_id`, `pharmacy_id`, `customer_id`) VALUES
-(4, '2017-04-16 16:01:23', '2017-04-16 16:01:23', 'ali y ali', '$2y$10$dnclJ9aOvJ20HdM0TkgNmOTSDHGXK7.9iTFOv1x8vtXRzVIP1/ahm', 'mohamedali167@gmail.com', NULL, NULL, NULL),
-(5, '2017-04-16 16:01:34', '2017-04-16 16:01:34', NULL, '$2y$10$arrC2MsbQuP.yqe8ZSSU6eQviMFuSJZLxYT5YBVKvOcf5xtIYinDa', 'mohamedali168@gmail.com', NULL, NULL, NULL),
-(7, '2017-04-16 16:06:54', '2017-04-16 16:06:54', NULL, '$2y$10$kSK1/4ioZLpKwLHMGuw3zejMLi.wqrYyaSM1Rja9zHiJm8VwRPwby', 'mohamedali169@gmail.com', NULL, NULL, NULL);
+(3, '2017-04-18 17:19:29', '2017-04-18 17:19:29', NULL, '$2y$10$8TKl2GneeYL9SYdH3ceV6ebpBeiIYt.DdQhQG9TOv1EBksipue.V6', 'mohamedali167@gmail.com', NULL, 3, NULL),
+(4, '2017-04-18 17:19:45', '2017-04-18 17:19:45', NULL, '$2y$10$7WkwiTwkelbnO1AmcT.66.ONr0iuOwzm762Q3EpDNMZFj6A8vI3KO', 'mohamedali168@gmail.com', NULL, 2, NULL),
+(6, '2017-04-18 17:20:23', '2017-04-18 17:20:23', NULL, '$2y$10$gSOC/.gkD6.tBu5LUMTyPuVFT3y24eKpQ3YcZT4xu1NgmzF8CR.nW', 'mohamedali169@gmail.com', NULL, 5, NULL),
+(9, '2017-04-18 18:10:11', '2017-04-18 18:10:11', NULL, '$2y$10$dq3asa6U739cHaWdwYccG.80nEBvUCLgwk0aTV4sg2OE8kuYNzkuK', 'mohamedali@gmail.com', NULL, 1, NULL),
+(14, '2017-04-18 21:07:02', '2017-04-18 21:07:02', 'customer1', NULL, NULL, NULL, NULL, 1),
+(16, '2017-04-18 21:07:20', '2017-04-18 21:07:20', 'customer2', NULL, NULL, NULL, NULL, 2);
 
 --
 -- Indexes for dumped tables
@@ -13731,9 +13748,9 @@ ALTER TABLE `admins`
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indexes for table `customer`
+-- Indexes for table `customers`
 --
-ALTER TABLE `customer`
+ALTER TABLE `customers`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -13783,9 +13800,13 @@ ALTER TABLE `pharmacy_forms`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `customer_id_2` (`customer_id`),
+  ADD UNIQUE KEY `pharmacy_id_3` (`pharmacy_id`),
+  ADD UNIQUE KEY `admin_id_2` (`admin_id`),
   ADD KEY `admin_id` (`admin_id`),
   ADD KEY `pharmacy_id` (`pharmacy_id`),
-  ADD KEY `customer_id` (`customer_id`);
+  ADD KEY `customer_id` (`customer_id`),
+  ADD KEY `pharmacy_id_2` (`pharmacy_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -13796,6 +13817,11 @@ ALTER TABLE `users`
 --
 ALTER TABLE `admins`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `customers`
+--
+ALTER TABLE `customers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `drugs`
 --
@@ -13815,17 +13841,17 @@ ALTER TABLE `drug_request_pharmacy_response`
 -- AUTO_INCREMENT for table `pharmacies`
 --
 ALTER TABLE `pharmacies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `pharmacy_forms`
 --
 ALTER TABLE `pharmacy_forms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- Constraints for dumped tables
 --
@@ -13854,8 +13880,7 @@ ALTER TABLE `drug_request_pharmacy_response`
 -- Constraints for table `pharmacies`
 --
 ALTER TABLE `pharmacies`
-  ADD CONSTRAINT `pharmacies_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admins` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `pharmacies_ibfk_2` FOREIGN KEY (`id`) REFERENCES `pharmacy_forms` (`id`);
+  ADD CONSTRAINT `pharmacies_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admins` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `users`
@@ -13863,7 +13888,7 @@ ALTER TABLE `pharmacies`
 ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`pharmacy_id`) REFERENCES `pharmacies` (`id`),
   ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`admin_id`) REFERENCES `admins` (`id`),
-  ADD CONSTRAINT `users_ibfk_3` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`);
+  ADD CONSTRAINT `users_ibfk_3` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

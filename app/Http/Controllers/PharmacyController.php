@@ -13,11 +13,21 @@ use JWTAuth;
 
 class PharmacyController extends Controller
 {
-
+    public function setOnline()
+    {
+        return "asdasdas";
+    }
 
     public function signIn(Request $request)
     {
-
+        /*
+        $user=new User();
+        $user->pharmacy_id=1;
+        $user->email="mohamedali@gmail.com";
+        $user->password=bcrypt("underworld");
+        $user->save();
+*/
+        
         $this->validate($request,[
            'email'=>'required|email',
             'password'=>'required'
@@ -29,7 +39,8 @@ class PharmacyController extends Controller
 
 
         try{
-            if(!$token=JWTAuth::attempt($credentials))
+            if(!$token=JWTAuth::attempt(array('email'=>$request->input('email'),
+                'password'=>$request->input('password'))))
             {
                 return response()->json(['msg'=>'invalid email or password',
                     'credentials'=>$credentials],401);

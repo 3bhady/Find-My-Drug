@@ -19,11 +19,12 @@ socket.on('connect',function(){
 });
 
 socket.on('notification',function(notification) {
-console.log(notification);
+//console.log(notification);
     addEvents(notification);
 });
 }
 function addEvents(data)
-{
-myApp.alert("new notification","dr.ali");
+{console.log("z")
+myApp.alert("new notification, from user_id :"+data["user_id"]
+    +" drug name "+data["drug_name"],"dr.ali32423");
 }
