@@ -20,8 +20,12 @@ Route::group(['prefix'=>'v1'],function(){
     Route::resource('pharmacyform','PharmacyFormController',[
    
     ]);
+    //customer
+    Route::get('newcustomer','CustomerController@generateCustomer');
+    Route::get('setonline','PharmacyController@setOnline');
+
     //pharmacy signIn
-    Route::post('signIn','PharmacyController@signIn');
+    Route::post('signin','PharmacyController@signIn');
 
     //adding pharmacy when log in
     Route::post('addpharmacy','SocketController@addPharmacy');

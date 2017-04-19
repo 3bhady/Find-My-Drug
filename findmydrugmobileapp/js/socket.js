@@ -19,13 +19,12 @@ socket.on('connect',function(){
 });
 
 socket.on('notification',function(notification) {
-console.log(notification);
-    addEvents(socket);
+//console.log(notification);
+    addEvents(notification);
 });
 }
-function addEvents(socket)
-{
-    socket.on('notification',function(data){
-        myApp.alert(data,"realtime yahooo!!");
-    });
+function addEvents(data)
+{console.log("z")
+myApp.alert("new notification, from user_id :"+data["user_id"]
+    +" drug name "+data["drug_name"],"dr.ali32423");
 }

@@ -3,6 +3,7 @@ var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var redis = require('redis');
+var request=require('request');
 
 //online users and pharmacies
 var user=[];
@@ -25,15 +26,18 @@ io.on('connection', function (socket) {
         redisClient.subscribe('addPharmacy');
 
 
+
     redisClient.on("message", function(channel, message) {
         //console.log("new message in queue "+ channel + "channel");
         //console.log(message);
+        console.log("new request sent");
         message=JSON.parse(message);
         if(channel=="addPharmacy"){
         addPharmacy(message);
         }
         if(channel=="notification"){
-            io.emit("notification","new notification available..");
+            io.emit("notification",message);
+
         }
     });
     //add pharmacy
@@ -56,8 +60,15 @@ io.on('connection', function (socket) {
 
 
     socket.on('disconnect', function() {
+        
         redisClient.quit();
-        console.log("new client disconnected");
+
+        request('http://localhost/findmydrug/public/api/v1/setonline', function (error, response, body) {
+            console.log('error:', response.body); // Print the error if one occurred
+
+        });
+
+        io.emit("goOffline","new notification available..");
         pharmaId=(pharmacySocket[socket.id]).id;
         delete   pharmacySocket[socket.id];
         delete   pharmacyId[pharmaId];
