@@ -2,7 +2,11 @@ myApp.onPageInit('login',function(page) {
     myApp.params.swipePanel = false;
     
     token = localStorage.getItem("token");
+<<<<<<< HEAD
+    endpoint = "http://localhost/public/api/v1/signIn";
+=======
     endpoint = "http://localhost/findmydrug/public/api/v1/signin";
+>>>>>>> 6e4a7ac7ceeaf9fcb061e254ea9b3df33bc4fcbe
     $$('#login').on('click', function () {
         data = myApp.formToData('#loginForm');
         $$.post(endpoint, data, function (succData) {
@@ -26,7 +30,7 @@ myApp.onPageInit('login',function(page) {
     function setUpLoginState(data)
     {
         setData("user",JSON.stringify(data));
-        mainView.router.loadPage("index");
+        mainView.router.loadPage("index.html");
         console.log("...")
 
     }
