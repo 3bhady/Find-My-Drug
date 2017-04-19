@@ -1,8 +1,8 @@
 /**
  * Created by muham on 4/19/2017.
- *//*
+ */
 var endpoint3 = 'http://localhost/findmydrug/public/api/v1/request';
-myApp.onPageInit('pharmacies',function(){
+myApp.onPageBeforeAnimation('pharmacies',function(){
 
     console.log("back to pharmacies");
     myApp.params.swipePanel = 'left';
@@ -29,6 +29,8 @@ myApp.onPageInit('pharmacies',function(){
         });
 
 });
-*/
+
 
 myApp.init();
+//we want to remove triggering index page on page init because we need initializing only one time ..
+    

@@ -3,7 +3,7 @@
  */
 
 var endpoint2='http://localhost/findmydrug/public/api/v1/drug/';
-myApp.onPageInit('drug', function (page) {
+myApp.onPageBeforeAnimation('drug', function (page) {
     console.log("back to the drug");
 var data = getData('drug_id');
     $$.get(endpoint2+data

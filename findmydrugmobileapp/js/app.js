@@ -21,7 +21,7 @@ var mainView = myApp.addView('.view-main', {
 });
 localStorage.removeItem("user");
 
-myApp.onPageInit('index',function(){
+myApp.onPageBeforeInit('index',function(){
     console.log("index");
     //setup socket.io
     //need to check if valid token..

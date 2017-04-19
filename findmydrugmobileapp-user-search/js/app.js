@@ -1,10 +1,12 @@
 // Initialize app
 key="ff22";
 var myApp = new Framework7({
+pushState:true,
 swipePanel:'left',
 init:false
 });
- 
+//used to be called once
+ var firstTimeToLoad=true;
 // If we need to use custom DOM library, let's save it to $$ variable:
 var $$ = Dom7;
 var endpoint='http://localhost/findmydrug/public/api/v1/drug/search/';
@@ -14,8 +16,22 @@ var mainView = myApp.addView('.view-main', {
   dynamicNavbar: true
 });
 
-myApp.onPageInit('index',function(){
-    console.log("back to index");
+
+
+var indexTriggering=myApp.onPageBeforeInit('index',function(page){
+
+    console.log("index");
+    setupIndex(page);
+
+});
+
+
+//myApp.init();
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//setupIndex will be called when initializing the app
+function setupIndex(page)
+{
+
     myApp.params.swipePanel = 'left';
     user=localStorage.getItem("user");
     isLogin=true;
@@ -31,42 +47,44 @@ myApp.onPageInit('index',function(){
         login();
     }
 
-
-});
-
-//myApp.init();
-/////////////////////////////////////////////////////////////////////////////////////////////////
+    setupSearch();
 
 
-var mySearchbar = myApp.searchbar('.searchbar', {
+
+}
+function setupSearch(){
+    console.log("searchAgain");
+mySearchbar = myApp.searchbar('.searchbar', {
 
     customSearch:true,
     removeDiacritics:true,
     hideDividers:true,
     onSearch:function(data)
     {
-    console.log("on Search");
+        console.log("on Search");
         Search(data.query);
     }
 
 });
+}
+console.log("searchBar");
 
 Search = function(data){
     if(data!="")
-    $$.get(endpoint+data
-        ,function(succData)
-        {
-           // console.log(succData);
-            succData=JSON.parse(succData);
-            CreateList(succData);
+        $$.get(endpoint+data
+            ,function(succData)
+            {
+                // console.log(succData);
+                succData=JSON.parse(succData);
+                CreateList(succData);
 
-        }
-        ,function(errorData)
-        {
-            console.log(errorData);
-            errorData=JSON.parse(errorData);
+            }
+            ,function(errorData)
+            {
+                console.log(errorData);
+                errorData=JSON.parse(errorData);
 
-        });
+            });
 
 
 };
