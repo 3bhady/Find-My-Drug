@@ -15,6 +15,7 @@ var mainView = myApp.addView('.view-main', {
 });
 
 myApp.onPageInit('index',function(){
+    console.log("back to index");
     myApp.params.swipePanel = 'left';
     user=localStorage.getItem("user");
     isLogin=true;
@@ -32,16 +33,19 @@ myApp.onPageInit('index',function(){
 
 
 });
+
 //myApp.init();
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 var mySearchbar = myApp.searchbar('.searchbar', {
+
     customSearch:true,
     removeDiacritics:true,
     hideDividers:true,
     onSearch:function(data)
     {
+    console.log("on Search");
         Search(data.query);
     }
 
@@ -52,7 +56,7 @@ Search = function(data){
     $$.get(endpoint+data
         ,function(succData)
         {
-            console.log(succData);
+           // console.log(succData);
             succData=JSON.parse(succData);
             CreateList(succData);
 
@@ -140,7 +144,7 @@ var dropdown = myApp.autocomplete({
         $$.get(endpoint+query
             ,function(succData)
             {
-                console.log(succData);
+               // console.log(succData);
                 succData=JSON.parse(succData);
                 //CreateList(succData);
                 autocomplete.hidePreloader();
@@ -158,7 +162,7 @@ var dropdown = myApp.autocomplete({
             });
     },
     onChange:function(name,id){
-        console.log(id.id);
+      //  console.log(id.id);
         localStorage.setItem("drug_id",id.id);
         mainView.router.loadPage("drug.html");
     }
@@ -180,4 +184,3 @@ function getData(key)
     return localStorage.getItem(key);
 }
 
-myApp.init();

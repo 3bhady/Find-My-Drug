@@ -24,7 +24,7 @@ socket.on('notification',function(notification) {
 });
 }
 function addEvents(data)
-{console.log("z")
+{console.log("z");
 myApp.alert("new notification, from user_id :"+data["user_id"]
     +" drug name "+data["drug_name"],"dr.ali32423");
 }

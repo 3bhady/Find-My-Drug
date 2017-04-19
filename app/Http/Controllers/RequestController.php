@@ -85,7 +85,7 @@ class RequestController extends Controller
 
                     //get user id to be send to the pharmacy
                     $drugName=Drug::select('generic_name')
-                        ->where('id',$request->input('id'))->first();
+                        ->where('id',$request->input('drug_id'))->first();
                     $response=[
                         "pharmacies"=>$response,
                         "user_id"=>$request->input("id"),

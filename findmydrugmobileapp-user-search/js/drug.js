@@ -4,14 +4,14 @@
 
 var endpoint2='http://localhost/findmydrug/public/api/v1/drug/';
 myApp.onPageInit('drug', function (page) {
-    //console.log(page);
+    console.log("back to the drug");
 var data = getData('drug_id');
     $$.get(endpoint2+data
         ,function(succData)
         {
 
             succData=JSON.parse(succData);
-            console.log(succData);
+         //   console.log(succData);
           //  CreateList(succData);
             ShowDrug(succData[0]);
 

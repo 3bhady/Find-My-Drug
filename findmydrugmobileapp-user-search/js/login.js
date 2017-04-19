@@ -1,16 +1,16 @@
 function login()
-{
+{/*
     var endpoint='http://localhost/findmydrug/public/api/v1/newcustomer/'+key;
 
-    $$.get(endpoint, data,function(succData)
+    $$.get(endpoint,function(succData)
     {
         console.log("logged");
         console.log(succData);
 
-    },function(data){
+    },function(errData){
         console.log("error");
-        console.log(data);
+        console.log(errData);
 
-    });
+    });*/
 
 }

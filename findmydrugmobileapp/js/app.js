@@ -1,4 +1,5 @@
 // Initialize app
+
 var myApp = new Framework7({
     swipePanel: 'left',
     init: false
@@ -21,6 +22,7 @@ var mainView = myApp.addView('.view-main', {
 localStorage.removeItem("user");
 
 myApp.onPageInit('index',function(){
+    console.log("index");
     //setup socket.io
     //need to check if valid token..
     myApp.params.swipePanel = 'left';
