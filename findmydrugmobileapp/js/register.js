@@ -2,7 +2,7 @@ myApp.onPageInit('register', function (page) {
     $$('#submitRegisterForm').on('click',function(){
         
 
-        var endpoint='http://localhost/findmydrug/public/api/v1/pharmacyform';
+        var endpoint='http://localhost/public/api/v1/pharmacyform';
         data= myApp.formToData('#registerForm');
         console.log(data);
 

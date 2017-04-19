@@ -365,8 +365,9 @@ $response = ['test'=>'go to show route'];
 
     public function search($id)
     {
-         $users = Searchy::driver('fuzzy')->drugs('slug_en')->query($id)->select('generic_name','id')->get();
+        /* $users = Searchy::driver('fuzzy')->drugs('slug_en')->query($id)->select('generic_name','id')->get();
          $counter=0;
+
          $response = "";
          foreach($users as $user)
          {
@@ -376,7 +377,9 @@ $response = ['test'=>'go to show route'];
          $response[$user->generic_name]=$user->id;
          }
          return response()->json($response,200);
-        $drugs = Drug::select('slug_en','id')->get();
+
+        */
+        $drugs = Drug::select('slug_en')->get();
         $list =array();
         foreach($drugs as $drug)
         {
@@ -401,25 +404,42 @@ $response = ['test'=>'go to show route'];
 
                 }
 
-                array_push($list[$l],$drug);
+                array_push($list[$l],$drug->slug_en);
 
         }
+
         ksort($list);
-        $response=array();
+        $response1=array();
         $counter=0;
         foreach($list as $key)
         {
             foreach($key as $element)
+            {
+
                 if($counter<=20)
                 {
-                    $drug=Drug::select('generic_name')->where('id',$element->id)->get();
-                    $response[$drug->generic_name]=$element->id;
-                    $counter++;
+                    $drugs=Drug::select('generic_name','id')->where('slug_en',$element)->get();
+
+                    foreach($drugs as $drug)
+                    {
+                        if($response1[$drug->id]!=0) {
+                            $response1[$drug->id] = $drug->generic_name;
+                            $counter++;
+                        }
+                    }
+
                 }
                 else
                 {
+                    $response=array();
+                    foreach(array_keys() as $i)
+                    {
+                        $value = $response1[$i];
+                        $response[$value]=$i;
+                    }
                     return response()->json($response,200);
                 }
+            }
 
         }
         return response()->json($list,200);
