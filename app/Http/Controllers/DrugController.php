@@ -365,7 +365,7 @@ $response = ['test'=>'go to show route'];
 
     public function search($id)
     {
-        /* $users = Searchy::driver('fuzzy')->drugs('slug_en')->query($id)->select('generic_name','id')->get();
+         /*$users = Searchy::driver('fuzzy')->drugs('slug_en')->query($id)->select('generic_name','id')->get();
          $counter=0;
 
          $response = "";
@@ -377,8 +377,8 @@ $response = ['test'=>'go to show route'];
          $response[$user->generic_name]=$user->id;
          }
          return response()->json($response,200);
+*/
 
-        */
         $drugs = Drug::select('slug_en')->get();
         $list =array();
         foreach($drugs as $drug)
@@ -409,7 +409,8 @@ $response = ['test'=>'go to show route'];
         }
 
         ksort($list);
-        $response1=array();
+     //   return $list;
+        $response=array();
         $counter=0;
         foreach($list as $key)
         {
@@ -422,8 +423,8 @@ $response = ['test'=>'go to show route'];
 
                     foreach($drugs as $drug)
                     {
-                        if($response1[$drug->id]!=0) {
-                            $response1[$drug->id] = $drug->generic_name;
+                        if(empty($response[$drug->generic_name])) {
+                            $response[$drug->generic_name] = $drug->id;
                             $counter++;
                         }
                     }
@@ -431,12 +432,12 @@ $response = ['test'=>'go to show route'];
                 }
                 else
                 {
-                    $response=array();
-                    foreach(array_keys() as $i)
+                    //$response=array();
+                  /*  foreach(array_keys() as $i)
                     {
                         $value = $response1[$i];
                         $response[$value]=$i;
-                    }
+                    }*/
                     return response()->json($response,200);
                 }
             }
