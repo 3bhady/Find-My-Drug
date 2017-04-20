@@ -4,7 +4,7 @@ function setupSocket(){
 addPharmacyEndPoint="http://localhost/findmydrug/public/api/v1/addpharmacy?token="+token;
 socket.on('connect',function(){
 
-   // console.log(socket.io.engine.id);
+    console.log(socket.io.engine.id);
     socketId=socket.io.engine.id;
 
     //call endpoint to add pharmacy
@@ -15,7 +15,7 @@ socket.on('connect',function(){
     },function(errorData){
         console.log(errorData);
     });
-
+    console.log(socketId);
 });
 
 socket.on('notification',function(notification) {

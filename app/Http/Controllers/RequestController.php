@@ -96,8 +96,8 @@ class RequestController extends Controller
                     //i will do now notifying pharmacy
 
                     $redis=Redis::connection();
+
                     $redis->publish('notification',json_encode($response));
-                    
                     return response()->json($response,200);
                 }
 

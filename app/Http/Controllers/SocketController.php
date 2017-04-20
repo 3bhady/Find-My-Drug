@@ -34,11 +34,6 @@ class SocketController extends Controller
     }
     public function notifyPharmacy()
     {
-        $response=[
-            "id"=>"4"
-        ];
-        $redis=Redis::connection();
-        $redis->publish('notification',json_encode($response));
 
     }               
     public function index()
@@ -50,8 +45,6 @@ class SocketController extends Controller
         return view('writemessage');
     }
     public function sendMessage(){
-        $redis = Redis::connection();
-        $redis->publish('message', 'esht8l y ws5 y 2bn el ****');
-        //  return redirect('writemessage');
+      
     }
 }

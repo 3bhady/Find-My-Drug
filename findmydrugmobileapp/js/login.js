@@ -10,7 +10,7 @@ myApp.onPageInit('login',function(page) {
         $$.post(endpoint, data, function (succData) {
             succData = JSON.parse(succData);
 
-            //console.log(succData);
+            console.log(succData);
             setUpLoginState(succData);
             var user=JSON.parse(getData("user"));
             var name=user.name;
