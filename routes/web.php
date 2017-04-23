@@ -40,3 +40,18 @@ Route::get('/bridge', function() {
 
     return view('welcome');
 });
+
+    //Admin
+
+//Pharmacy Forms
+Route::post('/admin/signin', 'AdminController@signin');
+
+Route::get('/admin/pharmacyform','AdminController@index');
+Route::get('/admin/pharmacyform/accept/{id}','AdminController@accept');
+Route::get('/admin/pharmacyform/refuse/{id}','AdminController@refuse');
+
+
+//Pharmacies
+Route::get('/admin/pharmacy','AdminPharmacyController@index');
+Route::get('/admin/pharmacy/delete/{id}','AdminPharmacyController@delete');
+
