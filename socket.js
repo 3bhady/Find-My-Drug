@@ -19,25 +19,44 @@ io.on('connection', function (socket) {
     console.log("new client connected");
     user.push(socket.id);
     // console.log(socket.id);
+//init redis
+    redisClient = redis.createClient();
 
+    redisClient.subscribe('message');
+    redisClient.subscribe('notification');
+    redisClient.subscribe('addPharmacy');
 
 
     socket.on('disconnect', function() {
 
-        redisClient.quit();
 
-        request('http://localhost/findmydrug/public/api/v1/setonline', function (error, response, body) {
-            console.log('error:', response.body); // Print the error if one occurred
-
+        var json = {
+            "user":pharmacySocket[socket.id]
+        };
+        var options = {
+            url: 'http://localhost/findmydrug/public/api/v1/setoffline?token='+
+            pharmacySocket[socket.id].token,
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            json: json
+        };
+        request(options, function(err, res, body) {
+            if (res && (res.statusCode === 200 || res.statusCode === 201)) {
+                console.log(body);
+            }
+            else {
+                console.log(err);
+                console.log(res.body);
+            }
         });
-
         //io.emit("goOffline","new notification available..");
 
         pharmaId=(pharmacySocket[socket.id]).id;
         delete   pharmacySocket[socket.id];
         delete   pharmacyId[pharmaId];
-        console.log(pharmacySocket);
-        console.log(pharmacyId);
+        redisClient.quit();
     });
 
 
@@ -48,6 +67,7 @@ redisClient = redis.createClient();
 redisClient.subscribe('message');
 redisClient.subscribe('notification');
 redisClient.subscribe('addPharmacy');
+
 
 redisClient.on("message", function(channel, message) {
     //console.log("new message in queue "+ channel + "channel");

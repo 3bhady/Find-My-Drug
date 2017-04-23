@@ -49,6 +49,7 @@ Route::group(['prefix'=>'v1'],function(){
             'uses' => 'DrugController@search',
             'as' => 'search.drug'
         ]);
+    Route::post('setoffline','SocketController@setOffline');
     //,
       //  ['except'=>['edit','create']
        // ]);
