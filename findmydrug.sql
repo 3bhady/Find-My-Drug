@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2017 at 10:55 PM
+-- Generation Time: Apr 23, 2017 at 10:01 PM
 -- Server version: 5.7.14
 -- PHP Version: 7.0.10
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `findmydrug`
 --
+CREATE DATABASE IF NOT EXISTS `findmydrug` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `findmydrug`;
 
 -- --------------------------------------------------------
 
@@ -13720,20 +13722,21 @@ CREATE TABLE `users` (
   `email` varchar(50) DEFAULT NULL,
   `admin_id` int(11) DEFAULT NULL,
   `pharmacy_id` int(11) DEFAULT NULL,
-  `customer_id` int(11) DEFAULT NULL
+  `customer_id` int(11) DEFAULT NULL,
+  `online` int(5) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `created_at`, `updated_at`, `name`, `password`, `email`, `admin_id`, `pharmacy_id`, `customer_id`) VALUES
-(3, '2017-04-18 17:19:29', '2017-04-18 17:19:29', NULL, '$2y$10$8TKl2GneeYL9SYdH3ceV6ebpBeiIYt.DdQhQG9TOv1EBksipue.V6', 'mohamedali167@gmail.com', NULL, 3, NULL),
-(4, '2017-04-18 17:19:45', '2017-04-18 17:19:45', NULL, '$2y$10$7WkwiTwkelbnO1AmcT.66.ONr0iuOwzm762Q3EpDNMZFj6A8vI3KO', 'mohamedali168@gmail.com', NULL, 2, NULL),
-(6, '2017-04-18 17:20:23', '2017-04-18 17:20:23', NULL, '$2y$10$gSOC/.gkD6.tBu5LUMTyPuVFT3y24eKpQ3YcZT4xu1NgmzF8CR.nW', 'mohamedali169@gmail.com', NULL, 5, NULL),
-(9, '2017-04-18 18:10:11', '2017-04-18 18:10:11', NULL, '$2y$10$dq3asa6U739cHaWdwYccG.80nEBvUCLgwk0aTV4sg2OE8kuYNzkuK', 'mohamedali@gmail.com', NULL, 1, NULL),
-(14, '2017-04-18 21:07:02', '2017-04-18 21:07:02', 'customer1', NULL, NULL, NULL, NULL, 1),
-(16, '2017-04-18 21:07:20', '2017-04-18 21:07:20', 'customer2', NULL, NULL, NULL, NULL, 2);
+INSERT INTO `users` (`id`, `created_at`, `updated_at`, `name`, `password`, `email`, `admin_id`, `pharmacy_id`, `customer_id`, `online`) VALUES
+(3, '2017-04-18 17:19:29', '2017-04-23 19:21:12', NULL, '$2y$10$8TKl2GneeYL9SYdH3ceV6ebpBeiIYt.DdQhQG9TOv1EBksipue.V6', 'mohamedali167@gmail.com', NULL, 3, NULL, 1),
+(4, '2017-04-18 17:19:45', '2017-04-23 19:23:31', NULL, '$2y$10$7WkwiTwkelbnO1AmcT.66.ONr0iuOwzm762Q3EpDNMZFj6A8vI3KO', 'mohamedali168@gmail.com', NULL, 2, NULL, 1),
+(6, '2017-04-18 17:20:23', '2017-04-18 17:20:23', NULL, '$2y$10$gSOC/.gkD6.tBu5LUMTyPuVFT3y24eKpQ3YcZT4xu1NgmzF8CR.nW', 'mohamedali169@gmail.com', NULL, 5, NULL, 0),
+(9, '2017-04-18 18:10:11', '2017-04-23 17:35:12', NULL, '$2y$10$dq3asa6U739cHaWdwYccG.80nEBvUCLgwk0aTV4sg2OE8kuYNzkuK', 'mohamedali@gmail.com', NULL, 1, NULL, 1),
+(14, '2017-04-18 21:07:02', '2017-04-18 21:07:02', 'customer1', NULL, NULL, NULL, NULL, 1, 0),
+(16, '2017-04-18 21:07:20', '2017-04-18 21:07:20', 'customer2', NULL, NULL, NULL, NULL, 2, 0);
 
 --
 -- Indexes for dumped tables
