@@ -3,7 +3,7 @@ myApp.onPageInit('login',function(page) {
     
     token = localStorage.getItem("token");
 
-    endpoint = "http://localhost/findmydrug/public/api/v1/signin";
+    endpoint = api+"/signin";
 
     $$('#login').on('click', function () {
         data = myApp.formToData('#loginForm');

@@ -1,7 +1,7 @@
 function setupSocket(){
     var socket = io.connect('http://localhost:8890');
     token=(JSON.parse(getData("user"))).token;
-addPharmacyEndPoint="http://localhost/findmydrug/public/api/v1/addpharmacy?token="+token;
+addPharmacyEndPoint=api+"/addpharmacy?token="+token;
 socket.on('connect',function(){
 
     console.log(socket.io.engine.id);
