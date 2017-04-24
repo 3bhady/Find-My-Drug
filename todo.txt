@@ -1,0 +1,54 @@
+customer login->3li (make it hardcoded)
+customer drug relation->3bhady ( long term plan with multiple handling and phases)
+customer drug pharmacy relation->3bhady ( long term)
+pharamcist response to drug requests->3bhady,3li
+pharmacist logout->3li
+pharmacy forgot password->3li
+pharmacy profile->3li
+category page->3bhady
+report user-> 
+
+
+
+
+
+
+
+
+
+=======================
+test plans
+tests explaination
+||||||||||||||||||||
+kero ->write template
+3bhady,3li,kero->write tests explaination and test cases
+HEAD:kero
+========================
+
+
+===========
+tasks
+samir,kero,3li,3bhady->write your task and it's description
+HEAD:samir
+=========
+
+================
+class diagram
+HEAD:ali->gawed
+================
+
+
+===================
+sequence diagram
+HEAD:3bhady
+3bhady,kero,3li->write sequence diagram for what you've implemented
+================
+
+
+
+
+===============
+SDS : fadalat
+HEAD:samir
+3li,kero,3bhady->lw fe 7aga samir y2oulna n3mlha n3mlha
+==============
