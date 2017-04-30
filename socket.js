@@ -8,6 +8,12 @@ request=require('request');
 //online users and pharmacies
 user=[];
 //holding key as socket
+
+customerSocket={};
+//holding id as key
+customerId={};
+//holding key as socket
+
 pharmacySocket={valid_key:  undefined};
 //holding id as key
 pharmacyId={valid_key:  undefined};
@@ -16,8 +22,16 @@ pharmacyId={valid_key:  undefined};
 server.listen(8890);
 io.on('connection', function (socket) {
 
+    socket.on('addCustomer',function(data){
+        console.log("new customer"+data);
+        customerSocket[data.socket_id]=data;
+        customerId[data.id]=data;
+        console.log(customerSocket);
+        console.log(customerId);
+        }
+    );
     console.log("new client connected");
-    user.push(socket.id);
+
     // console.log(socket.id);
 //init redis
     redisClient = redis.createClient();
@@ -28,7 +42,16 @@ io.on('connection', function (socket) {
 
 
     socket.on('disconnect', function() {
-
+        if(customerSocket.hasOwnProperty(socket.id))
+        {
+            console.log("customer disconnected");
+             CustomerId=(customerSocket[socket.id]).id;
+            delete   customerSocket[socket.id];
+            delete   customerId[CustomerId];
+            console.log(customerSocket);
+            console.log(customerId);
+            return;
+        }
 
         var json = {
             "user":pharmacySocket[socket.id]
@@ -57,11 +80,13 @@ io.on('connection', function (socket) {
         pharmaId=(pharmacySocket[socket.id]).id;
         delete   pharmacySocket[socket.id];
         delete   pharmacyId[pharmaId];
+
         redisClient.quit();
     });
 
 
 });
+
 
 redisClient = redis.createClient();
 

@@ -21,7 +21,7 @@ Route::group(['prefix'=>'v1'],function(){
    
     ]);
     //customer
-    Route::get('newcustomer','CustomerController@generateCustomer');
+    Route::get('newcustomer/{id}','CustomerController@generateCustomer');
     Route::get('setonline','PharmacyController@setOnline');
 
     //pharmacy signIn

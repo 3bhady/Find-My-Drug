@@ -10,14 +10,16 @@ myApp.onPageBeforeAnimation('pharmacies',function(){
     "drug_id":getData("drug_id"),
         "lon":2,
         "lat":5,
-        "id":30000
-};
+        "id":(JSON.parse(getData("customer"))).id
+
+        };
+
     $$.post(endpoint3,data2
         ,function(succData)
         {
 
             succData=JSON.parse(succData);
-            console.log(succData);
+            //console.log(succData);
             //CreateList(succData);
 
         }

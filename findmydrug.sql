@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2017 at 10:01 PM
+-- Generation Time: Apr 30, 2017 at 09:31 AM
 -- Server version: 5.7.14
 -- PHP Version: 7.0.10
 
@@ -45,7 +45,7 @@ CREATE TABLE `admins` (
 
 CREATE TABLE `customers` (
   `id` int(11) NOT NULL,
-  `name` int(11) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -56,7 +56,33 @@ CREATE TABLE `customers` (
 
 INSERT INTO `customers` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, NULL, NULL, NULL),
-(2, NULL, NULL, NULL);
+(2, NULL, NULL, NULL),
+(3, '3', '2017-04-24 18:20:00', '2017-04-24 18:20:00'),
+(4, NULL, '2017-04-24 18:22:31', '2017-04-24 18:22:31'),
+(5, NULL, '2017-04-24 18:22:52', '2017-04-24 18:22:52'),
+(6, '6', '2017-04-24 18:23:00', '2017-04-24 18:23:00'),
+(7, 'user7', '2017-04-24 18:26:49', '2017-04-24 18:26:49'),
+(8, 'user8', '2017-04-24 18:28:38', '2017-04-24 18:28:38'),
+(9, 'user9', '2017-04-24 18:29:03', '2017-04-24 18:29:03'),
+(10, 'user10', '2017-04-24 19:55:27', '2017-04-24 19:55:27'),
+(11, 'user11', '2017-04-24 19:59:17', '2017-04-24 19:59:17'),
+(12, 'user12', '2017-04-24 20:00:27', '2017-04-24 20:00:27'),
+(13, 'user13', '2017-04-24 20:00:56', '2017-04-24 20:00:56'),
+(14, 'user14', '2017-04-24 20:01:18', '2017-04-24 20:01:18'),
+(15, 'user15', '2017-04-24 20:02:23', '2017-04-24 20:02:23'),
+(16, 'user16', '2017-04-24 20:02:23', '2017-04-24 20:02:23'),
+(17, 'user17', '2017-04-24 20:02:51', '2017-04-24 20:02:51'),
+(18, 'user18', '2017-04-24 20:06:51', '2017-04-24 20:06:51'),
+(19, 'user19', '2017-04-24 20:08:09', '2017-04-24 20:08:09'),
+(20, 'user20', '2017-04-24 20:08:22', '2017-04-24 20:08:22'),
+(21, 'user21', '2017-04-24 20:08:35', '2017-04-24 20:08:35'),
+(22, 'user22', '2017-04-24 20:09:00', '2017-04-24 20:09:00'),
+(23, 'user23', '2017-04-24 20:09:05', '2017-04-24 20:09:05'),
+(24, 'user24', '2017-04-24 20:09:49', '2017-04-24 20:09:49'),
+(25, 'user25', '2017-04-24 20:10:52', '2017-04-24 20:10:52'),
+(26, 'user26', '2017-04-24 20:11:19', '2017-04-24 20:11:19'),
+(27, 'user27', '2017-04-24 20:13:12', '2017-04-24 20:13:12'),
+(28, 'user28', '2017-04-24 22:47:44', '2017-04-24 22:47:44');
 
 -- --------------------------------------------------------
 
@@ -13731,12 +13757,36 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `created_at`, `updated_at`, `name`, `password`, `email`, `admin_id`, `pharmacy_id`, `customer_id`, `online`) VALUES
-(3, '2017-04-18 17:19:29', '2017-04-23 19:21:12', NULL, '$2y$10$8TKl2GneeYL9SYdH3ceV6ebpBeiIYt.DdQhQG9TOv1EBksipue.V6', 'mohamedali167@gmail.com', NULL, 3, NULL, 1),
+(3, '2017-04-18 17:19:29', '2017-04-24 22:48:24', NULL, '$2y$10$8TKl2GneeYL9SYdH3ceV6ebpBeiIYt.DdQhQG9TOv1EBksipue.V6', 'mohamedali167@gmail.com', NULL, 3, NULL, 0),
 (4, '2017-04-18 17:19:45', '2017-04-23 19:23:31', NULL, '$2y$10$7WkwiTwkelbnO1AmcT.66.ONr0iuOwzm762Q3EpDNMZFj6A8vI3KO', 'mohamedali168@gmail.com', NULL, 2, NULL, 1),
 (6, '2017-04-18 17:20:23', '2017-04-18 17:20:23', NULL, '$2y$10$gSOC/.gkD6.tBu5LUMTyPuVFT3y24eKpQ3YcZT4xu1NgmzF8CR.nW', 'mohamedali169@gmail.com', NULL, 5, NULL, 0),
-(9, '2017-04-18 18:10:11', '2017-04-23 17:35:12', NULL, '$2y$10$dq3asa6U739cHaWdwYccG.80nEBvUCLgwk0aTV4sg2OE8kuYNzkuK', 'mohamedali@gmail.com', NULL, 1, NULL, 1),
+(9, '2017-04-18 18:10:11', '2017-04-24 22:48:23', NULL, '$2y$10$dq3asa6U739cHaWdwYccG.80nEBvUCLgwk0aTV4sg2OE8kuYNzkuK', 'mohamedali@gmail.com', NULL, 1, NULL, 0),
 (14, '2017-04-18 21:07:02', '2017-04-18 21:07:02', 'customer1', NULL, NULL, NULL, NULL, 1, 0),
-(16, '2017-04-18 21:07:20', '2017-04-18 21:07:20', 'customer2', NULL, NULL, NULL, NULL, 2, 0);
+(16, '2017-04-18 21:07:20', '2017-04-18 21:07:20', 'customer2', NULL, NULL, NULL, NULL, 2, 0),
+(17, '2017-04-24 18:20:00', '2017-04-24 18:20:00', NULL, NULL, NULL, NULL, NULL, 3, 0),
+(18, '2017-04-24 18:23:00', '2017-04-24 18:23:00', '6', NULL, NULL, NULL, NULL, 6, 0),
+(19, '2017-04-24 18:26:49', '2017-04-24 18:26:49', 'user7', NULL, NULL, NULL, NULL, 7, 0),
+(20, '2017-04-24 18:28:38', '2017-04-24 18:28:38', 'user8', NULL, NULL, NULL, NULL, 8, 0),
+(21, '2017-04-24 18:29:03', '2017-04-24 18:29:03', 'user9', NULL, NULL, NULL, NULL, 9, 0),
+(22, '2017-04-24 19:55:27', '2017-04-24 19:55:27', 'user10', NULL, NULL, NULL, NULL, 10, 0),
+(23, '2017-04-24 19:59:17', '2017-04-24 19:59:17', 'user11', NULL, NULL, NULL, NULL, 11, 0),
+(24, '2017-04-24 20:00:27', '2017-04-24 20:00:27', 'user12', NULL, NULL, NULL, NULL, 12, 0),
+(25, '2017-04-24 20:00:56', '2017-04-24 20:00:56', 'user13', NULL, NULL, NULL, NULL, 13, 0),
+(26, '2017-04-24 20:01:18', '2017-04-24 20:01:18', 'user14', NULL, NULL, NULL, NULL, 14, 0),
+(27, '2017-04-24 20:02:23', '2017-04-24 20:02:23', 'user15', NULL, NULL, NULL, NULL, 15, 0),
+(28, '2017-04-24 20:02:23', '2017-04-24 20:02:23', 'user16', NULL, NULL, NULL, NULL, 16, 0),
+(29, '2017-04-24 20:02:51', '2017-04-24 20:02:51', 'user17', NULL, NULL, NULL, NULL, 17, 0),
+(30, '2017-04-24 20:06:51', '2017-04-24 20:06:51', 'user18', NULL, NULL, NULL, NULL, 18, 0),
+(31, '2017-04-24 20:08:09', '2017-04-24 20:08:09', 'user19', NULL, NULL, NULL, NULL, 19, 0),
+(32, '2017-04-24 20:08:22', '2017-04-24 20:08:22', 'user20', NULL, NULL, NULL, NULL, 20, 0),
+(33, '2017-04-24 20:08:35', '2017-04-24 20:08:35', 'user21', NULL, NULL, NULL, NULL, 21, 0),
+(34, '2017-04-24 20:09:00', '2017-04-24 20:09:00', 'user22', NULL, NULL, NULL, NULL, 22, 0),
+(35, '2017-04-24 20:09:05', '2017-04-24 20:09:05', 'user23', NULL, NULL, NULL, NULL, 23, 0),
+(36, '2017-04-24 20:09:49', '2017-04-24 20:09:49', 'user24', NULL, NULL, NULL, NULL, 24, 0),
+(37, '2017-04-24 20:10:52', '2017-04-24 20:10:52', 'user25', NULL, NULL, NULL, NULL, 25, 0),
+(38, '2017-04-24 20:11:19', '2017-04-24 20:11:19', 'user26', NULL, NULL, NULL, NULL, 26, 0),
+(39, '2017-04-24 20:13:12', '2017-04-24 20:13:12', 'user27', NULL, NULL, NULL, NULL, 27, 0),
+(40, '2017-04-24 22:47:44', '2017-04-24 22:47:44', 'user28', NULL, NULL, NULL, NULL, 28, 0);
 
 --
 -- Indexes for dumped tables
@@ -13824,7 +13874,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `drugs`
 --
@@ -13854,7 +13904,7 @@ ALTER TABLE `pharmacy_forms`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- Constraints for dumped tables
 --
@@ -13869,7 +13919,7 @@ ALTER TABLE `drugs`
 -- Constraints for table `drug_request`
 --
 ALTER TABLE `drug_request`
-  ADD CONSTRAINT `drug_request_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `drug_request_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `drug_request_ibfk_2` FOREIGN KEY (`drug_id`) REFERENCES `drugs` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --

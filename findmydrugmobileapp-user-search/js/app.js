@@ -22,7 +22,7 @@ var indexTriggering=myApp.onPageBeforeInit('index',function(page){
 
     console.log("index");
     setupIndex(page);
-
+    setupSocket();
 });
 
 
@@ -33,19 +33,26 @@ function setupIndex(page)
 {
 
     myApp.params.swipePanel = 'left';
-    user=localStorage.getItem("user");
+    user=localStorage.getItem("customer");
+    console.log(user);
+
     isLogin=true;
     //to be changed
-    if(user==null)
+    if(localStorage.getItem("customer")===null)
     {
+        console.log("not login");
+
         isLogin=false;
     }
+
     if(!isLogin)
     {
+
 
         //console.log("not login");
         login();
     }
+
 
     setupSearch();
 
