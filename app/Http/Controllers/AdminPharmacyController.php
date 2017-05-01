@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Pharmacy;
 use Illuminate\Http\Request;
+use App\User;
 
 class AdminPharmacyController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,8 +29,9 @@ class AdminPharmacyController extends Controller
     public function delete($id)
     {
         $pharmacy=Pharmacy::find($id);
+        $user=User ::where('email','=',$pharmacy->email);
+        $user->delete();
         $pharmacy->delete();
         return redirect('admin/pharmacy/');
     }
-
 }

@@ -55,3 +55,8 @@ Route::get('/admin/pharmacyform/refuse/{id}','AdminController@refuse');
 Route::get('/admin/pharmacy','AdminPharmacyController@index');
 Route::get('/admin/pharmacy/delete/{id}','AdminPharmacyController@delete');
 
+
+Auth::routes();
+Route::get('admin/login', 'AdminController@AdminLogin');
+Route::get('admin/home', 'AdminController@AdminHome');
+Route::get('admin/logout', 'AdminController@AdminLogout');
