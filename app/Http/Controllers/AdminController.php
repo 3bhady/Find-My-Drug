@@ -12,12 +12,14 @@ use Log;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+
 class AdminController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except('AdminLogin','signin');
+        $this->middleware('auth')->except('AdminLogin', 'signin');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -28,33 +30,35 @@ class AdminController extends Controller
         return view('AdminLogin');
 
     }
+
     public function AdminHome(Request $request)
     {
-     return view('AdminHome');
+        return view('AdminHome');
     }
+
     public function signin(Request $request)
     {
         $credentials = Input::only('email', 'password');
 
-        if ( ! Auth::attempt($credentials))
-        {
+        if (!Auth::attempt($credentials)) {
             return Redirect::back()->withMessage('Invalid credentials');
         }
 
-        if (Auth::user()->admin_id != NULL)
-        {
-            return   redirect('/admin/home');
+        if (Auth::user()->admin_id != NULL) {
+            return redirect('/admin/pharmacy');
         }
 
-        return  redirect('/admin/login');
+        return redirect('/admin/login');
 
 
     }
+
     public function AdminLogout(Request $request)
     {
         Auth::logout();
         return view('AdminLogin');
     }
+
     public function index()
     {
 
@@ -107,4 +111,23 @@ class AdminController extends Controller
         $pharmacyform->delete();
         return redirect('admin/pharmacyform/');
     }
+
+    public function edit($id,Request $request)
+    {
+        $pharmacyform = PharmacyForm::find($id);
+
+        $pharmacyform->name_en = $request->get('name_en');
+        $pharmacyform->address_en= $request->get('address_en');
+        $pharmacyform->owner_name= $request->get('owner_name');
+        $pharmacyform->landline= $request->get('landline');
+        $pharmacyform->mobile= $request->get('mobile');
+        $pharmacyform->email= $request->get('email');
+        $pharmacyform->open= $request->get('open');
+        $pharmacyform->close= $request->get('close');
+        $pharmacyform->save();
+        return redirect('/admin/pharmacyform');
+
+
+    }
+
 }
