@@ -10,6 +10,18 @@ use Redis;
 
 class RequestController extends Controller
 {
+
+
+    public function __construct()
+    {
+        //$this->middleware('guest');
+        $this->middleware('jwt.auth',[
+            'only'=>[
+                'pharmacyAcceptDrug'
+            ]
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -107,6 +119,7 @@ class RequestController extends Controller
         $response=[
             "pharmacies"=>$response,
             "user_id"=>$request->input("id"),
+            "drug_id"=>$request->input("drug_id"),
             "drug_name"=>$drugName->generic_name
         ];
         //todo:store in database user/request..
@@ -154,7 +167,23 @@ class RequestController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+    }
+    public function pharmacyAcceptDrug(Request $request )
+    {
+        //set user_pharmacy_drug_request status from pending to done
+
+        if(!$user=JWTAuth::parseToken()->authenticate())
+        {
+            return response()->json(['msg'=>'invalid pharmacist'],404);
+        }
+        $response=$request->all();
+
+        //send redis request
+         $redis=Redis::connection();
+         $redis->publish('pharmacyToCustomerResponse',json_encode($response));
+
+        return response()->json($response,200);
     }
 
     /**
