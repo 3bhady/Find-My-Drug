@@ -29,18 +29,20 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+
+    public function customer()
+    {
+        return $this->belongsTo('App\Customer','id','user_id');
+    }
+
     public function admin()
     {
       return $this->hasOne('App\Admin','admin_id');
     }
-    public function customer()
-    {
-      return $this->hasOne('App\Customer','customer_id');
-    }
 
     public function pharmacy()
     {
-      //return $this->hasOne('App\Pharmacy','id');
+      return $this->hasOne('App\Pharmacy','pharmacy_id','id');
     }
     public function getRememberTokenName()
     {

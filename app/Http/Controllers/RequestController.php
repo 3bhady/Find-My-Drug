@@ -5,11 +5,15 @@ namespace App\Http\Controllers;
 use App\Drug;
 use App\Pharmacy;
 use App\User;
+use App\DrugRequest;
 use Illuminate\Http\Request;
 use Redis;
 
+const pharmacies_limit = 2;
+
 class RequestController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +21,10 @@ class RequestController extends Controller
      */
     public function index()
     {
-        //
+        $pharmacies = Pharmacy::select('id','lon','lat','user_id')->with('user')
+            ->get();
+return $pharmacies;
+
         $pharmacies = Pharmacy::select('id','name_en')->get();
 
         return response()->json($pharmacies,200);
@@ -42,17 +49,48 @@ class RequestController extends Controller
     public function store(Request $request)
     {
 
-      //  return "store function";
+
+
+       //return "store function";
         $this->validate($request, [
             "lon"=>'required|numeric',
             "lat"=>'required|numeric',
-            "drug_id"=>'required|numeric'
+            "drug_id"=>'required|numeric',
+            "user_id"=>'required|numeric'
         ]);
+
+        $customer = User::find($request->input("user_id"))->customer;
+        $drug = Drug::select('id')->where('id',$request->input('drug_id'))->get();
+
+        if($drug == null)
+        {
+            return "NO Drug found!";
+        }
+
+        if($customer == null)
+        {
+            return "NO Customer found!";
+        }
+
+        $customer->drug()->attach($drug);
+
+
+
+        //Does not insert updated and created at database table
+        //$customer->save();
+
+
+
+
+//        return "s0";
+
+
 
         $response=array();
 
         $pharmacies = Pharmacy::select('id','lon','lat','user_id')->with('user')
             ->get();
+        return response()->json(['ESHTA'],200);
         $i=0;
         foreach($pharmacies as $pharmacy)
         {
@@ -63,7 +101,6 @@ class RequestController extends Controller
             }
         }
         $pharmacies=$response;
-
 
      //   return $pharmacies;
         $list= array();
@@ -84,13 +121,17 @@ class RequestController extends Controller
         ksort($list);
        //     return $list;
         //$list=array_splice($list,15);
+
+
         $response=array();
         $counter=0;
+        $pharmacy_local_id_list=array();
         foreach($list as $key)
         {
             foreach($key as $element)
-                if($counter<2)
+                if($counter<pharmacies_limit)
                 {
+                    array_push($pharmacy_local_id_list,$element);
                     //select id from  users where pharmacy_id=$element
                     $user_id=Pharmacy::find($element)->user;
 
@@ -109,6 +150,8 @@ class RequestController extends Controller
             "user_id"=>$request->input("id"),
             "drug_name"=>$drugName->generic_name
         ];
+
+
         //todo:store in database user/request..
         //todo:send  to pharmacies
         //i will do now notifying pharmacy
@@ -116,6 +159,24 @@ class RequestController extends Controller
         $redis=Redis::connection();
 
         $redis->publish('notification',json_encode($response));
+
+
+
+        foreach($pharmacy_local_id_list as $pharmacy)
+        {
+            $pharmacy = Pharmacy::where('id',$pharmacy);
+            $drug_request = DrugRequest::select('id')
+                ->where([
+                ['customer_id','=',$customer->id],
+                ['drug_id','=',$drug->id]])
+                ->orderBy('created_at', 'desc')
+                ->first();
+
+            $pharmacy->drug_request()->associate($drug_request);
+
+        }
+
+
         return response()->json($response,200);
 
 

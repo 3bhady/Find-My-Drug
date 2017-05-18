@@ -67,8 +67,10 @@ class PharmacyController extends Controller
      */
     public function index()
     {
+        //
+        $pharmacies = Pharmacy::select('id','name_en')->get();
 
-        return bcrypt("underworld");
+        return response()->json($pharmacies,200);
     }
 
     /**
@@ -101,6 +103,9 @@ class PharmacyController extends Controller
     public function show($id)
     {
         //
+        $pharmacy = Pharmacy::where('id',$id)->get();
+
+        return response()->json($pharmacy,200);
     }
 
     /**
