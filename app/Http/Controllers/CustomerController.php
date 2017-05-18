@@ -19,9 +19,11 @@ class CustomerController extends Controller
       $customer->save();
       $customer->name="user".($customer->id) ."";
       $customer->save();
+
       $user=new User();
+      $user->type="1";
       $user->name=$customer->name;
-      $user->customer_id=$customer->id;
+      //$user->customer_id=$customer->id;
       $user->save();
       }
       catch (Exception $e)

@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 
 //pharmacy form routes
-Route::group(['prefix'=>'v1'],function(){
+Route::group(['prefix'=>'v1','middleware'=>'cors'],function(){
     Route::resource('pharmacyform','PharmacyFormController',[
    
     ]);
@@ -43,7 +43,7 @@ Route::group(['prefix'=>'v1'],function(){
             'as' => 'category.drug'
         ]);
     Route::resource('drug','DrugController');
-
+    Route::resource('pharmacy','PharmacyController');
         Route::resource('request','RequestController');
         Route::get('drug/search/{id}',[
             'uses' => 'DrugController@search',

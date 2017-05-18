@@ -48,7 +48,23 @@ class RequestController extends Controller
             "lat"=>'required|numeric',
             "drug_id"=>'required|numeric'
         ]);
-        $pharmacies = Pharmacy::select('lon','lat','id')->get();
+
+        $response=array();
+
+        $pharmacies = Pharmacy::select('id','lon','lat','user_id')->with('user')
+            ->get();
+        $i=0;
+        foreach($pharmacies as $pharmacy)
+        {
+            $i++;
+            if($pharmacy["user"]["online"]=='1')
+            {
+                array_push($response,$pharmacy);
+            }
+        }
+        $pharmacies=$response;
+
+
      //   return $pharmacies;
         $list= array();
         foreach($pharmacies as $pharmacy)
@@ -76,32 +92,31 @@ class RequestController extends Controller
                 if($counter<2)
                 {
                     //select id from  users where pharmacy_id=$element
-                    $user_id=User::select('id')->where('pharmacy_id',$element)->first();
+                    $user_id=Pharmacy::find($element)->user;
+
                     array_push($response,$user_id->id);
+
                     $counter++;
                 }
-                else
-                {
 
-                    //get user id to be send to the pharmacy
-                    $drugName=Drug::select('generic_name')
-                        ->where('id',$request->input('drug_id'))->first();
-                    $response=[
-                        "pharmacies"=>$response,
-                        "user_id"=>$request->input("id"),
-                        "drug_name"=>$drugName->generic_name
-                    ];
-                    //todo:store in database user/request..
-                    //todo:send  to pharmacies
-                    //i will do now notifying pharmacy
-
-                    $redis=Redis::connection();
-
-                    $redis->publish('notification',json_encode($response));
-                    return response()->json($response,200);
-                }
 
         }
+        //get user id to be send to the pharmacy
+        $drugName=Drug::select('generic_name')
+            ->where('id',$request->input('drug_id'))->first();
+        $response=[
+            "pharmacies"=>$response,
+            "user_id"=>$request->input("id"),
+            "drug_name"=>$drugName->generic_name
+        ];
+        //todo:store in database user/request..
+        //todo:send  to pharmacies
+        //i will do now notifying pharmacy
+
+        $redis=Redis::connection();
+
+        $redis->publish('notification',json_encode($response));
+        return response()->json($response,200);
 
 
     }

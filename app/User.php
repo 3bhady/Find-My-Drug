@@ -40,7 +40,7 @@ class User extends Authenticatable
 
     public function pharmacy()
     {
-      return $this->hasOne('App\Pharmacy','pharmacy_id');
+      //return $this->hasOne('App\Pharmacy','id');
     }
 
 }

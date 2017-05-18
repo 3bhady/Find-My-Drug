@@ -48,7 +48,7 @@ class SocketController extends Controller
         //authentication..
         $redis=Redis::connection();
         $redis->publish('addPharmacy',json_encode($response));
-        return $request->all();
+        
         return response()->json($response,200);
     }
     public function notifyPharmacy()

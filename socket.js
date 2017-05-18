@@ -57,8 +57,8 @@ io.on('connection', function (socket) {
             "user":pharmacySocket[socket.id]
         };
         var options = {
-            url: 'http://localhost/findmydrug/public/api/v1/setoffline?token='+
-        //    url: 'http://localhost/public/api/v1/setoffline?token='+
+            url: 'http://Localhost/findmydrug/public/api/v1/setoffline?token='+
+        //    url: 'http://192.168.1.7/public/api/v1/setoffline?token='+
             pharmacySocket[socket.id].token,
             method: 'POST',
             headers: {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Author;
+use App\Pharmacy;
 use App\User;
 use Hash;
 use Illuminate\Http\Request;
@@ -33,6 +34,7 @@ class PharmacyController extends Controller
             'password'=>'required'
         ]);
 
+            error_log("HIIII");
 
         $credentials =$request->only('email','password');
 
@@ -65,7 +67,8 @@ class PharmacyController extends Controller
      */
     public function index()
     {
-        //
+
+        return bcrypt("underworld");
     }
 
     /**

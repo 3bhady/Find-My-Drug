@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2017 at 09:31 AM
+-- Generation Time: May 18, 2017 at 04:21 PM
 -- Server version: 5.7.14
 -- PHP Version: 7.0.10
 
@@ -28,6 +28,7 @@ USE `findmydrug`;
 -- Table structure for table `admins`
 --
 
+DROP TABLE IF EXISTS `admins`;
 CREATE TABLE `admins` (
   `id` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
@@ -43,6 +44,7 @@ CREATE TABLE `admins` (
 -- Table structure for table `customers`
 --
 
+DROP TABLE IF EXISTS `customers`;
 CREATE TABLE `customers` (
   `id` int(11) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
@@ -82,7 +84,11 @@ INSERT INTO `customers` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (25, 'user25', '2017-04-24 20:10:52', '2017-04-24 20:10:52'),
 (26, 'user26', '2017-04-24 20:11:19', '2017-04-24 20:11:19'),
 (27, 'user27', '2017-04-24 20:13:12', '2017-04-24 20:13:12'),
-(28, 'user28', '2017-04-24 22:47:44', '2017-04-24 22:47:44');
+(28, 'user28', '2017-04-24 22:47:44', '2017-04-24 22:47:44'),
+(29, 'user29', '2017-04-30 07:53:45', '2017-04-30 07:53:45'),
+(30, 'user30', '2017-04-30 07:53:55', '2017-04-30 07:53:55'),
+(31, 'user31', '2017-05-18 13:38:41', '2017-05-18 13:38:41'),
+(32, 'user32', '2017-05-18 13:51:18', '2017-05-18 13:51:18');
 
 -- --------------------------------------------------------
 
@@ -90,6 +96,7 @@ INSERT INTO `customers` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- Table structure for table `drugs`
 --
 
+DROP TABLE IF EXISTS `drugs`;
 CREATE TABLE `drugs` (
   `id` int(11) NOT NULL,
   `active_ingredient` varchar(1000) CHARACTER SET utf8 DEFAULT '',
@@ -13626,6 +13633,7 @@ INSERT INTO `drugs` (`id`, `active_ingredient`, `generic_name`, `price`, `image`
 -- Table structure for table `drug_request`
 --
 
+DROP TABLE IF EXISTS `drug_request`;
 CREATE TABLE `drug_request` (
   `id` int(11) NOT NULL,
   `customer_id` int(11) DEFAULT NULL,
@@ -13640,6 +13648,7 @@ CREATE TABLE `drug_request` (
 -- Table structure for table `drug_request_pharmacy_response`
 --
 
+DROP TABLE IF EXISTS `drug_request_pharmacy_response`;
 CREATE TABLE `drug_request_pharmacy_response` (
   `id` int(11) NOT NULL,
   `pharmacy_id` int(11) DEFAULT NULL,
@@ -13655,6 +13664,7 @@ CREATE TABLE `drug_request_pharmacy_response` (
 -- Table structure for table `pharmacies`
 --
 
+DROP TABLE IF EXISTS `pharmacies`;
 CREATE TABLE `pharmacies` (
   `id` int(11) NOT NULL,
   `name_en` varchar(50) NOT NULL,
@@ -13674,19 +13684,17 @@ CREATE TABLE `pharmacies` (
   `updated_at` timestamp NOT NULL,
   `name_ar` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `address_ar` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `online` int(11) DEFAULT NULL,
-  `admin_id` int(100) DEFAULT NULL
+  `admin_id` int(100) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pharmacies`
 --
 
-INSERT INTO `pharmacies` (`id`, `name_en`, `address_en`, `owner_name`, `lat`, `lon`, `landline`, `mobile`, `email`, `mobile2`, `password`, `home_delivery`, `open`, `close`, `created_at`, `updated_at`, `name_ar`, `address_ar`, `online`, `admin_id`) VALUES
-(1, 'ali', '1-street of el helmia', 'mohamed ali', 13.2103, 14.2103, 324324213, 43432432423, 'mohamedali@gmail.com', 2103812, 'underworld', 1, '02:03:12', '05:10:16', '2017-04-15 12:43:51', '2017-04-15 12:43:51', 'asdasdas', 'شارع الميمون', 1, NULL),
-(2, 'ali', '1-street of el helmiaghf', 'mohamed ali', 16.2321, 16.623, 324324213, 43432432423, 'mohamedsyrix@gmail.com', 2103812, 'underworld', 1, '02:03:12', '05:10:16', '2017-04-18 14:42:35', '2017-04-18 14:42:35', 'asdasdas', 'شارع الميمونgdfgd', 1, NULL),
-(3, 'ali', '1-street of el helmiaghfcxvcxvc', 'mohamed ali', 15.2, 14.12, 32432421345, 4343243242343, 'mohamedsadfyrix@gmail.com', 2103812, 'underworld', 1, '02:03:12', '05:10:16', '2017-04-18 14:44:23', '2017-04-18 14:44:23', 'asdasdas', 'شارع الميمونgdfgddfd', 0, NULL),
-(5, 'ali', '1-street of el helmiaghfcxvcxvcfdgfdg', 'mohamed ali', 60, 60, 32432421345324, 434324324234334, 'mohamed34sadfyrix@gmail.com', 210381234, 'underworld', 1, '02:03:12', '05:10:16', '2017-04-18 14:44:53', '2017-04-18 14:44:53', 'asdasdas32432', 'شارع الميمونgdfgddfd324', 1, NULL);
+INSERT INTO `pharmacies` (`id`, `name_en`, `address_en`, `owner_name`, `lat`, `lon`, `landline`, `mobile`, `email`, `mobile2`, `password`, `home_delivery`, `open`, `close`, `created_at`, `updated_at`, `name_ar`, `address_ar`, `admin_id`, `user_id`) VALUES
+(1, 'ali', '1-street of el helmia', 'mohamed ali', 13.2103, 14.2103, 324324213, 43432432423, 'user@user.com', 2103812, 'underworld', 1, '02:03:12', '05:10:16', '2017-04-15 12:43:51', '2017-04-15 12:43:51', 'asdasdas', 'شارع الميمون', NULL, 43),
+(2, 'ali', '1-street of el helmiaghf', 'mohamed ali', 16.2321, 16.623, 324324213, 43432432423, 'mohamed166@gmail.com', 2103812, 'underworld', 1, '02:03:12', '05:10:16', '2017-04-18 14:42:35', '2017-04-18 14:42:35', 'asdasdas', 'شارع الميمونgdfgd', NULL, 44);
 
 -- --------------------------------------------------------
 
@@ -13694,6 +13702,7 @@ INSERT INTO `pharmacies` (`id`, `name_en`, `address_en`, `owner_name`, `lat`, `l
 -- Table structure for table `pharmacy_forms`
 --
 
+DROP TABLE IF EXISTS `pharmacy_forms`;
 CREATE TABLE `pharmacy_forms` (
   `id` int(11) NOT NULL,
   `name_en` varchar(50) NOT NULL,
@@ -13739,6 +13748,7 @@ INSERT INTO `pharmacy_forms` (`id`, `name_en`, `address_en`, `landline`, `mobile
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL,
@@ -13746,47 +13756,18 @@ CREATE TABLE `users` (
   `name` varchar(50) DEFAULT NULL,
   `password` varchar(200) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
-  `admin_id` int(11) DEFAULT NULL,
-  `pharmacy_id` int(11) DEFAULT NULL,
-  `customer_id` int(11) DEFAULT NULL,
-  `online` int(5) NOT NULL DEFAULT '0'
+  `online` int(5) NOT NULL DEFAULT '0',
+  `type` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `created_at`, `updated_at`, `name`, `password`, `email`, `admin_id`, `pharmacy_id`, `customer_id`, `online`) VALUES
-(3, '2017-04-18 17:19:29', '2017-04-24 22:48:24', NULL, '$2y$10$8TKl2GneeYL9SYdH3ceV6ebpBeiIYt.DdQhQG9TOv1EBksipue.V6', 'mohamedali167@gmail.com', NULL, 3, NULL, 0),
-(4, '2017-04-18 17:19:45', '2017-04-23 19:23:31', NULL, '$2y$10$7WkwiTwkelbnO1AmcT.66.ONr0iuOwzm762Q3EpDNMZFj6A8vI3KO', 'mohamedali168@gmail.com', NULL, 2, NULL, 1),
-(6, '2017-04-18 17:20:23', '2017-04-18 17:20:23', NULL, '$2y$10$gSOC/.gkD6.tBu5LUMTyPuVFT3y24eKpQ3YcZT4xu1NgmzF8CR.nW', 'mohamedali169@gmail.com', NULL, 5, NULL, 0),
-(9, '2017-04-18 18:10:11', '2017-04-24 22:48:23', NULL, '$2y$10$dq3asa6U739cHaWdwYccG.80nEBvUCLgwk0aTV4sg2OE8kuYNzkuK', 'mohamedali@gmail.com', NULL, 1, NULL, 0),
-(14, '2017-04-18 21:07:02', '2017-04-18 21:07:02', 'customer1', NULL, NULL, NULL, NULL, 1, 0),
-(16, '2017-04-18 21:07:20', '2017-04-18 21:07:20', 'customer2', NULL, NULL, NULL, NULL, 2, 0),
-(17, '2017-04-24 18:20:00', '2017-04-24 18:20:00', NULL, NULL, NULL, NULL, NULL, 3, 0),
-(18, '2017-04-24 18:23:00', '2017-04-24 18:23:00', '6', NULL, NULL, NULL, NULL, 6, 0),
-(19, '2017-04-24 18:26:49', '2017-04-24 18:26:49', 'user7', NULL, NULL, NULL, NULL, 7, 0),
-(20, '2017-04-24 18:28:38', '2017-04-24 18:28:38', 'user8', NULL, NULL, NULL, NULL, 8, 0),
-(21, '2017-04-24 18:29:03', '2017-04-24 18:29:03', 'user9', NULL, NULL, NULL, NULL, 9, 0),
-(22, '2017-04-24 19:55:27', '2017-04-24 19:55:27', 'user10', NULL, NULL, NULL, NULL, 10, 0),
-(23, '2017-04-24 19:59:17', '2017-04-24 19:59:17', 'user11', NULL, NULL, NULL, NULL, 11, 0),
-(24, '2017-04-24 20:00:27', '2017-04-24 20:00:27', 'user12', NULL, NULL, NULL, NULL, 12, 0),
-(25, '2017-04-24 20:00:56', '2017-04-24 20:00:56', 'user13', NULL, NULL, NULL, NULL, 13, 0),
-(26, '2017-04-24 20:01:18', '2017-04-24 20:01:18', 'user14', NULL, NULL, NULL, NULL, 14, 0),
-(27, '2017-04-24 20:02:23', '2017-04-24 20:02:23', 'user15', NULL, NULL, NULL, NULL, 15, 0),
-(28, '2017-04-24 20:02:23', '2017-04-24 20:02:23', 'user16', NULL, NULL, NULL, NULL, 16, 0),
-(29, '2017-04-24 20:02:51', '2017-04-24 20:02:51', 'user17', NULL, NULL, NULL, NULL, 17, 0),
-(30, '2017-04-24 20:06:51', '2017-04-24 20:06:51', 'user18', NULL, NULL, NULL, NULL, 18, 0),
-(31, '2017-04-24 20:08:09', '2017-04-24 20:08:09', 'user19', NULL, NULL, NULL, NULL, 19, 0),
-(32, '2017-04-24 20:08:22', '2017-04-24 20:08:22', 'user20', NULL, NULL, NULL, NULL, 20, 0),
-(33, '2017-04-24 20:08:35', '2017-04-24 20:08:35', 'user21', NULL, NULL, NULL, NULL, 21, 0),
-(34, '2017-04-24 20:09:00', '2017-04-24 20:09:00', 'user22', NULL, NULL, NULL, NULL, 22, 0),
-(35, '2017-04-24 20:09:05', '2017-04-24 20:09:05', 'user23', NULL, NULL, NULL, NULL, 23, 0),
-(36, '2017-04-24 20:09:49', '2017-04-24 20:09:49', 'user24', NULL, NULL, NULL, NULL, 24, 0),
-(37, '2017-04-24 20:10:52', '2017-04-24 20:10:52', 'user25', NULL, NULL, NULL, NULL, 25, 0),
-(38, '2017-04-24 20:11:19', '2017-04-24 20:11:19', 'user26', NULL, NULL, NULL, NULL, 26, 0),
-(39, '2017-04-24 20:13:12', '2017-04-24 20:13:12', 'user27', NULL, NULL, NULL, NULL, 27, 0),
-(40, '2017-04-24 22:47:44', '2017-04-24 22:47:44', 'user28', NULL, NULL, NULL, NULL, 28, 0);
+INSERT INTO `users` (`id`, `created_at`, `updated_at`, `name`, `password`, `email`, `online`, `type`) VALUES
+(43, '2017-05-18 13:04:46', '2017-05-18 13:04:46', 'user', 'user', 'user@user.com', 0, 0),
+(44, '2017-05-18 13:09:18', '2017-05-18 13:34:33', 'user', '$2y$10$HoGRRAZOlzqhCoDt6YrrJex3obzqHBwbmoyIG8hkmQfPB37Q.NCci', 'mohamedali166@gmail.com', 1, 0),
+(46, '2017-05-18 13:51:18', '2017-05-18 13:51:18', 'user32', NULL, NULL, 0, 1);
 
 --
 -- Indexes for dumped tables
@@ -13836,7 +13817,8 @@ ALTER TABLE `pharmacies`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `uk_user_settings` (`name_en`,`address_en`),
   ADD UNIQUE KEY `pharmacy` (`name_ar`,`address_ar`),
-  ADD KEY `admin_id` (`admin_id`);
+  ADD KEY `admin_id` (`admin_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `pharmacy_forms`
@@ -13852,14 +13834,7 @@ ALTER TABLE `pharmacy_forms`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`),
-  ADD UNIQUE KEY `customer_id_2` (`customer_id`),
-  ADD UNIQUE KEY `pharmacy_id_3` (`pharmacy_id`),
-  ADD UNIQUE KEY `admin_id_2` (`admin_id`),
-  ADD KEY `admin_id` (`admin_id`),
-  ADD KEY `pharmacy_id` (`pharmacy_id`),
-  ADD KEY `customer_id` (`customer_id`),
-  ADD KEY `pharmacy_id_2` (`pharmacy_id`);
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -13874,7 +13849,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `drugs`
 --
@@ -13904,7 +13879,7 @@ ALTER TABLE `pharmacy_forms`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 --
 -- Constraints for dumped tables
 --
@@ -13933,15 +13908,8 @@ ALTER TABLE `drug_request_pharmacy_response`
 -- Constraints for table `pharmacies`
 --
 ALTER TABLE `pharmacies`
-  ADD CONSTRAINT `pharmacies_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admins` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
-
---
--- Constraints for table `users`
---
-ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`pharmacy_id`) REFERENCES `pharmacies` (`id`),
-  ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`admin_id`) REFERENCES `admins` (`id`),
-  ADD CONSTRAINT `users_ibfk_3` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`);
+  ADD CONSTRAINT `pharmacies_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admins` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `pharmacies_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
