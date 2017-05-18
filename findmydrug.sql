@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2017 at 04:21 PM
+-- Generation Time: May 18, 2017 at 11:37 PM
 -- Server version: 5.7.14
 -- PHP Version: 7.0.10
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `findmydrug`
 --
-CREATE DATABASE IF NOT EXISTS `findmydrug` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `findmydrug`;
 
 -- --------------------------------------------------------
 
@@ -28,7 +26,6 @@ USE `findmydrug`;
 -- Table structure for table `admins`
 --
 
-DROP TABLE IF EXISTS `admins`;
 CREATE TABLE `admins` (
   `id` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
@@ -44,7 +41,6 @@ CREATE TABLE `admins` (
 -- Table structure for table `customers`
 --
 
-DROP TABLE IF EXISTS `customers`;
 CREATE TABLE `customers` (
   `id` int(11) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
@@ -88,7 +84,28 @@ INSERT INTO `customers` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (29, 'user29', '2017-04-30 07:53:45', '2017-04-30 07:53:45'),
 (30, 'user30', '2017-04-30 07:53:55', '2017-04-30 07:53:55'),
 (31, 'user31', '2017-05-18 13:38:41', '2017-05-18 13:38:41'),
-(32, 'user32', '2017-05-18 13:51:18', '2017-05-18 13:51:18');
+(32, 'user32', '2017-05-18 13:51:18', '2017-05-18 13:51:18'),
+(33, 'user33', '2017-05-18 15:37:36', '2017-05-18 15:37:36'),
+(34, 'user34', '2017-05-18 15:40:36', '2017-05-18 15:40:36'),
+(35, 'user35', '2017-05-18 15:40:57', '2017-05-18 15:40:57'),
+(36, 'user36', '2017-05-18 15:41:21', '2017-05-18 15:41:21'),
+(37, 'user37', '2017-05-18 16:48:05', '2017-05-18 16:48:06'),
+(38, 'user38', '2017-05-18 16:54:18', '2017-05-18 16:54:19'),
+(39, 'user39', '2017-05-18 17:03:59', '2017-05-18 17:03:59'),
+(40, 'user40', '2017-05-18 17:09:11', '2017-05-18 17:09:11'),
+(41, 'user41', '2017-05-18 17:09:31', '2017-05-18 17:09:31'),
+(42, 'user42', '2017-05-18 17:09:36', '2017-05-18 17:09:36'),
+(43, 'user43', '2017-05-18 17:13:39', '2017-05-18 17:13:39'),
+(44, 'user44', '2017-05-18 17:19:37', '2017-05-18 17:19:37'),
+(45, 'user45', '2017-05-18 17:27:56', '2017-05-18 17:27:56'),
+(46, 'user46', '2017-05-18 17:31:01', '2017-05-18 17:31:02'),
+(47, 'user47', '2017-05-18 17:35:36', '2017-05-18 17:35:36'),
+(48, 'user48', '2017-05-18 17:37:44', '2017-05-18 17:37:44'),
+(49, 'user49', '2017-05-18 17:45:15', '2017-05-18 17:45:15'),
+(50, 'user50', '2017-05-18 17:45:23', '2017-05-18 17:45:24'),
+(51, 'user51', '2017-05-18 17:45:51', '2017-05-18 17:45:51'),
+(52, 'user52', '2017-05-18 17:47:07', '2017-05-18 17:47:07'),
+(53, 'user53', '2017-05-18 21:36:49', '2017-05-18 21:36:49');
 
 -- --------------------------------------------------------
 
@@ -96,7 +113,6 @@ INSERT INTO `customers` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- Table structure for table `drugs`
 --
 
-DROP TABLE IF EXISTS `drugs`;
 CREATE TABLE `drugs` (
   `id` int(11) NOT NULL,
   `active_ingredient` varchar(1000) CHARACTER SET utf8 DEFAULT '',
@@ -13633,7 +13649,6 @@ INSERT INTO `drugs` (`id`, `active_ingredient`, `generic_name`, `price`, `image`
 -- Table structure for table `drug_request`
 --
 
-DROP TABLE IF EXISTS `drug_request`;
 CREATE TABLE `drug_request` (
   `id` int(11) NOT NULL,
   `customer_id` int(11) DEFAULT NULL,
@@ -13648,7 +13663,6 @@ CREATE TABLE `drug_request` (
 -- Table structure for table `drug_request_pharmacy_response`
 --
 
-DROP TABLE IF EXISTS `drug_request_pharmacy_response`;
 CREATE TABLE `drug_request_pharmacy_response` (
   `id` int(11) NOT NULL,
   `pharmacy_id` int(11) DEFAULT NULL,
@@ -13664,7 +13678,6 @@ CREATE TABLE `drug_request_pharmacy_response` (
 -- Table structure for table `pharmacies`
 --
 
-DROP TABLE IF EXISTS `pharmacies`;
 CREATE TABLE `pharmacies` (
   `id` int(11) NOT NULL,
   `name_en` varchar(50) NOT NULL,
@@ -13702,7 +13715,6 @@ INSERT INTO `pharmacies` (`id`, `name_en`, `address_en`, `owner_name`, `lat`, `l
 -- Table structure for table `pharmacy_forms`
 --
 
-DROP TABLE IF EXISTS `pharmacy_forms`;
 CREATE TABLE `pharmacy_forms` (
   `id` int(11) NOT NULL,
   `name_en` varchar(50) NOT NULL,
@@ -13748,7 +13760,6 @@ INSERT INTO `pharmacy_forms` (`id`, `name_en`, `address_en`, `landline`, `mobile
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL,
@@ -13766,8 +13777,29 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `created_at`, `updated_at`, `name`, `password`, `email`, `online`, `type`) VALUES
 (43, '2017-05-18 13:04:46', '2017-05-18 13:04:46', 'user', 'user', 'user@user.com', 0, 0),
-(44, '2017-05-18 13:09:18', '2017-05-18 13:34:33', 'user', '$2y$10$HoGRRAZOlzqhCoDt6YrrJex3obzqHBwbmoyIG8hkmQfPB37Q.NCci', 'mohamedali166@gmail.com', 1, 0),
-(46, '2017-05-18 13:51:18', '2017-05-18 13:51:18', 'user32', NULL, NULL, 0, 1);
+(44, '2017-05-18 13:09:18', '2017-05-18 21:32:09', 'user', '$2y$10$HoGRRAZOlzqhCoDt6YrrJex3obzqHBwbmoyIG8hkmQfPB37Q.NCci', 'mohamedali166@gmail.com', 1, 0),
+(46, '2017-05-18 13:51:18', '2017-05-18 21:37:14', 'user32', NULL, NULL, 1, 1),
+(47, '2017-05-18 15:37:37', '2017-05-18 15:37:37', 'user33', NULL, NULL, 0, 1),
+(48, '2017-05-18 15:40:36', '2017-05-18 15:40:36', 'user34', NULL, NULL, 0, 1),
+(49, '2017-05-18 15:40:57', '2017-05-18 15:40:57', 'user35', NULL, NULL, 0, 1),
+(50, '2017-05-18 15:41:21', '2017-05-18 15:41:21', 'user36', NULL, NULL, 0, 1),
+(51, '2017-05-18 16:48:06', '2017-05-18 16:48:06', 'user37', NULL, NULL, 0, 1),
+(52, '2017-05-18 16:54:20', '2017-05-18 16:54:20', 'user38', NULL, NULL, 0, 1),
+(53, '2017-05-18 17:03:59', '2017-05-18 17:03:59', 'user39', NULL, NULL, 0, 1),
+(54, '2017-05-18 17:09:11', '2017-05-18 17:09:11', 'user40', NULL, NULL, 0, 1),
+(55, '2017-05-18 17:09:31', '2017-05-18 17:09:31', 'user41', NULL, NULL, 0, 1),
+(56, '2017-05-18 17:09:36', '2017-05-18 17:09:36', 'user42', NULL, NULL, 0, 1),
+(57, '2017-05-18 17:13:39', '2017-05-18 17:13:39', 'user43', NULL, NULL, 0, 1),
+(58, '2017-05-18 17:19:37', '2017-05-18 17:19:37', 'user44', NULL, NULL, 0, 1),
+(59, '2017-05-18 17:27:57', '2017-05-18 17:27:57', 'user45', NULL, NULL, 0, 1),
+(60, '2017-05-18 17:31:02', '2017-05-18 17:31:02', 'user46', NULL, NULL, 0, 1),
+(61, '2017-05-18 17:35:36', '2017-05-18 17:35:36', 'user47', NULL, NULL, 0, 1),
+(62, '2017-05-18 17:37:44', '2017-05-18 17:37:44', 'user48', NULL, NULL, 0, 1),
+(63, '2017-05-18 17:45:15', '2017-05-18 17:45:15', 'user49', NULL, NULL, 0, 1),
+(64, '2017-05-18 17:45:24', '2017-05-18 17:45:24', 'user50', NULL, NULL, 0, 1),
+(65, '2017-05-18 17:45:51', '2017-05-18 17:45:51', 'user51', NULL, NULL, 0, 1),
+(66, '2017-05-18 17:47:08', '2017-05-18 17:47:08', 'user52', NULL, NULL, 0, 1),
+(67, '2017-05-18 21:36:49', '2017-05-18 21:36:49', 'user53', NULL, NULL, 0, 1);
 
 --
 -- Indexes for dumped tables
@@ -13849,7 +13881,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 --
 -- AUTO_INCREMENT for table `drugs`
 --
@@ -13869,7 +13901,7 @@ ALTER TABLE `drug_request_pharmacy_response`
 -- AUTO_INCREMENT for table `pharmacies`
 --
 ALTER TABLE `pharmacies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `pharmacy_forms`
 --
@@ -13879,7 +13911,7 @@ ALTER TABLE `pharmacy_forms`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 --
 -- Constraints for dumped tables
 --
