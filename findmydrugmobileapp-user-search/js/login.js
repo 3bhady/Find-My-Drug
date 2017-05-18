@@ -1,6 +1,6 @@
 function login()
 {
-    var endpoint='http://localhost/findmydrug/public/api/v1/newcustomer/12345';
+    var endpoint=api +'/newcustomer/12345';
 
     $$.get(endpoint,function(succData)
     {

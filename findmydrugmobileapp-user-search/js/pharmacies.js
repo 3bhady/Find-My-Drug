@@ -1,7 +1,7 @@
 /**
  * Created by muham on 4/19/2017.
  */
-var endpoint3 = 'http://localhost/findmydrug/public/api/v1/request';
+var endpoint3 = api +'/request';
 myApp.onPageBeforeAnimation('pharmacies',function(){
 
     console.log("back to pharmacies");
