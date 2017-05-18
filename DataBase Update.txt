@@ -1,0 +1,2 @@
+table users -> pharmacy id on  update on delete cascade
+table users -> add remember token 

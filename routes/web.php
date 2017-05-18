@@ -49,9 +49,17 @@ Route::post('/admin/signin', 'AdminController@signin');
 Route::get('/admin/pharmacyform','AdminController@index');
 Route::get('/admin/pharmacyform/accept/{id}','AdminController@accept');
 Route::get('/admin/pharmacyform/refuse/{id}','AdminController@refuse');
-
+Route::post('/admin/pharmacyform/edit/{id}', 'AdminController@edit');
 
 //Pharmacies
 Route::get('/admin/pharmacy','AdminPharmacyController@index');
 Route::get('/admin/pharmacy/delete/{id}','AdminPharmacyController@delete');
+Route::post('/admin/pharmacy/edit/{id}', 'AdminPharmacyController@edit');
+
+
+Auth::routes();
+Route::get('admin/login', 'AdminController@AdminLogin');
+Route::get('admin/home', 'AdminController@AdminHome');
+Route::get('admin/logout', 'AdminController@AdminLogout');
+
 
