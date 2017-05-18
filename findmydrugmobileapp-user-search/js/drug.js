@@ -2,7 +2,7 @@
  * Created by mohamed on 4/18/17.
  */
 
-var endpoint2='http://localhost/findmydrug/public/api/v1/drug/';
+var endpoint2=api + '/drug/';
 myApp.onPageBeforeAnimation('drug', function (page) {
     console.log("back to the drug");
 var data = getData('drug_id');
