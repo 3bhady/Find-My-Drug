@@ -1,1 +1,1 @@
-api="http://localhost/Find-My-Drug/public/api/v1";
+api="http://localhost/findmydrug/public/api/v1";
