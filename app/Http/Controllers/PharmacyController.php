@@ -23,7 +23,7 @@ class PharmacyController extends Controller
     {
         /*
         $user=new User();
-        $user->pharmacy_id=1;
+        $user->pharmacy id=1;
         $user->email="mohamedali@gmail.com";
         $user->password=bcrypt("underworld");
         $user->save();

@@ -50,6 +50,7 @@ Route::group(['prefix'=>'v1'],function(){
             'as' => 'search.drug'
         ]);
     Route::post('setoffline','SocketController@setOffline');
+    Route::post('pharmacyAcceptDrug','RequestController@pharmacyAcceptDrug');
     //,
       //  ['except'=>['edit','create']
        // ]);

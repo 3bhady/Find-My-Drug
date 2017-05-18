@@ -42,7 +42,7 @@ class User extends Authenticatable
 
     public function pharmacy()
     {
-      return $this->hasOne('App\Pharmacy','pharmacy_id','id');
+     // return $this->hasOne('App\Pharmacy','id','pharmacy_id');
     }
     public function getRememberTokenName()
     {
