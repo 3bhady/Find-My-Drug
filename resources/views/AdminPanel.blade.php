@@ -66,6 +66,16 @@
 <div class="container">
     <h2>Welcome {{\Illuminate\Support\Facades\Auth::user()->name}}</h2>
     <h2>{{$title}}</h2>
+    @if (\Session::has('submit_error'))
+
+        <h4>You can't edit ,Invalid Input</h4>
+
+    @endif
+    @if (\Session::has('submit_success'))
+
+        <h4>Done editing.</h4>
+
+    @endif
     <table class="table table-striped">
         <thead>
         <tr>
@@ -73,6 +83,7 @@
             <th>PharmacyName</th>
         </tr>
         </thead>
+
 
 @foreach($data as $value)
 
@@ -111,17 +122,73 @@
 @if($title=='Pharmacies')
 
                             <div class="modal-footer">
-                                <a href='/admin/pharmacy/delete/{{$value->id}}' type="button" class="btn btn-default" >Delete</a>
+                                <button  type="button" class="btn btn-default" data-toggle="modal" data-target="#DeleteConfirmationModal " data-backdrop="false" >Delete</button>
                                 <button href='#' type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            </div>
+
+
+                            <div class="modal fade" id="DeleteConfirmationModal" role="dialog" >
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Confirmation</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Are you Sure you want to delete pharmacy ?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="/admin/pharmacy/delete/{{$value->id}}"  class="btn btn-default" >Yes</a>
+                                            <button href='#' type="button" class="btn btn-default"  data-toggle="modal" data-target="#DeleteConfirmationModal">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
 @endif
                         @if($title=='Pharmacy Forms')
                         <div class="modal-footer">
-                            <a href='/admin/pharmacyform/accept/{{$value->id}}' type="button" class="btn btn-default" >Accept</a>
-                            <a href='/admin/pharmacyform/refuse/{{$value->id}}' type="button" class="btn btn-default">Refuse</a>
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#AcceptConfirmationModal " data-backdrop="false" >Accept</button>
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#RefuseConfirmationModal " data-backdrop="false">Refuse</button>
                             <button href='#' type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         </div>
+
+                            <div class="modal fade" id="AcceptConfirmationModal" role="dialog" >
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Confirmation</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Are you Sure you want to Accept pharmacy ?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="/admin/pharmacyform/accept/{{$value->id}}"  class="btn btn-default" >Yes</a>
+                                            <button href='#' type="button" class="btn btn-default"  data-toggle="modal" data-target="#AcceptConfirmationModal">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="modal fade" id="RefuseConfirmationModal" role="dialog" >
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Confirmation</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Are you Sure you want to refuse pharmacy ?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="/admin/pharmacyform/refuse/{{$value->id}}" type="submit" class="btn btn-default" >Yes</a>
+                                            <button href='#' type="button" class="btn btn-default"  data-toggle="modal" data-target="#RefuseConfirmationModal">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         @endif
                     </div>
                 </div>
@@ -129,7 +196,7 @@
 
 
 
-            <form method="post" @if($title=='Pharmacies') action="/admin/pharmacy/edit/{{$value->id}}"  @endif
+            <form id="data_form{{$value->id}}" method="post" @if($title=='Pharmacies') action="/admin/pharmacy/edit/{{$value->id}}"  @endif
             @if($title=='Pharmacy Forms') action="/admin/pharmacyform/edit/{{$value->id}}"  @endif >
                 {{ csrf_field() }}
                 <div class="modal fade" id={{$value->id}}edit role="dialog">
@@ -149,32 +216,42 @@
                             <p style="display:inline">Mobile: </p>  <input type="text" name="mobile" value="{{$value->mobile}}"><br>
                             <p style="display:inline">E-mail: </p>  <input type="text" name="email" value="{{$value->email}}"><br>
                             <p style="display:inline">Owner: </p>  <input type="text" name="owner_name" value="{{$value->owner_name}}"><br>
-                            <p style="display:inline">Open:</p>  <input type="text" name="open" value="{{$value->open}}"><br>
-                            <p style="display:inline">close: </p>  <input type="text" name="close" value="{{$value->close}}">
+                            <p style="display:inline">Open:</p>  <input type="time" name="open" value="{{$value->open}}"><br>
+                            <p style="display:inline">close: </p>  <input type="time" name="close" value="{{$value->close}}">
                         </div>
 
-                        @if($title=='Pharmacies')
 
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-default" >Save</button>
+                                <button id="save_button" type="button" class="btn btn-default" data-toggle="modal" data-target="#SaveConfirmationModal " data-backdrop="false" >Save</button>
                                 <button href='#' type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                             </div>
 
-                        @endif
-                        @if($title=='Pharmacy Forms')
-                            <div class="modal-footer">
-                                <button href='/admin/pharmacyform/edit/{{$value->id}}'  type="submit" class="btn btn-default">Save</button>
-                                <button href='#' type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+
+                        <div class="modal fade" id="SaveConfirmationModal" role="dialog" >
+                            <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Confirmation</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Are you Sure you want to change the data of this Pharmacy</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-default" >Submit</button>
+                                        <button href='#' type="button" class="btn btn-default"  data-toggle="modal" data-target="#SaveConfirmationModal">Cancel</button>
+                                    </div>
+                                </div>
                             </div>
-                        @endif
+                        </div>
+
                     </div>
                 </div>
             </div>
     </form>
 
+
 @endforeach
-
-
 
 
 

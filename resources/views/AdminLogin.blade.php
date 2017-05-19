@@ -65,14 +65,19 @@
 <div class="wrapper">
     <form id="LoginForm" action="/admin/signin" method="post" class="form-signin">
         {{ csrf_field() }}
-        <h2 class="form-signin-heading">Please login</h2>
+        <h1 style="text-align: center">Find My Drug</h1>
+        <h3 class="form-signin-heading" style="text-align: center" >Welcome to Admin Panel</h3>
+        <h4 class="form-signin-heading">Please login</h4>
         <input type="text" class="form-control" name="email" placeholder="Email Address" required="" autofocus="" />
         <input type="password" class="form-control" name="password" placeholder="Password" required=""/>
-        <label class="checkbox">
-            <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
-        </label>
+        @if (\Session::has('invalid_input'))
+
+            <h4>Invalid E-mail or Password</h4>
+
+        @endif
         <button id="login" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
     </form>
+
 </div>
 
 </body>
