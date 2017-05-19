@@ -14,6 +14,8 @@ function setupSocket(){
     });
 
 socket.on('pharmacyResponse',function(message){
+    console.log("new response from pharmacy");
+    console.log(message);
     myApp.addNotification({
         message: 'pharmacy: '+message["pharmacy_name"]+' has drug '+message["drug_name"],
         button: {
