@@ -30,7 +30,7 @@ io.on('connection', function (socket) {
         console.log(customerId);
         }
     );
-    console.log("new client connected");
+   
 
     // console.log(socket.id);
 //init redis

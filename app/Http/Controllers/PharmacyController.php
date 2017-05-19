@@ -68,11 +68,8 @@ class PharmacyController extends Controller
      */
     public function index()
     {
-        $CDRPR =DrugRequestPharmacyResponse::find(41)->first();
-        $CDRPR->status=1;
-        $CDRPR->save();
-
-        return response()->json($CDRPR,200);
+        $ph=User::find(44)->pharmacy;
+        return response()->json($ph,200);
     }
 
     /**

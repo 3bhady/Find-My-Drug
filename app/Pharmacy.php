@@ -16,7 +16,7 @@ class Pharmacy extends Model
 
     public function drugrequest()
     {
-        return $this->belongsTo("App\DrugRequest",'drug_request_id','id');
+        return $this->belongsTo('App\DrugRequest','drug_request_id','id');
         return $this->belongsTo('App\DrugRequest','id','drug_request_id');
     }
 }
