@@ -16,15 +16,20 @@ function setupSocket(){
 socket.on('pharmacyResponse',function(message){
     console.log("new response from pharmacy");
     console.log(message);
-    myApp.addNotification({
-        message: 'pharmacy: '+message["pharmacy_name"]+' has drug '+message["drug_name"],
-        button: {
-            text: 'I got it',
-            color: 'yellow'
-        }
-    });
+    if(mainView.activePage.name!='pharmacies') {
+        myApp.addNotification({
+            message: 'pharmacy: ' + message["pharmacy_name"] + ' has drug ' + message["drug_name"],
+            button: {
+                text: 'I got it',
+                color: 'yellow'
+            }
+        });
+    }
+    else {
+        CreatePharmaciesList(message);
+    }
     console.log(message);
-    CreatePharmaciesList(message);
+
 })
 };
 

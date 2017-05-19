@@ -68,11 +68,8 @@ class PharmacyController extends Controller
      */
     public function index()
     {
-        $CDRPR =DrugRequestPharmacyResponse::find(41)->first();
-        $CDRPR->status=1;
-        $CDRPR->save();
-
-        return response()->json($CDRPR,200);
+        $ph=User::find(44)->pharmacy;
+        return response()->json($ph,200);
     }
 
     /**
@@ -107,8 +104,17 @@ class PharmacyController extends Controller
         $pharmacy = User::find($id)->pharmacy;
 
        // $pharmacy = Pharmacy::where('id',$id)->get();
+        $response=array();
+        $response=[
+            'name_en'=>$pharmacy->name_en,
+            'id'=>$pharmacy->id,
+            'landline'=>$pharmacy->landline,
+            'open'=>$pharmacy->open,
+            'close'=>$pharmacy->close,
+            'address_en'=>$pharmacy->address_en,
 
-        return response()->json($pharmacy,200);
+        ];
+        return response()->json($response,200);
     }
 
     /**

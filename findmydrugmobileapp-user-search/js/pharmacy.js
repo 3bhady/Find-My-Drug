@@ -8,14 +8,15 @@ myApp.onPageBeforeAnimation('pharmacy', function (page) {
 
     console.log("Pharmacy profile");
     var data = getData('pharmacy_id');
+    console.log(data);
     $$.get(endpoint4+data
         ,function(succData)
         {
-
+            console.log(succData);
             succData=JSON.parse(succData);
-            //   console.log(succData);
+              console.log(succData);
             //  CreateList(succData);
-            ShowPharmacy(succData[0]);
+            ShowPharmacy(succData);
 
 
         }

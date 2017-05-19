@@ -29,8 +29,9 @@ var data = getData('drug_id');
 
 ShowDrug= function(data){
 
-    $$.each(data,function(key,value){
 
+    $$.each(data,function(key,value){
+        $$('#'+key).empty();
         // middleList+=" <li value="+value+">"+key+"</li>";
         if(key=='price')
             value+=" LE";

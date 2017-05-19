@@ -9,9 +9,9 @@ request=require('request');
 user=[];
 //holding key as socket
 
-customerSocket={};
+customerSocket={valid_key:  undefined};
 //holding id as key
-customerId={};
+customerId={valid_key:  undefined};
 //holding key as socket
 
 pharmacySocket={valid_key:  undefined};
@@ -30,7 +30,7 @@ io.on('connection', function (socket) {
         console.log(customerId);
         }
     );
-    console.log("new client connected");
+   
 
     // console.log(socket.id);
 //init redis
@@ -58,7 +58,7 @@ io.on('connection', function (socket) {
             "user":pharmacySocket[socket.id]
         };
         var options = {
-            url: 'http://Localhost/findmydrug/public/api/v1/setoffline?token='+
+            url: 'http://Localhost/Find-My-Drug/public/api/v1/setoffline?token='+
         //    url: 'http://192.168.1.7/public/api/v1/setoffline?token='+
             pharmacySocket[socket.id].token,
             method: 'POST',
@@ -158,9 +158,10 @@ function pharmacyToCustomerResponse(data)
         "drug_id":data.drug_id,
         "drug_name":data.drug_name,
         "user_id":data.user_id
-    }
+    };
     console.log(dataToSend);
     if(CustomerSocketId!=null) {
+        if(CustomerSocketId!=undefined)
         io.to(CustomerSocketId).emit("pharmacyResponse", dataToSend);
     }
 }
