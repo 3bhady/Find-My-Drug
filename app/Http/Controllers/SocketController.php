@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DrugRequestPharmacyResponse;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -67,12 +68,18 @@ class SocketController extends Controller
 
         }
         $response=$request->all();
-     
+
         //send redis request
         $redis=Redis::connection();
         $redis->publish('pharmacyToCustomerResponse',json_encode($response));
-
-        return response()->json($response,200);
+        //edit request status from 0 //pending to 1 //done
+        //customer drug request pharmacy response
+         $request->input("drug_request_pharmacy_response_id");
+        $CDRPR =
+        DrugRequestPharmacyResponse::find( $request->input("drug_request_pharmacy_response_id"));
+        $CDRPR->status=1;
+        $CDRPR->save();
+        return response()->json($CDRPR,200);
     }
     public function notifyPharmacy()
     {

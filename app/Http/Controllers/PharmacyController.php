@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Author;
+use App\DrugRequestPharmacyResponse;
 use App\Pharmacy;
 use App\User;
 use Hash;
@@ -67,10 +68,11 @@ class PharmacyController extends Controller
      */
     public function index()
     {
-        //
-        $pharmacies = Pharmacy::select('id','name_en')->get();
+        $CDRPR =DrugRequestPharmacyResponse::find(41)->first();
+        $CDRPR->status=1;
+        $CDRPR->save();
 
-        return response()->json($pharmacies,200);
+        return response()->json($CDRPR,200);
     }
 
     /**

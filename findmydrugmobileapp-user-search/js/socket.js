@@ -15,7 +15,11 @@ function setupSocket(){
 
 socket.on('pharmacyResponse',function(message){
     myApp.addNotification({
-        message: 'pharmacy: '+message["pharmacy_name"]+' has drug '+message["drug_name"]
+        message: 'pharmacy: '+message["pharmacy_name"]+' has drug '+message["drug_name"],
+        button: {
+            text: 'I got it',
+            color: 'yellow'
+        }
     });
 })
 };

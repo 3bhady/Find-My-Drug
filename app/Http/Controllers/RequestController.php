@@ -162,6 +162,7 @@ return $pharmacies;
         $drugName=Drug::select('generic_name')
             ->where('id',$request->input('drug_id'))->first();
         $response=[
+
             "pharmacies"=>$response,
             "user_id"=>$request->input("user_id"),
             "drug_id"=>$request->input("drug_id"),
@@ -171,11 +172,6 @@ return $pharmacies;
 
         //todo:store in database user/request..
         //todo:send  to pharmacies
-        //i will do now notifying pharmacy
-
-        $redis=Redis::connection();
-
-        $redis->publish('notification',json_encode($response));
 
 
 //saving request
@@ -199,6 +195,12 @@ return $pharmacies;
 
         }
 
+        $response["drug_request_pharmacy_response_id"]=$dRPR->id;
+        //i will do now notifying pharmacy
+
+        $redis=Redis::connection();
+
+        $redis->publish('notification',json_encode($response));
 
         return response()->json($response,200);
 
