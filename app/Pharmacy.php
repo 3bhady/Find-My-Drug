@@ -9,8 +9,4 @@ class Pharmacy extends Model
     protected $table="pharmacies";
 
 
-
-
-   
-
 }
