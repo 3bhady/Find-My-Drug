@@ -70,10 +70,13 @@ class AdminController extends Controller
 
         $title = 'Pharmacy Forms';
         $data = PharmacyForm::all();
-        if (count($data) > 0)
-            return view('AdminPanel')->with('data', $data)->with('title', $title);
-        else
-            return;
+        $no_pharmacies='';
+        if(count($data)>0)
+            return view('AdminPanel')->with('data',$data)->with('title',$title)->with('no_pharmacies', $no_pharmacies);
+        else {
+            $no_pharmacies='No pharmacies exist';
+            return view('AdminPanel')->with('data',$data)->with('title',$title)->with('no_pharmacies', $no_pharmacies);
+        }
     }
 
     public function accept($id)

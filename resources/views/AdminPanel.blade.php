@@ -66,6 +66,7 @@
 <div class="container">
     <h2>Welcome {{\Illuminate\Support\Facades\Auth::user()->name}}</h2>
     <h2>{{$title}}</h2>
+
     @if (\Session::has('submit_error'))
 
         <h4>You can't edit ,Invalid Input</h4>
@@ -76,6 +77,10 @@
         <h4>Done editing.</h4>
 
     @endif
+    @if($no_pharmacies=='No pharmacies exist')
+        <h2 style="text-align: center">No pharmacies exist</h2>
+    @endif
+    @if($no_pharmacies!='No pharmacies exist')
     <table class="table table-striped">
         <thead>
         <tr>
@@ -258,8 +263,7 @@
     </table>
 </div>
 
-
-
+@endif
 
 </body>
 </html>

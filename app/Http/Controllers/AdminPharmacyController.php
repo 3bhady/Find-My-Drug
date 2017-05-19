@@ -22,15 +22,19 @@ class AdminPharmacyController extends Controller
     {
         $title='Pharmacies';
         $data=Pharmacy::all();
+        $no_pharmacies='';
         if(count($data)>0)
-            return view('AdminPanel')->with('data',$data)->with('title',$title);
-        else
-            return;
+            return view('AdminPanel')->with('data',$data)->with('title',$title)->with('no_pharmacies', $no_pharmacies);
+        else {
+            $no_pharmacies='No pharmacies exist';
+           return view('AdminPanel')->with('data',$data)->with('title',$title)->with('no_pharmacies', $no_pharmacies);
+        }
     }
     public function delete($id)
     {
         $pharmacy=Pharmacy::find($id);
-        $user=User ::where('email','=',$pharmacy->email);
+
+        $user=User ::where('email','=',$pharmacy->email)->first();
         $user->delete();
         $pharmacy->delete();
         return redirect('admin/pharmacy/');
