@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 19, 2017 at 02:06 PM
--- Server version: 5.7.14
--- PHP Version: 7.0.10
+-- Generation Time: May 19, 2017 at 05:55 PM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `findmydrug`
 --
-CREATE DATABASE IF NOT EXISTS `findmydrug` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `findmydrug`;
 
 -- --------------------------------------------------------
 
@@ -28,15 +26,21 @@ USE `findmydrug`;
 -- Table structure for table `admins`
 --
 
-DROP TABLE IF EXISTS `admins`;
 CREATE TABLE `admins` (
   `id` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(32) NOT NULL,
-  `created_at` timestamp NOT NULL,
-  `updated_at` timestamp NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `email` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`id`, `username`, `password`, `created_at`, `updated_at`, `email`) VALUES
+(1, 'kerollos', '35831404', '2017-05-19 15:53:14', '0000-00-00 00:00:00', 'kero_es7ak@hotmail.com');
 
 -- --------------------------------------------------------
 
@@ -44,7 +48,6 @@ CREATE TABLE `admins` (
 -- Table structure for table `customers`
 --
 
-DROP TABLE IF EXISTS `customers`;
 CREATE TABLE `customers` (
   `id` int(11) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
@@ -66,7 +69,6 @@ INSERT INTO `customers` (`id`, `name`, `created_at`, `updated_at`, `user_id`) VA
 -- Table structure for table `drugs`
 --
 
-DROP TABLE IF EXISTS `drugs`;
 CREATE TABLE `drugs` (
   `id` int(11) NOT NULL,
   `active_ingredient` varchar(1000) CHARACTER SET utf8 DEFAULT '',
@@ -13603,7 +13605,6 @@ INSERT INTO `drugs` (`id`, `active_ingredient`, `generic_name`, `price`, `image`
 -- Table structure for table `drug_request`
 --
 
-DROP TABLE IF EXISTS `drug_request`;
 CREATE TABLE `drug_request` (
   `id` int(11) NOT NULL,
   `customer_id` int(11) DEFAULT NULL,
@@ -13646,7 +13647,6 @@ INSERT INTO `drug_request` (`id`, `customer_id`, `drug_id`, `updated_at`, `creat
 -- Table structure for table `drug_request_pharmacy_response`
 --
 
-DROP TABLE IF EXISTS `drug_request_pharmacy_response`;
 CREATE TABLE `drug_request_pharmacy_response` (
   `id` int(11) NOT NULL,
   `pharmacy_id` int(11) DEFAULT NULL,
@@ -13690,7 +13690,6 @@ INSERT INTO `drug_request_pharmacy_response` (`id`, `pharmacy_id`, `drug_request
 -- Table structure for table `pharmacies`
 --
 
-DROP TABLE IF EXISTS `pharmacies`;
 CREATE TABLE `pharmacies` (
   `id` int(11) NOT NULL,
   `name_en` varchar(50) NOT NULL,
@@ -13706,8 +13705,8 @@ CREATE TABLE `pharmacies` (
   `home_delivery` int(11) NOT NULL,
   `open` time NOT NULL,
   `close` time NOT NULL,
-  `created_at` timestamp NOT NULL,
-  `updated_at` timestamp NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `name_ar` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `address_ar` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `admin_id` int(100) DEFAULT NULL,
@@ -13727,7 +13726,6 @@ INSERT INTO `pharmacies` (`id`, `name_en`, `address_en`, `owner_name`, `lat`, `l
 -- Table structure for table `pharmacy_forms`
 --
 
-DROP TABLE IF EXISTS `pharmacy_forms`;
 CREATE TABLE `pharmacy_forms` (
   `id` int(11) NOT NULL,
   `name_en` varchar(50) NOT NULL,
@@ -13741,8 +13739,8 @@ CREATE TABLE `pharmacy_forms` (
   `home_delivery` int(11) NOT NULL,
   `open` time NOT NULL,
   `close` time NOT NULL,
-  `created_at` timestamp NOT NULL,
-  `updated_at` timestamp NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `name_ar` varchar(50) CHARACTER SET utf32 COLLATE utf32_bin NOT NULL,
   `address_ar` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -13773,11 +13771,10 @@ INSERT INTO `pharmacy_forms` (`id`, `name_en`, `address_en`, `landline`, `mobile
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL,
-  `updated_at` timestamp NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `name` varchar(50) DEFAULT NULL,
   `password` varchar(200) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
@@ -13791,7 +13788,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `created_at`, `updated_at`, `name`, `password`, `email`, `online`, `type`) VALUES
 (44, '2017-05-18 13:09:18', '2017-05-19 12:05:05', 'user', '$2y$10$HoGRRAZOlzqhCoDt6YrrJex3obzqHBwbmoyIG8hkmQfPB37Q.NCci', 'mohamedali166@gmail.com', 1, 0),
-(88, '2017-05-19 08:55:13', '2017-05-19 11:02:46', 'user79', NULL, NULL, 1, 1);
+(88, '2017-05-19 08:55:13', '2017-05-19 11:02:46', 'user79', NULL, NULL, 1, 1),
+(89, '2017-05-19 15:54:25', '0000-00-00 00:00:00', 'kerollos', '$2a$04$GjViSCgAgVKS6CJcaEMH/ugE0dKUFD8fPKdELosKGEWQKnYvl9fNW', 'kero_es7ak@hotmail.com', 0, 2);
 
 --
 -- Indexes for dumped tables
@@ -13869,7 +13867,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `customers`
 --
@@ -13904,7 +13902,7 @@ ALTER TABLE `pharmacy_forms`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 --
 -- Constraints for dumped tables
 --

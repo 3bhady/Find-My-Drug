@@ -26,6 +26,7 @@ socket.on('notification',function(notification) {
 function addEvents(data)
 {
 
+
     myApp.modal({
         title:  'new drug request !',
         text: 'drug : '+data["drug_name"]+ 'customer_id : '+data["user_id"],
@@ -34,12 +35,13 @@ function addEvents(data)
                 text: 'I have it ',
                 onClick: function(x) {
                     var requestObject={
+                        "drug_request_pharmacy_response_id":data["drug_request_pharmacy_response_id"],
                         "pharmacy":JSON.parse(getData("user")),
                         "drug_id":data["drug_id"],
                         "user_id":data["user_id"],
                         "drug_name":data["drug_name"]
                     }
-                    console.log(requestObject);
+                    //console.log(requestObject);
                 pharmacyResponse(requestObject);
                 }
             },
@@ -57,13 +59,13 @@ function addEvents(data)
     //todo send response to controller
 
 }
-function pharmacyResponse(data)
+function pharmacyResponse(requestObject)
 {
     console.log("in pharmacy repsonse");
     token=(JSON.parse(getData("user"))).token;
     endpoint=api+"/pharmacyAcceptDrug?token="+token;
 
-    $$.post(endpoint, data, function (succData) {
+    $$.post(endpoint, requestObject, function (succData) {
         console.log(succData);
     },function(errorData){
         console.log(errorData);

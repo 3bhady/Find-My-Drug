@@ -14,8 +14,14 @@ function setupSocket(){
     });
 
 socket.on('pharmacyResponse',function(message){
+    console.log("new response from pharmacy");
+    console.log(message);
     myApp.addNotification({
-        message: 'pharmacy: '+message["pharmacy_name"]+' has drug '+message["drug_name"]
+        message: 'pharmacy: '+message["pharmacy_name"]+' has drug '+message["drug_name"],
+        button: {
+            text: 'I got it',
+            color: 'yellow'
+        }
     });
     CreatePharmaciesList(message);
 })
@@ -54,7 +60,8 @@ CreatePharmaciesList= function(data) {
     //$$('#list-view').clear();
     //$$('#list-view').append(start+middle+end);
     $$('.pharmacy').on('click', function () {
-        localStorage.setItem("pharmacy_id", $$(this).data("id"));
+        localStorage.setItem("pharmacy_id",data[0]);
+        console.log(localStorage.getItem("pharmacy_id"));
     });
     /* $$.each(data,function(key,value) {
      var li = document.getElementById(value).onclick = function () {
@@ -62,5 +69,6 @@ CreatePharmaciesList= function(data) {
      localStorage.setItem("drug_id",value);
      }
      });*/
+    console.log(localStorage.getItem("pharmacy_id"));
 };
 

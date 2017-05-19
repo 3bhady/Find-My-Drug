@@ -96,8 +96,13 @@
       <file leaf-file-name="socket.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/socket.js">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="0">
               <caret line="0" column="23" lean-forward="false" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
+=======
+            <state relative-caret-position="577">
+              <caret line="67" column="35" selection-start-line="67" selection-start-column="35" selection-end-line="67" selection-end-column="35" />
+>>>>>>> c5f9891ce893f751c1d2769fbcac21784b584df4
               <folding />
             </state>
           </provider>
@@ -286,13 +291,21 @@
       <workItem from="1495104781697" duration="426000" />
       <workItem from="1495109257318" duration="10099000" />
       <workItem from="1495152984761" duration="955000" />
+<<<<<<< HEAD
       <workItem from="1495190722780" duration="6541000" />
       <workItem from="1495210065822" duration="64000" />
+=======
+      <workItem from="1495190722780" duration="10826000" />
+>>>>>>> c5f9891ce893f751c1d2769fbcac21784b584df4
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="144086000" />
+=======
+    <option name="totallyTimeSpent" value="148307000" />
+>>>>>>> c5f9891ce893f751c1d2769fbcac21784b584df4
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -702,8 +715,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../findmydrugmobileapp-user-search/js/base.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="0">
           <caret line="0" column="34" lean-forward="false" selection-start-line="0" selection-start-column="34" selection-end-line="0" selection-end-column="34" />
+=======
+        <state relative-caret-position="577">
+          <caret line="67" column="35" selection-start-line="67" selection-start-column="35" selection-end-line="67" selection-end-column="35" />
+>>>>>>> c5f9891ce893f751c1d2769fbcac21784b584df4
           <folding />
         </state>
       </provider>

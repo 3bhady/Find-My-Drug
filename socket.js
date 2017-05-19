@@ -160,7 +160,8 @@ function pharmacyToCustomerResponse(data)
         "user_id":data.user_id
     }
     console.log(dataToSend);
-    io.to(CustomerSocketId).emit("pharmacyResponse", dataToSend);
-
+    if(CustomerSocketId!=null) {
+        io.to(CustomerSocketId).emit("pharmacyResponse", dataToSend);
+    }
 }
 
