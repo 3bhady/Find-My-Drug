@@ -12,6 +12,7 @@ use Log;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Validator;
 
 class AdminController extends Controller
 {
@@ -41,10 +42,10 @@ class AdminController extends Controller
         $credentials = Input::only('email', 'password');
 
         if (!Auth::attempt($credentials)) {
-            return Redirect::back()->withMessage('Invalid credentials');
+            return Redirect::back()->with('invalid_input', ['error']);;
         }
 
-        if (Auth::user()->admin_id != NULL) {
+        if (Auth::user()->type == 2) {
             return redirect('/admin/pharmacy');
         }
 
@@ -55,8 +56,13 @@ class AdminController extends Controller
 
     public function AdminLogout(Request $request)
     {
-        Auth::logout();
-        return view('AdminLogin');
+        try {
+            Auth::logout();
+            return view('AdminLogin');
+        }
+        catch (\Exception $exceptione) {
+            return view('AdminLogin');
+        }
     }
 
     public function index()
@@ -64,10 +70,13 @@ class AdminController extends Controller
 
         $title = 'Pharmacy Forms';
         $data = PharmacyForm::all();
-        if (count($data) > 0)
-            return view('AdminPanel')->with('data', $data)->with('title', $title);
-        else
-            return;
+        $no_pharmacies='';
+        if(count($data)>0)
+            return view('AdminPanel')->with('data',$data)->with('title',$title)->with('no_pharmacies', $no_pharmacies);
+        else {
+            $no_pharmacies='No pharmacies exist';
+            return view('AdminPanel')->with('data',$data)->with('title',$title)->with('no_pharmacies', $no_pharmacies);
+        }
     }
 
     public function accept($id)
@@ -93,7 +102,7 @@ class AdminController extends Controller
         $pharmacy->save();
 
         $user = new User;
-        $user->pharmacy_id = $pharmacy->id;
+        $user->type = 0;
         $user->name = $pharmacy->name_en;
         $user->email = $pharmacy->email;
         $user->password = bcrypt($pharmacy->passwrod);
@@ -116,6 +125,21 @@ class AdminController extends Controller
     {
         $pharmacyform = PharmacyForm::find($id);
 
+        $validator =  Validator::make($request->all(), [
+
+            'address_en' => 'required|max:255|min:10',
+            'owner_name' => 'required|max:255',
+            'landline' => 'required|max:255|digits:8',
+            'mobile' => 'required|max:255|digits:11',
+            'email' => 'required|max:255|email',
+            'open' => 'required|max:255',
+            'close' => 'required|max:255',
+        ]);
+        if($validator->fails())
+        {
+            return redirect()->back()->with('submit_error', ['Invalid Input']);
+           // return response()->json('Invalid Input',200);
+        }
         $pharmacyform->name_en = $request->get('name_en');
         $pharmacyform->address_en= $request->get('address_en');
         $pharmacyform->owner_name= $request->get('owner_name');
@@ -124,8 +148,17 @@ class AdminController extends Controller
         $pharmacyform->email= $request->get('email');
         $pharmacyform->open= $request->get('open');
         $pharmacyform->close= $request->get('close');
-        $pharmacyform->save();
-        return redirect('/admin/pharmacyform');
+
+
+        try {
+            $pharmacyform->save();
+        }
+        catch (\Exception $exception)
+                {
+                    return redirect()->back()->with('submit_error', ['Invalid Input']);
+                    //return response()->json('Invalid Input',200);
+                }
+        return redirect()->back()->with('submit_success', ['succes']);
 
 
     }

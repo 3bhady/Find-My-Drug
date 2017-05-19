@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Pharmacy;
 use Illuminate\Http\Request;
 use App\User;
+use Validator;
 
 class AdminPharmacyController extends Controller
 {
@@ -21,15 +22,19 @@ class AdminPharmacyController extends Controller
     {
         $title='Pharmacies';
         $data=Pharmacy::all();
+        $no_pharmacies='';
         if(count($data)>0)
-            return view('AdminPanel')->with('data',$data)->with('title',$title);
-        else
-            return;
+            return view('AdminPanel')->with('data',$data)->with('title',$title)->with('no_pharmacies', $no_pharmacies);
+        else {
+            $no_pharmacies='No pharmacies exist';
+           return view('AdminPanel')->with('data',$data)->with('title',$title)->with('no_pharmacies', $no_pharmacies);
+        }
     }
     public function delete($id)
     {
         $pharmacy=Pharmacy::find($id);
-        $user=User ::where('email','=',$pharmacy->email);
+
+        $user=User ::where('email','=',$pharmacy->email)->first();
         $user->delete();
         $pharmacy->delete();
         return redirect('admin/pharmacy/');
@@ -38,6 +43,21 @@ class AdminPharmacyController extends Controller
     {
         $pharmacy = Pharmacy::find($id);
 
+        $validator =  Validator::make($request->all(), [
+
+            'address_en' => 'required|max:255|min:10',
+            'owner_name' => 'required|max:255',
+            'landline' => 'required|max:255|digits:8',
+            'mobile' => 'required|max:255|digits:11',
+            'email' => 'required|max:255|email',
+            'open' => 'required|max:255',
+            'close' => 'required|max:255',
+        ]);
+        if($validator->fails())
+        {
+            return redirect()->back()->with('submit_error', ['Invalid Input']);
+            // return response()->json('Invalid Input',200);
+        }
         $pharmacy->name_en = $request->get('name_en');
         $pharmacy->address_en= $request->get('address_en');
         $pharmacy->owner_name= $request->get('owner_name');
@@ -46,8 +66,16 @@ class AdminPharmacyController extends Controller
         $pharmacy->email= $request->get('email');
         $pharmacy->open= $request->get('open');
         $pharmacy->close= $request->get('close');
-        $pharmacy->save();
-        return redirect('/admin/pharmacy');
+        try {
+            $pharmacy->save();
+        }
+        catch (\Exception $exception)
+        {
+            return redirect()->back()->with('submit_error', ['Invalid Input']);
+            //return response()->json('Invalid Input',200);
+        }
+        return redirect()->back()->with('submit_success', ['succes']);
+
 
 
     }
