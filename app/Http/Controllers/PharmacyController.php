@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Author;
+use App\Pharmacy;
 use App\User;
 use Hash;
 use Illuminate\Http\Request;
@@ -22,7 +23,7 @@ class PharmacyController extends Controller
     {
         /*
         $user=new User();
-        $user->pharmacy_id=1;
+        $user->pharmacy id=1;
         $user->email="mohamedali@gmail.com";
         $user->password=bcrypt("underworld");
         $user->save();
@@ -33,6 +34,7 @@ class PharmacyController extends Controller
             'password'=>'required'
         ]);
 
+            error_log("HIIII");
 
         $credentials =$request->only('email','password');
 
@@ -66,6 +68,9 @@ class PharmacyController extends Controller
     public function index()
     {
         //
+        $pharmacies = Pharmacy::select('id','name_en')->get();
+
+        return response()->json($pharmacies,200);
     }
 
     /**
@@ -98,6 +103,9 @@ class PharmacyController extends Controller
     public function show($id)
     {
         //
+        $pharmacy = Pharmacy::where('id',$id)->get();
+
+        return response()->json($pharmacy,200);
     }
 
     /**

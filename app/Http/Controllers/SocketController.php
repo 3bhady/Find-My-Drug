@@ -14,7 +14,7 @@ class SocketController extends Controller
         //$this->middleware('guest');
         $this->middleware('jwt.auth',[
             'only'=>[
-                'addPharmacy','setOffline'
+                'addPharmacy','setOffline','pharmacyAcceptDrug'
             ]
         ]);
     }
@@ -48,13 +48,37 @@ class SocketController extends Controller
         //authentication..
         $redis=Redis::connection();
         $redis->publish('addPharmacy',json_encode($response));
-        return $request->all();
+        
+        return response()->json($response,200);
+    }
+
+    public function pharmacyAcceptDrug(Request $request )
+    {
+        //set user_pharmacy_drug_request status from pending to done
+        try{
+            if(!$user=JWTAuth::parseToken()->authenticate())
+            {
+                return response()->json(['msg'=>'user not found'],404);
+            }
+        }
+        catch (Exception $e)
+        {
+            return response()->json($e->getMessage(),404);
+
+        }
+        $response=$request->all();
+     
+        //send redis request
+        $redis=Redis::connection();
+        $redis->publish('pharmacyToCustomerResponse',json_encode($response));
+
         return response()->json($response,200);
     }
     public function notifyPharmacy()
     {
 
-    }               
+    }       
+    
     public function index()
     {
         return view('socket');

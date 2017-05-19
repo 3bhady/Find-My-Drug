@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 
 //pharmacy form routes
-Route::group(['prefix'=>'v1'],function(){
+Route::group(['prefix'=>'v1','middleware'=>'cors'],function(){
     Route::resource('pharmacyform','PharmacyFormController',[
    
     ]);
@@ -30,7 +30,7 @@ Route::group(['prefix'=>'v1'],function(){
     //adding pharmacy when log in
     Route::post('addpharmacy','SocketController@addPharmacy');
     Route::get('notifypharmacy','SocketController@notifyPharmacy');
-    
+    Route::post('pharmacyAcceptDrug','SocketController@pharmacyAcceptDrug');
 
 
 });
@@ -43,13 +43,14 @@ Route::group(['prefix'=>'v1'],function(){
             'as' => 'category.drug'
         ]);
     Route::resource('drug','DrugController');
-
+    Route::resource('pharmacy','PharmacyController');
         Route::resource('request','RequestController');
         Route::get('drug/search/{id}',[
             'uses' => 'DrugController@search',
             'as' => 'search.drug'
         ]);
     Route::post('setoffline','SocketController@setOffline');
+
     //,
       //  ['except'=>['edit','create']
        // ]);

@@ -22,7 +22,7 @@ class Drug extends Model
 
     public function users()
     {
-        return $this->belongsToMany('App\User','drug_request','drug_id','user_id');
+        return $this->belongsToMany('App\User','drug_request','drug_id','customer_id')->withTimestamps();
     }
 
 }

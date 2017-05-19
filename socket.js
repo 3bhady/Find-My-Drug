@@ -39,6 +39,7 @@ io.on('connection', function (socket) {
     redisClient.subscribe('message');
     redisClient.subscribe('notification');
     redisClient.subscribe('addPharmacy');
+    redisClient.subscribe('pharmacyToCustomerResponse');
 
 
     socket.on('disconnect', function() {
@@ -57,8 +58,8 @@ io.on('connection', function (socket) {
             "user":pharmacySocket[socket.id]
         };
         var options = {
-            url: 'http://localhost/findmydrug/public/api/v1/setoffline?token='+
-        //    url: 'http://localhost/public/api/v1/setoffline?token='+
+            url: 'http://Localhost/findmydrug/public/api/v1/setoffline?token='+
+        //    url: 'http://192.168.1.7/public/api/v1/setoffline?token='+
             pharmacySocket[socket.id].token,
             method: 'POST',
             headers: {
@@ -93,6 +94,7 @@ redisClient = redis.createClient();
 redisClient.subscribe('message');
 redisClient.subscribe('notification');
 redisClient.subscribe('addPharmacy');
+redisClient.subscribe('pharmacyToCustomerResponse');
 
 
 redisClient.on("message", function(channel, message) {
@@ -100,11 +102,16 @@ redisClient.on("message", function(channel, message) {
     //console.log(message);
     // console.log("new request sent");
     message=JSON.parse(message);
+    console.log(channel);
+    if(channel=="pharmacyToCustomerResponse"){
+        console.log("pharmacy customer response");
+        pharmacyToCustomerResponse(message);
+    }
     if(channel=="addPharmacy"){
         addPharmacy(message);
     }
     if(channel=="notification"){
-        console.log("again");
+
         // io.emit("notification","ok");
         for(var i of message.pharmacies) {
             console.log("i" + i);
@@ -133,11 +140,15 @@ function addPharmacy(pharmacyJsonData)
 
     pharmacySocket[pharmacySocketId]=pharmacyJsonData;
     pharmacyId[pharmaId]=pharmacyJsonData;
-    console.log(" new user added with socket->"+pharmacySocketId);
-    console.log(" id->"+pharmaId);
+  //  console.log(" new user added with socket->"+pharmacySocketId);
+   // console.log(" id->"+pharmaId);
     //io.emit("notification","new notification available");
     // console.log(pharmacyId);
     //console.log(pharmacySocket);
 
+}
+function pharmacyToCustomerResponse(data)
+{
+    console.log("data sent "+data.user_id);
 }
 

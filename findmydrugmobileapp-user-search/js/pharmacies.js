@@ -1,25 +1,25 @@
 /**
  * Created by muham on 4/19/2017.
  */
-var endpoint3 = 'http://localhost/findmydrug/public/api/v1/request';
+var endpoint3 = api +'/request';
 myApp.onPageBeforeAnimation('pharmacies',function(){
 
     console.log("back to pharmacies");
     myApp.params.swipePanel = 'left';
     data2={
-    "drug_id":getData("drug_id"),
+        "drug_id":getData("drug_id"),
         "lon":2,
         "lat":5,
-        "id":(JSON.parse(getData("customer"))).id
+        "user_id":(JSON.parse(getData("customer"))).id
 
         };
-
+console.log(data2);
     $$.post(endpoint3,data2
         ,function(succData)
         {
-
+           console.log(succData);
             succData=JSON.parse(succData);
-            //console.log(succData);
+
             //CreateList(succData);
 
         }
