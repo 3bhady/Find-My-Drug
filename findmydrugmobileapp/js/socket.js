@@ -25,19 +25,7 @@ socket.on('notification',function(notification) {
 }
 function addEvents(data)
 {
-    console.log("z");
-myApp.alert("new notification, from user_id :"+data["user_id"]
-    +" drug name "+data["drug_name"],"dr.ali32423");
 
-   /* myApp.confirm('drug : '+data["drug_name"]+ 'customer_id : '+data["user_id"],
-        'new drug request !',
-        function () {
-            //click ok
-            myApp.alert('thank you ');
-        },
-        function () {
-            myApp.alert('You clicked Cancel button');
-        });*/
     myApp.modal({
         title:  'new drug request !',
         text: 'drug : '+data["drug_name"]+ 'customer_id : '+data["user_id"],
@@ -48,7 +36,8 @@ myApp.alert("new notification, from user_id :"+data["user_id"]
                     var requestObject={
                         "pharmacy":JSON.parse(getData("user")),
                         "drug_id":data["drug_id"],
-                        "user_id":data["user_id"]
+                        "user_id":data["user_id"],
+                        "drug_name":data["drug_name"]
                     }
                     console.log(requestObject);
                 pharmacyResponse(requestObject);

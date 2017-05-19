@@ -13,6 +13,11 @@ function setupSocket(){
         socket.emit("addCustomer",JSON.parse(getData("customer")));
     });
 
-
+socket.on('pharmacyResponse',function(message){
+    myApp.addNotification({
+        message: 'pharmacy: '+message["pharmacy_name"]+' has drug '+message["drug_name"]
+    });
+})
 };
+
 
