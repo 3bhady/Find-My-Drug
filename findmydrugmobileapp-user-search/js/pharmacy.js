@@ -5,6 +5,7 @@
 var endpoint4=api+'/pharmacy/';
 
 myApp.onPageBeforeAnimation('pharmacy', function (page) {
+
     console.log("Pharmacy profile");
     var data = getData('pharmacy_id');
     $$.get(endpoint4+data

@@ -23,6 +23,7 @@ socket.on('pharmacyResponse',function(message){
             color: 'yellow'
         }
     });
+    console.log(message);
     CreatePharmaciesList(message);
 })
 };
@@ -44,10 +45,10 @@ CreatePharmaciesList= function(data) {
      '</div>';
      });*/
     middle += '    <li> ' +
-        '<a href="pharmacy.html" class="item-link item-content pharmacy" data-id="' + data[Object.keys(data)[0]] + '"> ' +
+        '<a href="pharmacy.html" class="item-link item-content pharmacy" data-id="' + data["pharmacy_id"] + '"> ' +
         '<div class="item-media"><i class="icon icon-f7"></i></div> ' +
         '<div class="item-inner"> ' +
-        '<div class="item-title">' + data[Object.keys(data)[1]] + '</div> ' +
+        '<div class="item-title">' + data["pharmacy_name"] + '</div> ' +
         '<div class="item-after">View</div> ' +
         '</div> ' +
         '</a> ' +
@@ -59,8 +60,9 @@ CreatePharmaciesList= function(data) {
     //$$('#pharmacies-view').append(start + middle + end);
     //$$('#list-view').clear();
     //$$('#list-view').append(start+middle+end);
+
     $$('.pharmacy').on('click', function () {
-        localStorage.setItem("pharmacy_id",data[0]);
+        localStorage.setItem("pharmacy_id",data["pharmacy_id"]);
         console.log(localStorage.getItem("pharmacy_id"));
     });
     /* $$.each(data,function(key,value) {
@@ -69,6 +71,6 @@ CreatePharmaciesList= function(data) {
      localStorage.setItem("drug_id",value);
      }
      });*/
-    console.log(localStorage.getItem("pharmacy_id"));
+   // console.log(localStorage.getItem("pharmacy_id"));
 };
 
