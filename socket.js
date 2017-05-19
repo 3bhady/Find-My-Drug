@@ -149,6 +149,18 @@ function addPharmacy(pharmacyJsonData)
 }
 function pharmacyToCustomerResponse(data)
 {
+    //sending request back to customer
     console.log("data sent "+data.user_id);
+    var CustomerSocketId=customerId[data.user_id].socket_id;
+    dataToSend={
+        "pharmacy_id":data.pharmacy.id,
+        "pharmacy_name":data.pharmacy.name,
+        "drug_id":data.drug_id,
+        "drug_name":data.drug_name,
+        "user_id":data.user_id
+    }
+    console.log(dataToSend);
+    io.to(CustomerSocketId).emit("pharmacyResponse", dataToSend);
+
 }
 
