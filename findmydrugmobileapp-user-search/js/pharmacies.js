@@ -17,7 +17,7 @@ console.log(data2);
     $$.post(endpoint3,data2
         ,function(succData)
         {
-           // console.log(succData);
+           console.log(succData);
             succData=JSON.parse(succData);
 
             //CreateList(succData);

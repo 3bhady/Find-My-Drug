@@ -17,14 +17,21 @@ class CustomerController extends Controller
       try{
       $customer= new Customer();
       $customer->save();
+         $i=$customer->id;
       $customer->name="user".($customer->id) ."";
       $customer->save();
+         $n=$customer->name;
 
       $user=new User();
       $user->type="1";
-      $user->name=$customer->name;
+      $user->name=$n;
       //$user->customer_id=$customer->id;
       $user->save();
+         
+         $edittedCustomer=Customer::find($customer->id);
+         $edittedCustomer->user_id=$user->id;
+         $edittedCustomer->save();
+         
       }
       catch (Exception $e)
       {

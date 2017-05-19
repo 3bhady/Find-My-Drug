@@ -9,6 +9,7 @@ var data = getData('drug_id');
     $$.get(endpoint2+data
         ,function(succData)
         {
+             console.log(succData);
 
             succData=JSON.parse(succData);
          //   console.log(succData);

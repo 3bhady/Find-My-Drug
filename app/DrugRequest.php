@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Drug extends Model
+class DrugRequest extends Model
 {
 
 
@@ -12,7 +12,7 @@ class Drug extends Model
 
     public function pharmacies()
     {
-        return $this->hasMany('App\Pharmacy','drug_request_id','id')->withTimestamps();
+        return $this->hasMany('App\Pharmacy','drug_request_id','id');
     }
 
 }

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Drug;
+use App\DrugRequestPharmacyResponse;
 use App\Pharmacy;
 use App\User;
 use App\DrugRequest;
 use Illuminate\Http\Request;
+use OAuth2\Exception;
 use Redis;
 
 const pharmacies_limit = 2;
@@ -70,7 +72,9 @@ return $pharmacies;
         ]);
 
         $customer = User::find($request->input("user_id"))->customer;
-        $drug = Drug::select('id')->where('id',$request->input('drug_id'))->get();
+
+        $drug = Drug::where('id',$request->input('drug_id'))->first();
+
 
         if($drug == null)
         {
@@ -100,8 +104,9 @@ return $pharmacies;
 
         $pharmacies = Pharmacy::select('id','lon','lat','user_id')->with('user')
             ->get();
-        return response()->json(['ESHTA'],200);
+       // return response()->json(['ESHTA'],200);
         $i=0;
+
         foreach($pharmacies as $pharmacy)
         {
             $i++;
@@ -152,12 +157,13 @@ return $pharmacies;
 
 
         }
+
         //get user id to be send to the pharmacy
         $drugName=Drug::select('generic_name')
             ->where('id',$request->input('drug_id'))->first();
         $response=[
             "pharmacies"=>$response,
-            "user_id"=>$request->input("id"),
+            "user_id"=>$request->input("user_id"),
             "drug_id"=>$request->input("drug_id"),
             "drug_name"=>$drugName->generic_name
         ];
@@ -172,18 +178,24 @@ return $pharmacies;
         $redis->publish('notification',json_encode($response));
 
 
-
+//saving request
         foreach($pharmacy_local_id_list as $pharmacy)
         {
-            $pharmacy = Pharmacy::where('id',$pharmacy);
+            $pharmacy_ = Pharmacy::where('id',$pharmacy)->first();
             $drug_request = DrugRequest::select('id')
                 ->where([
-                ['customer_id','=',$customer->id],
-                ['drug_id','=',$drug->id]])
-                ->orderBy('created_at', 'desc')
+                ['customer_id','=',$customer->id]],
+                ['drug_id','=',$drug->id])
+                ->orderBy('id', 'desc')
                 ->first();
 
-            $pharmacy->drug_request()->associate($drug_request);
+           $dRPR=new DrugRequestPharmacyResponse();
+            $dRPR->pharmacy_id=$pharmacy_->id;
+            $dRPR->status=0;
+            $dRPR->drug_request_id=$drug_request->id;
+            $dRPR->save();
+
+          //$pharmacy_->drugrequest()->associate($drug_request);
 
         }
 
@@ -228,22 +240,7 @@ return $pharmacies;
     {
 
     }
-    public function pharmacyAcceptDrug(Request $request )
-    {
-        //set user_pharmacy_drug_request status from pending to done
-
-        if(!$user=JWTAuth::parseToken()->authenticate())
-        {
-            return response()->json(['msg'=>'invalid pharmacist'],404);
-        }
-        $response=$request->all();
-
-        //send redis request
-         $redis=Redis::connection();
-         $redis->publish('pharmacyToCustomerResponse',json_encode($response));
-
-        return response()->json($response,200);
-    }
+   
 
     /**
      * Remove the specified resource from storage.

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2017 at 11:37 PM
+-- Generation Time: May 19, 2017 at 02:06 PM
 -- Server version: 5.7.14
 -- PHP Version: 7.0.10
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `findmydrug`
 --
+CREATE DATABASE IF NOT EXISTS `findmydrug` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `findmydrug`;
 
 -- --------------------------------------------------------
 
@@ -26,6 +28,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `admins`
 --
 
+DROP TABLE IF EXISTS `admins`;
 CREATE TABLE `admins` (
   `id` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
@@ -41,71 +44,21 @@ CREATE TABLE `admins` (
 -- Table structure for table `customers`
 --
 
+DROP TABLE IF EXISTS `customers`;
 CREATE TABLE `customers` (
   `id` int(11) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `customers`
 --
 
-INSERT INTO `customers` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, NULL, NULL, NULL),
-(2, NULL, NULL, NULL),
-(3, '3', '2017-04-24 18:20:00', '2017-04-24 18:20:00'),
-(4, NULL, '2017-04-24 18:22:31', '2017-04-24 18:22:31'),
-(5, NULL, '2017-04-24 18:22:52', '2017-04-24 18:22:52'),
-(6, '6', '2017-04-24 18:23:00', '2017-04-24 18:23:00'),
-(7, 'user7', '2017-04-24 18:26:49', '2017-04-24 18:26:49'),
-(8, 'user8', '2017-04-24 18:28:38', '2017-04-24 18:28:38'),
-(9, 'user9', '2017-04-24 18:29:03', '2017-04-24 18:29:03'),
-(10, 'user10', '2017-04-24 19:55:27', '2017-04-24 19:55:27'),
-(11, 'user11', '2017-04-24 19:59:17', '2017-04-24 19:59:17'),
-(12, 'user12', '2017-04-24 20:00:27', '2017-04-24 20:00:27'),
-(13, 'user13', '2017-04-24 20:00:56', '2017-04-24 20:00:56'),
-(14, 'user14', '2017-04-24 20:01:18', '2017-04-24 20:01:18'),
-(15, 'user15', '2017-04-24 20:02:23', '2017-04-24 20:02:23'),
-(16, 'user16', '2017-04-24 20:02:23', '2017-04-24 20:02:23'),
-(17, 'user17', '2017-04-24 20:02:51', '2017-04-24 20:02:51'),
-(18, 'user18', '2017-04-24 20:06:51', '2017-04-24 20:06:51'),
-(19, 'user19', '2017-04-24 20:08:09', '2017-04-24 20:08:09'),
-(20, 'user20', '2017-04-24 20:08:22', '2017-04-24 20:08:22'),
-(21, 'user21', '2017-04-24 20:08:35', '2017-04-24 20:08:35'),
-(22, 'user22', '2017-04-24 20:09:00', '2017-04-24 20:09:00'),
-(23, 'user23', '2017-04-24 20:09:05', '2017-04-24 20:09:05'),
-(24, 'user24', '2017-04-24 20:09:49', '2017-04-24 20:09:49'),
-(25, 'user25', '2017-04-24 20:10:52', '2017-04-24 20:10:52'),
-(26, 'user26', '2017-04-24 20:11:19', '2017-04-24 20:11:19'),
-(27, 'user27', '2017-04-24 20:13:12', '2017-04-24 20:13:12'),
-(28, 'user28', '2017-04-24 22:47:44', '2017-04-24 22:47:44'),
-(29, 'user29', '2017-04-30 07:53:45', '2017-04-30 07:53:45'),
-(30, 'user30', '2017-04-30 07:53:55', '2017-04-30 07:53:55'),
-(31, 'user31', '2017-05-18 13:38:41', '2017-05-18 13:38:41'),
-(32, 'user32', '2017-05-18 13:51:18', '2017-05-18 13:51:18'),
-(33, 'user33', '2017-05-18 15:37:36', '2017-05-18 15:37:36'),
-(34, 'user34', '2017-05-18 15:40:36', '2017-05-18 15:40:36'),
-(35, 'user35', '2017-05-18 15:40:57', '2017-05-18 15:40:57'),
-(36, 'user36', '2017-05-18 15:41:21', '2017-05-18 15:41:21'),
-(37, 'user37', '2017-05-18 16:48:05', '2017-05-18 16:48:06'),
-(38, 'user38', '2017-05-18 16:54:18', '2017-05-18 16:54:19'),
-(39, 'user39', '2017-05-18 17:03:59', '2017-05-18 17:03:59'),
-(40, 'user40', '2017-05-18 17:09:11', '2017-05-18 17:09:11'),
-(41, 'user41', '2017-05-18 17:09:31', '2017-05-18 17:09:31'),
-(42, 'user42', '2017-05-18 17:09:36', '2017-05-18 17:09:36'),
-(43, 'user43', '2017-05-18 17:13:39', '2017-05-18 17:13:39'),
-(44, 'user44', '2017-05-18 17:19:37', '2017-05-18 17:19:37'),
-(45, 'user45', '2017-05-18 17:27:56', '2017-05-18 17:27:56'),
-(46, 'user46', '2017-05-18 17:31:01', '2017-05-18 17:31:02'),
-(47, 'user47', '2017-05-18 17:35:36', '2017-05-18 17:35:36'),
-(48, 'user48', '2017-05-18 17:37:44', '2017-05-18 17:37:44'),
-(49, 'user49', '2017-05-18 17:45:15', '2017-05-18 17:45:15'),
-(50, 'user50', '2017-05-18 17:45:23', '2017-05-18 17:45:24'),
-(51, 'user51', '2017-05-18 17:45:51', '2017-05-18 17:45:51'),
-(52, 'user52', '2017-05-18 17:47:07', '2017-05-18 17:47:07'),
-(53, 'user53', '2017-05-18 21:36:49', '2017-05-18 21:36:49');
+INSERT INTO `customers` (`id`, `name`, `created_at`, `updated_at`, `user_id`) VALUES
+(79, 'user79', '2017-05-19 08:55:13', '2017-05-19 08:55:13', 88);
 
 -- --------------------------------------------------------
 
@@ -113,6 +66,7 @@ INSERT INTO `customers` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- Table structure for table `drugs`
 --
 
+DROP TABLE IF EXISTS `drugs`;
 CREATE TABLE `drugs` (
   `id` int(11) NOT NULL,
   `active_ingredient` varchar(1000) CHARACTER SET utf8 DEFAULT '',
@@ -13649,6 +13603,7 @@ INSERT INTO `drugs` (`id`, `active_ingredient`, `generic_name`, `price`, `image`
 -- Table structure for table `drug_request`
 --
 
+DROP TABLE IF EXISTS `drug_request`;
 CREATE TABLE `drug_request` (
   `id` int(11) NOT NULL,
   `customer_id` int(11) DEFAULT NULL,
@@ -13657,12 +13612,41 @@ CREATE TABLE `drug_request` (
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `drug_request`
+--
+
+INSERT INTO `drug_request` (`id`, `customer_id`, `drug_id`, `updated_at`, `created_at`) VALUES
+(13527, 79, 19848, NULL, NULL),
+(13528, 79, 19848, NULL, NULL),
+(13529, 79, 19848, NULL, NULL),
+(13530, 79, 19848, NULL, NULL),
+(13531, 79, 19848, NULL, NULL),
+(13532, 79, 19848, NULL, NULL),
+(13533, 79, 19848, NULL, NULL),
+(13534, 79, 19848, NULL, NULL),
+(13535, 79, 19848, NULL, NULL),
+(13536, 79, 19848, NULL, NULL),
+(13537, 79, 19848, NULL, NULL),
+(13538, 79, 19848, NULL, NULL),
+(13539, 79, 19848, NULL, NULL),
+(13540, 79, 19848, NULL, NULL),
+(13541, 79, 19848, NULL, NULL),
+(13542, 79, 19848, NULL, NULL),
+(13543, 79, 19848, NULL, NULL),
+(13544, 79, 19848, NULL, NULL),
+(13545, 79, 19848, NULL, NULL),
+(13546, 79, 19848, NULL, NULL),
+(13547, 79, 19848, NULL, NULL),
+(13548, 79, 19848, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `drug_request_pharmacy_response`
 --
 
+DROP TABLE IF EXISTS `drug_request_pharmacy_response`;
 CREATE TABLE `drug_request_pharmacy_response` (
   `id` int(11) NOT NULL,
   `pharmacy_id` int(11) DEFAULT NULL,
@@ -13672,12 +13656,41 @@ CREATE TABLE `drug_request_pharmacy_response` (
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `drug_request_pharmacy_response`
+--
+
+INSERT INTO `drug_request_pharmacy_response` (`id`, `pharmacy_id`, `drug_request_id`, `status`, `created_at`, `updated_at`) VALUES
+(3, 2, 13527, 0, '2017-05-19 11:01:49', '2017-05-19 13:01:49'),
+(4, 2, 13528, 0, '2017-05-19 11:03:19', '2017-05-19 13:03:19'),
+(5, 2, 13529, 0, '2017-05-19 11:06:12', '2017-05-19 13:06:12'),
+(6, 2, 13530, 0, '2017-05-19 11:07:00', '2017-05-19 13:07:00'),
+(7, 2, 13531, 0, '2017-05-19 11:08:08', '2017-05-19 13:08:08'),
+(8, 2, 13532, 0, '2017-05-19 11:09:44', '2017-05-19 13:09:44'),
+(9, 2, 13533, 0, '2017-05-19 11:13:12', '2017-05-19 13:13:12'),
+(10, 2, 13534, 0, '2017-05-19 11:20:06', '2017-05-19 13:20:06'),
+(11, 2, 13535, 0, '2017-05-19 11:21:17', '2017-05-19 13:21:17'),
+(12, 2, 13536, 0, '2017-05-19 11:21:54', '2017-05-19 13:21:54'),
+(13, 2, 13537, 0, '2017-05-19 11:22:20', '2017-05-19 13:22:20'),
+(14, 2, 13538, 0, '2017-05-19 11:23:00', '2017-05-19 13:23:00'),
+(15, 2, 13539, 0, '2017-05-19 11:23:40', '2017-05-19 13:23:40'),
+(16, 2, 13540, 0, '2017-05-19 11:33:14', '2017-05-19 13:33:14'),
+(17, 2, 13541, 0, '2017-05-19 11:35:41', '2017-05-19 13:35:41'),
+(18, 2, 13542, 0, '2017-05-19 11:52:26', '2017-05-19 13:52:26'),
+(19, 2, 13543, 0, '2017-05-19 11:53:23', '2017-05-19 13:53:23'),
+(20, 2, 13544, 0, '2017-05-19 11:54:01', '2017-05-19 13:54:01'),
+(21, 2, 13545, 0, '2017-05-19 11:56:45', '2017-05-19 13:56:45'),
+(22, 2, 13546, 0, '2017-05-19 12:02:03', '2017-05-19 14:02:03'),
+(23, 2, 13547, 0, '2017-05-19 12:04:21', '2017-05-19 14:04:21'),
+(24, 2, 13548, 0, '2017-05-19 12:05:11', '2017-05-19 14:05:11');
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `pharmacies`
 --
 
+DROP TABLE IF EXISTS `pharmacies`;
 CREATE TABLE `pharmacies` (
   `id` int(11) NOT NULL,
   `name_en` varchar(50) NOT NULL,
@@ -13706,8 +13719,7 @@ CREATE TABLE `pharmacies` (
 --
 
 INSERT INTO `pharmacies` (`id`, `name_en`, `address_en`, `owner_name`, `lat`, `lon`, `landline`, `mobile`, `email`, `mobile2`, `password`, `home_delivery`, `open`, `close`, `created_at`, `updated_at`, `name_ar`, `address_ar`, `admin_id`, `user_id`) VALUES
-(1, 'ali', '1-street of el helmia', 'mohamed ali', 13.2103, 14.2103, 324324213, 43432432423, 'user@user.com', 2103812, 'underworld', 1, '02:03:12', '05:10:16', '2017-04-15 12:43:51', '2017-04-15 12:43:51', 'asdasdas', 'شارع الميمون', NULL, 43),
-(2, 'ali', '1-street of el helmiaghf', 'mohamed ali', 16.2321, 16.623, 324324213, 43432432423, 'mohamed166@gmail.com', 2103812, 'underworld', 1, '02:03:12', '05:10:16', '2017-04-18 14:42:35', '2017-04-18 14:42:35', 'asdasdas', 'شارع الميمونgdfgd', NULL, 44);
+(2, 'ali', '1-street of el helmiaghf', 'mohamed ali', 16.2321, 16.623, 324324213, 43432432423, 'mohamed166@gmail.com', 2103812, 'underworld', 1, '02:03:12', '05:10:16', '2017-04-18 12:42:35', '2017-04-18 12:42:35', 'asdasdas', 'شارع الميمونgdfgd', NULL, 44);
 
 -- --------------------------------------------------------
 
@@ -13715,6 +13727,7 @@ INSERT INTO `pharmacies` (`id`, `name_en`, `address_en`, `owner_name`, `lat`, `l
 -- Table structure for table `pharmacy_forms`
 --
 
+DROP TABLE IF EXISTS `pharmacy_forms`;
 CREATE TABLE `pharmacy_forms` (
   `id` int(11) NOT NULL,
   `name_en` varchar(50) NOT NULL,
@@ -13760,6 +13773,7 @@ INSERT INTO `pharmacy_forms` (`id`, `name_en`, `address_en`, `landline`, `mobile
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL,
@@ -13776,30 +13790,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `created_at`, `updated_at`, `name`, `password`, `email`, `online`, `type`) VALUES
-(43, '2017-05-18 13:04:46', '2017-05-18 13:04:46', 'user', 'user', 'user@user.com', 0, 0),
-(44, '2017-05-18 13:09:18', '2017-05-18 21:32:09', 'user', '$2y$10$HoGRRAZOlzqhCoDt6YrrJex3obzqHBwbmoyIG8hkmQfPB37Q.NCci', 'mohamedali166@gmail.com', 1, 0),
-(46, '2017-05-18 13:51:18', '2017-05-18 21:37:14', 'user32', NULL, NULL, 1, 1),
-(47, '2017-05-18 15:37:37', '2017-05-18 15:37:37', 'user33', NULL, NULL, 0, 1),
-(48, '2017-05-18 15:40:36', '2017-05-18 15:40:36', 'user34', NULL, NULL, 0, 1),
-(49, '2017-05-18 15:40:57', '2017-05-18 15:40:57', 'user35', NULL, NULL, 0, 1),
-(50, '2017-05-18 15:41:21', '2017-05-18 15:41:21', 'user36', NULL, NULL, 0, 1),
-(51, '2017-05-18 16:48:06', '2017-05-18 16:48:06', 'user37', NULL, NULL, 0, 1),
-(52, '2017-05-18 16:54:20', '2017-05-18 16:54:20', 'user38', NULL, NULL, 0, 1),
-(53, '2017-05-18 17:03:59', '2017-05-18 17:03:59', 'user39', NULL, NULL, 0, 1),
-(54, '2017-05-18 17:09:11', '2017-05-18 17:09:11', 'user40', NULL, NULL, 0, 1),
-(55, '2017-05-18 17:09:31', '2017-05-18 17:09:31', 'user41', NULL, NULL, 0, 1),
-(56, '2017-05-18 17:09:36', '2017-05-18 17:09:36', 'user42', NULL, NULL, 0, 1),
-(57, '2017-05-18 17:13:39', '2017-05-18 17:13:39', 'user43', NULL, NULL, 0, 1),
-(58, '2017-05-18 17:19:37', '2017-05-18 17:19:37', 'user44', NULL, NULL, 0, 1),
-(59, '2017-05-18 17:27:57', '2017-05-18 17:27:57', 'user45', NULL, NULL, 0, 1),
-(60, '2017-05-18 17:31:02', '2017-05-18 17:31:02', 'user46', NULL, NULL, 0, 1),
-(61, '2017-05-18 17:35:36', '2017-05-18 17:35:36', 'user47', NULL, NULL, 0, 1),
-(62, '2017-05-18 17:37:44', '2017-05-18 17:37:44', 'user48', NULL, NULL, 0, 1),
-(63, '2017-05-18 17:45:15', '2017-05-18 17:45:15', 'user49', NULL, NULL, 0, 1),
-(64, '2017-05-18 17:45:24', '2017-05-18 17:45:24', 'user50', NULL, NULL, 0, 1),
-(65, '2017-05-18 17:45:51', '2017-05-18 17:45:51', 'user51', NULL, NULL, 0, 1),
-(66, '2017-05-18 17:47:08', '2017-05-18 17:47:08', 'user52', NULL, NULL, 0, 1),
-(67, '2017-05-18 21:36:49', '2017-05-18 21:36:49', 'user53', NULL, NULL, 0, 1);
+(44, '2017-05-18 13:09:18', '2017-05-19 12:05:05', 'user', '$2y$10$HoGRRAZOlzqhCoDt6YrrJex3obzqHBwbmoyIG8hkmQfPB37Q.NCci', 'mohamedali166@gmail.com', 1, 0),
+(88, '2017-05-19 08:55:13', '2017-05-19 11:02:46', 'user79', NULL, NULL, 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -13817,7 +13809,8 @@ ALTER TABLE `admins`
 -- Indexes for table `customers`
 --
 ALTER TABLE `customers`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `drugs`
@@ -13881,7 +13874,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 --
 -- AUTO_INCREMENT for table `drugs`
 --
@@ -13891,12 +13884,12 @@ ALTER TABLE `drugs`
 -- AUTO_INCREMENT for table `drug_request`
 --
 ALTER TABLE `drug_request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13549;
 --
 -- AUTO_INCREMENT for table `drug_request_pharmacy_response`
 --
 ALTER TABLE `drug_request_pharmacy_response`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `pharmacies`
 --
@@ -13911,10 +13904,16 @@ ALTER TABLE `pharmacy_forms`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `customers`
+--
+ALTER TABLE `customers`
+  ADD CONSTRAINT `customers_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `drugs`

@@ -30,7 +30,7 @@ Route::group(['prefix'=>'v1','middleware'=>'cors'],function(){
     //adding pharmacy when log in
     Route::post('addpharmacy','SocketController@addPharmacy');
     Route::get('notifypharmacy','SocketController@notifyPharmacy');
-    
+    Route::post('pharmacyAcceptDrug','SocketController@pharmacyAcceptDrug');
 
 
 });
@@ -50,7 +50,7 @@ Route::group(['prefix'=>'v1'],function(){
             'as' => 'search.drug'
         ]);
     Route::post('setoffline','SocketController@setOffline');
-    Route::post('pharmacyAcceptDrug','RequestController@pharmacyAcceptDrug');
+
     //,
       //  ['except'=>['edit','create']
        // ]);

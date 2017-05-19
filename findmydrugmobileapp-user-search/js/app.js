@@ -33,7 +33,7 @@ function setupIndex(page)
 {
 
     myApp.params.swipePanel = 'left';
-    //localStorage.removeItem("customer");
+   // localStorage.removeItem("customer");
     user=localStorage.getItem("customer");
     console.log(user);
 

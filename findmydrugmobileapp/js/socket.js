@@ -44,13 +44,14 @@ myApp.alert("new notification, from user_id :"+data["user_id"]
         buttons: [
             {
                 text: 'I have it ',
-                onClick: function(data) {
+                onClick: function(x) {
                     var requestObject={
                         "pharmacy":JSON.parse(getData("user")),
                         "drug_id":data["drug_id"],
                         "user_id":data["user_id"]
                     }
-                   pharmacyResponse(requestObject);
+                    console.log(requestObject);
+                pharmacyResponse(requestObject);
                 }
             },
             {
@@ -69,10 +70,11 @@ myApp.alert("new notification, from user_id :"+data["user_id"]
 }
 function pharmacyResponse(data)
 {
+    console.log("in pharmacy repsonse");
     token=(JSON.parse(getData("user"))).token;
-    endpoint=api+"pharmacyAcceptDrug?token="+token;
+    endpoint=api+"/pharmacyAcceptDrug?token="+token;
 
-    $$.post(addPharmacyEndPoint, data, function (succData) {
+    $$.post(endpoint, data, function (succData) {
         console.log(succData);
     },function(errorData){
         console.log(errorData);

@@ -10,12 +10,13 @@ class Pharmacy extends Model
 
   public function user()
   {
-      return $this->hasOne('App\User','id','user_id')->withTimestamps();
+      return $this->hasOne('App\User','id','user_id');
   }
 
 
-    public function drug_request()
+    public function drugrequest()
     {
-        return $this->belongsTo('App\DrugRequest','id','drug_request_id')->withTimestamps();
+        return $this->belongsTo("App\DrugRequest",'drug_request_id','id');
+        return $this->belongsTo('App\DrugRequest','id','drug_request_id');
     }
 }

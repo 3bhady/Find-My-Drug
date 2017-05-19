@@ -111,7 +111,7 @@ redisClient.on("message", function(channel, message) {
         addPharmacy(message);
     }
     if(channel=="notification"){
-        console.log("again");
+
         // io.emit("notification","ok");
         for(var i of message.pharmacies) {
             console.log("i" + i);
@@ -149,6 +149,6 @@ function addPharmacy(pharmacyJsonData)
 }
 function pharmacyToCustomerResponse(data)
 {
-    console.log("data sent "+data);
+    console.log("data sent "+data.user_id);
 }
 
