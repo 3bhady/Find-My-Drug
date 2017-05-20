@@ -2,34 +2,36 @@
  * Created by muham on 4/19/2017.
  */
 var endpoint3 = api +'/request';
-myApp.onPageBeforeAnimation('pharmacies',function(){
+myApp.onPageBeforeAnimation('pharmacies',function(page){
+
 
     console.log("back to pharmacies");
     myApp.params.swipePanel = 'left';
-    data2={
-        "drug_id":getData("drug_id"),
-        "lon":2,
-        "lat":5,
-        "user_id":(JSON.parse(getData("customer"))).id
+    if( page.fromPage.name == 'drug') {
+        data2 = {
+            "drug_id": getData("drug_id"),
+            "lon": 2,
+            "lat": 5,
+            "user_id": (JSON.parse(getData("customer"))).id
 
         };
-console.log(data2);
-    $$.post(endpoint3,data2
-        ,function(succData)
-        {
-           console.log(succData);
-            succData=JSON.parse(succData);
 
-            //CreateList(succData);
+        console.log(data2);
+        $$.post(endpoint3, data2
+            , function (succData) {
+                console.log(succData);
+                succData = JSON.parse(succData);
 
-        }
-        ,function(errorData)
-        {
-            console.log(errorData);
-            errorData=JSON.parse(errorData);
+                //CreateList(succData);
 
-        });
+            }
+            , function (errorData) {
+                console.log(errorData);
+                errorData = JSON.parse(errorData);
+                console.log(errorData);
 
+            });
+    }
 });
 
 

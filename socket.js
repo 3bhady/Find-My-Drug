@@ -9,9 +9,9 @@ request=require('request');
 user=[];
 //holding key as socket
 
-customerSocket={};
+customerSocket={valid_key:  undefined};
 //holding id as key
-customerId={};
+customerId={valid_key:  undefined};
 //holding key as socket
 
 pharmacySocket={valid_key:  undefined};
@@ -23,14 +23,13 @@ server.listen(8890);
 io.on('connection', function (socket) {
 
     socket.on('addCustomer',function(data){
-        console.log("new customer"+data);
+        console.log("new customer added with id"+data.id);
         customerSocket[data.socket_id]=data;
         customerId[data.id]=data;
-        console.log(customerSocket);
-        console.log(customerId);
+
         }
     );
-   
+
 
     // console.log(socket.id);
 //init redis
@@ -43,17 +42,18 @@ io.on('connection', function (socket) {
 
 
     socket.on('disconnect', function() {
+
         if(customerSocket.hasOwnProperty(socket.id))
         {
             console.log("customer disconnected");
              CustomerId=(customerSocket[socket.id]).id;
             delete   customerSocket[socket.id];
             delete   customerId[CustomerId];
-            console.log(customerSocket);
-            console.log(customerId);
+            console.log(" customer disconnected! with id "+ customerId.toString());
+
             return;
         }
-
+        else if(pharmacySocket.hasOwnProperty(socket.id)){
         var json = {
             "user":pharmacySocket[socket.id]
         };
@@ -69,7 +69,7 @@ io.on('connection', function (socket) {
         };
         request(options, function(err, res, body) {
             if (res && (res.statusCode === 200 || res.statusCode === 201)) {
-                console.log(body);
+                console.log("pharmacy setoffline successed");
             }
             else {
                 console.log(err);
@@ -81,8 +81,9 @@ io.on('connection', function (socket) {
         pharmaId=(pharmacySocket[socket.id]).id;
         delete   pharmacySocket[socket.id];
         delete   pharmacyId[pharmaId];
-
+        console.log("pharmacy offline with id "+pharmaId);
         redisClient.quit();
+        }
     });
 
 
@@ -114,10 +115,11 @@ redisClient.on("message", function(channel, message) {
 
         // io.emit("notification","ok");
         for(var i of message.pharmacies) {
-            console.log("i" + i);
+
 
             if (i != undefined) {
-                console.log("phrmacyID[i]:" + pharmacyId[i].socketId);
+                console.log("notification to pharmacy id " +
+                    i);
                 io.to(pharmacyId[i].socketId).emit("notification", message);
 
             }
@@ -136,10 +138,12 @@ function addPharmacy(pharmacyJsonData)
 
 
     pharmacySocketId=pharmacyJsonData.socketId;
+
     pharmaId=pharmacyJsonData.id;
 
     pharmacySocket[pharmacySocketId]=pharmacyJsonData;
     pharmacyId[pharmaId]=pharmacyJsonData;
+    console.log("new pharmacy is online with id "+pharmaId);
   //  console.log(" new user added with socket->"+pharmacySocketId);
    // console.log(" id->"+pharmaId);
     //io.emit("notification","new notification available");
@@ -150,7 +154,13 @@ function addPharmacy(pharmacyJsonData)
 function pharmacyToCustomerResponse(data)
 {
     //sending request back to customer
-    console.log("data sent "+data.user_id);
+
+    if(customerId[data.user_id]==undefined)
+    {
+        console.log("a request was sent while client is offline , cannot be handled" +
+            "by our simple technology");
+        return ;
+    }
     var CustomerSocketId=customerId[data.user_id].socket_id;
     dataToSend={
         "pharmacy_id":data.pharmacy.id,
@@ -158,9 +168,11 @@ function pharmacyToCustomerResponse(data)
         "drug_id":data.drug_id,
         "drug_name":data.drug_name,
         "user_id":data.user_id
-    }
+    };
+    console.log("data sent to customer from pharmacy -> ")
     console.log(dataToSend);
     if(CustomerSocketId!=null) {
+        if(CustomerSocketId!=undefined)
         io.to(CustomerSocketId).emit("pharmacyResponse", dataToSend);
     }
 }

@@ -17,7 +17,7 @@ myApp.onPageBeforeAnimation('pharmacies',function(){
 
             succData=JSON.parse(succData);
             //console.log(succData);
-            CreatePharmaciesList(succData);
+            //CreatePharmaciesList(succData);
 
         }
         ,function(errorData)
@@ -32,9 +32,9 @@ myApp.onPageBeforeAnimation('pharmacies',function(){
 
 CreatePharmaciesList= function(data) {
     var middle = '';
-    var start = '<div class="list-block">' + ' <ul>';
-    var end = ' </ul> ' + '</div>';
-    for (var i = 0; i < data.length; i++) {
+    //var start = '<div class="list-block">' + ' <ul>';
+    //var end = ' </ul> ' + '</div>';
+   // for (var i = 0; i < data.length; i++) {
         // middleList+=" <li value="+value+">"+key+"</li>";
 
         /*        middle+='  <a id="'+value+'" href="drug.html" class="item-link"> ' +
@@ -46,18 +46,19 @@ CreatePharmaciesList= function(data) {
          '</div>';
          });*/
         middle += '    <li> ' +
-            '<a href="pharmacy.html" class="item-link item-content pharmacy" data-id="' + data[i][Object.keys(data[i])[0]] + '"> ' +
+            '<a href="pharmacy.html" class="item-link item-content pharmacy" data-id="' + data[Object.keys(data)[0]] + '"> ' +
             '<div class="item-media"><i class="icon icon-f7"></i></div> ' +
             '<div class="item-inner"> ' +
-            '<div class="item-title">' + data[i][Object.keys(data[i])[1]] + '</div> ' +
+            '<div class="item-title">' + data[Object.keys(data)[1]] + '</div> ' +
             '<div class="item-after">View</div> ' +
             '</div> ' +
             '</a> ' +
             '</li>';
-    }
+   // }
 
-    $$('#list-view').empty();
-    $$('#list-view').append(start + middle + end);
+   //$$('#pharmacies-view').empty();
+    $$('#pharmacies-view').prepend( middle );
+    //$$('#pharmacies-view').append(start + middle + end);
     //$$('#list-view').clear();
     //$$('#list-view').append(start+middle+end);
     $$('.pharmacy').on('click', function () {

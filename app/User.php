@@ -42,6 +42,7 @@ class User extends Authenticatable
 
     public function pharmacy()
     {
+
       return $this->belongsTo('App\Pharmacy','id','user_id');
     }
     public function getRememberTokenName()

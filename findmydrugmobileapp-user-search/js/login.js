@@ -5,8 +5,6 @@ function login()
     $$.get(endpoint,function(succData)
     {
         succData=JSON.parse(succData);
-
-
         var User=succData.user;
             setData("customer",JSON.stringify(User));
         console.log(JSON.parse(getData("customer")));

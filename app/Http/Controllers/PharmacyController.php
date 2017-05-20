@@ -113,10 +113,20 @@ class PharmacyController extends Controller
      */
     public function show($id)
     {
-        //
-        $pharmacy = Pharmacy::where('id',$id)->get();
+        $pharmacy = User::find($id)->pharmacy;
 
-        return response()->json($pharmacy,200);
+       // $pharmacy = Pharmacy::where('id',$id)->get();
+        $response=array();
+        $response=[
+            'name_en'=>$pharmacy->name_en,
+            'id'=>$pharmacy->id,
+            'landline'=>$pharmacy->landline,
+            'open'=>$pharmacy->open,
+            'close'=>$pharmacy->close,
+            'address_en'=>$pharmacy->address_en,
+
+        ];
+        return response()->json($response,200);
     }
 
     /**

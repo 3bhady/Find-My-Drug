@@ -33,9 +33,6 @@ class RequestController extends Controller
      */
     public function index()
     {
-        $pharmacies = Pharmacy::select('id','lon','lat','user_id')->with('user')
-            ->get();
-return $pharmacies;
 
         $pharmacies = Pharmacy::select('id','name_en')->get();
 
@@ -50,6 +47,7 @@ return $pharmacies;
     public function create()
     {
         //
+
     }
 
     /**
@@ -72,6 +70,9 @@ return $pharmacies;
         ]);
 
         $customer = User::find($request->input("user_id"))->customer;
+
+
+        //return response()->json(['ESHTA'],200);
 
         $drug = Drug::where('id',$request->input('drug_id'))->first();
 
@@ -104,7 +105,7 @@ return $pharmacies;
 
         $pharmacies = Pharmacy::select('id','lon','lat','user_id')->with('user')
             ->get();
-       // return response()->json(['ESHTA'],200);
+        
         $i=0;
 
         foreach($pharmacies as $pharmacy)
