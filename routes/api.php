@@ -23,7 +23,7 @@ Route::group(['prefix'=>'v1','middleware'=>'cors'],function(){
     //customer
     Route::get('newcustomer/{id}','CustomerController@generateCustomer');
     Route::get('setonline','PharmacyController@setOnline');
-
+    Route::get('history','PharmacyController@history');
     //pharmacy signIn
     Route::post('signin','PharmacyController@signIn');
 

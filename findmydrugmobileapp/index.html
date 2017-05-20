@@ -2,7 +2,17 @@
 <html>
 <head>
     <style>
-
+        .infinite-scroll-preloader {
+            margin-top:-20px;
+            margin-bottom: 10px;
+            text-align: center;
+            color:rgba(35, 19, 238, 0.74);
+        }
+        .infinite-scroll-preloader .preloader {
+            width:34px;
+            height:34px;
+            color:rgba(35, 19, 238, 0.74);
+        }
     </style>
     <!-- Required meta tags-->
     <meta charset="utf-8">
@@ -23,6 +33,8 @@
 
     <!-- socket.io js -->
     <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
 
 
@@ -68,14 +80,22 @@
         </div>
 
         <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
-        <div class="pages  navbar-through toolbar-through ">
+        <div class="pages  navbar-through toolbar-through  ">
             <!-- Page, "data-page" contains page name -->
             <div data-page="index" class="page no-swipeback">
                 <!-- Scrollable page content -->
-                <div class="page-content">
+                <div class="page-content  infinite-scroll">
+                    <!--body  -->
+                    <div class="list-block">
+                        <ul>
 
-                    <p><a href="#" class="button notification-callback">Default notification</a></p>
 
+                            </ul>
+
+                        <div class="infinite-scroll-preloader">
+                            <div class="preloader"></div>
+                        </div>
+                    <!--End body  -->
                 </div>
             </div>
         </div>

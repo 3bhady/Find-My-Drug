@@ -66,10 +66,22 @@ class PharmacyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //testing endpoint
     public function index()
     {
-        $ph=User::find(44)->pharmacy;
-        return response()->json($ph,200);
+
+    }
+    public function history()
+    {
+        if(!$user=JWTAuth::parseToken()->authenticate())
+        {
+            return response()->json(['msg'=>'user not found'],404);
+        }
+        $pharmacy=$user->pharmacy;
+
+        $dRPR=   DrugRequestPharmacyResponse::
+        where('pharmacy_id',$pharmacy->id)->paginate(8);
+        return response()->json($dRPR,200);
     }
 
     /**
