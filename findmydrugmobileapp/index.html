@@ -33,8 +33,8 @@
 
     <!-- socket.io js -->
     <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+              rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
 
 
@@ -48,8 +48,8 @@
 <div class="panel-overlay"></div>
 <div class="panel panel-left panel-reveal">
     <div class="content-block">
-        <p>Left Panel content here</p>
-        <p><a href="#" class="panel-close">Close me</a></p>
+
+        <p><a href="#" class="panel-close" id="updateLocation">Update Location</a></p>
 
     </div>
 </div>
@@ -63,7 +63,7 @@
         <div class="navbar ">
             <div class="navbar-inner">
                 <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-                <div class="center sliding">Find-My-Drug</div>
+
                 <div class="right">
                     <p>
                         <a href="#" data-panel="left" class="open-panel">
@@ -114,6 +114,7 @@
 <script type="text/javascript" src="js/register.js"></script>
 <script type="text/javascript" src="js/login.js"></script>
 <script type="text/javascript" src="js/panel.js"></script>
+    <script type="text/javascript" src="js/geolocation.js"></script>
 
 
 

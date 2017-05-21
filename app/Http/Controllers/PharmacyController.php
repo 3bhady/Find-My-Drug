@@ -8,6 +8,7 @@ use App\Pharmacy;
 use App\User;
 use Hash;
 use Illuminate\Http\Request;
+use OAuth2\Exception;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Illuminate\Support\Facades;
 use JWTAuth;
@@ -127,6 +128,24 @@ class PharmacyController extends Controller
 
         ];
         return response()->json($response,200);
+    }
+    public function updatePharmacyLocation(Request $request)
+    {
+        try{
+        $id=$request->input("id");
+        $lat=$request->input("lat");
+        $lon=$request->input("lon");
+        $pharmacy=User::find($id)->pharmacy;
+        $pharmacy->lat=$lat;
+        $pharmacy->lon=$lon;
+        $pharmacy->save();
+            return response()->json($pharmacy,200);
+        }
+        catch (Exception $E)
+        {
+            return response()->json(["status"=>"failed"],200);
+        }
+
     }
 
     /**

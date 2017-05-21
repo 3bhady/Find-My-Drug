@@ -24,6 +24,8 @@ Route::group(['prefix'=>'v1','middleware'=>'cors'],function(){
     Route::get('newcustomer/{id}','CustomerController@generateCustomer');
     Route::get('setonline','PharmacyController@setOnline');
     Route::get('history','PharmacyController@history');
+
+    Route::post('updatePharmacyLocation','PharmacyController@updatePharmacyLocation');
     //pharmacy signIn
     Route::post('signin','PharmacyController@signIn');
 
@@ -31,7 +33,8 @@ Route::group(['prefix'=>'v1','middleware'=>'cors'],function(){
     Route::post('addpharmacy','SocketController@addPharmacy');
     Route::get('notifypharmacy','SocketController@notifyPharmacy');
     Route::post('pharmacyAcceptDrug','SocketController@pharmacyAcceptDrug');
-
+    //update customer location
+    Route::post('updateCustomerLocation','CustomerController@updateCustomerLocation');
 
 });
 

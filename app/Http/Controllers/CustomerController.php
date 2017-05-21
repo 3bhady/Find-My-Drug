@@ -43,5 +43,23 @@ class CustomerController extends Controller
 
 
    }
+   public function updateCustomerLocation(Request $request)
+   {
+      try{
+         $id=$request->input("id");
+         $lat=$request->input("lat");
+         $lon=$request->input("lon");
+         $customer=User::find($id)->customer;
+         $customer->lat=$lat;
+         $customer->lon=$lon;
+         $customer->save();
+         return response()->json($customer,200);
+      }
+      catch (Exception $E)
+      {
+         return response()->json(["status"=>"failed"],200);
+      }
+
+   }
 
 }
