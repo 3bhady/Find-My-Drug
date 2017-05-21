@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 19, 2017 at 05:55 PM
+-- Generation Time: May 21, 2017 at 12:29 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -13750,8 +13750,6 @@ CREATE TABLE `pharmacy_forms` (
 --
 
 INSERT INTO `pharmacy_forms` (`id`, `name_en`, `address_en`, `landline`, `mobile`, `email`, `mobile2`, `owner_name`, `password`, `home_delivery`, `open`, `close`, `created_at`, `updated_at`, `name_ar`, `address_ar`) VALUES
-(1, 'seif_pharmacy', '1-street of ahmed bk tymour ', 23952901, 1113205833, 'muhamedali166@gmail.com', 113250844, 'mohamed ali', 'underworld', 1, '05:19:36', '10:24:25', '2017-04-10 15:43:29', '2017-04-10 15:43:29', 'صيدليه سيف', 'صيدليه '),
-(2, 'sadsadsa', 'sdasdsad', 3434234, 35435435, 'muhamedali166@gmail.com', NULL, 'sadsadsad', 'underworld', 0, '03:54:00', '15:24:00', '2017-04-15 01:12:42', '2017-04-15 01:12:42', 'dsadasdsadas', 'asdasdas'),
 (5, 'dfdsf', 'fdsfds', 43543543, 43543543, 'dgfg@gmail.com', NULL, 'dsfdsfdsfds', 'underworld', 0, '15:24:00', '03:42:00', '2017-04-15 01:15:21', '2017-04-15 01:15:21', 'dsfdsf', 'dfdsfs'),
 (10, 'sdsfdsf', 'fdsf', 123456789, 435435, 'ewrwerew@gmail.com', NULL, 'dsfdsfdsfsd', 'underworld', 0, '14:43:00', '02:12:00', '2017-04-15 07:11:35', '2017-04-15 07:11:35', 'dsfdsfdsfds', '43543543'),
 (12, 'sdsfdsf', 'fdsf', 123456789, 435435546, 'ewrwerew@gmail.com', NULL, 'dsfdsfds', 'underworld', 0, '14:43:00', '02:12:00', '2017-04-15 07:12:25', '2017-04-15 07:12:25', 'dsfdsfds', '43543543'),
